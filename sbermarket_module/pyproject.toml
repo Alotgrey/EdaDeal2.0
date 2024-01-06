@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "edadil-2"
+version = "0.1.0"
+description = ""
+authors = ["MRossa <maxim.rossa@mail.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+beautifulsoup4 = "^4.12.2"
+requests = "^2.31.0"
+lxml = "^4.9.3"
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.27.1"
+mypy = "^1.7.1"
+pylint = {extras = ["spelling"], version = "^3.0.2"}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
