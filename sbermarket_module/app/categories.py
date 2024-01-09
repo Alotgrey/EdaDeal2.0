@@ -1,9 +1,17 @@
 import requests
+import logging
 from bs4 import BeautifulSoup
 import json
+import os
+import datetime
+import undetected_chromedriver as uc
+from selenium.webdriver.remote.webdriver import By
 
 import constants # type: ignore
 from exceptions import *
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger('SberCategories')
 
 class SberCategoriesParser():
     def __init__(self) -> None:
@@ -73,11 +81,24 @@ class SberCategoriesParser():
         dict: Словарь, где ключи - названия ретейлеров, а значения - их идентификаторы.
         """
         url = 'https://sbermarket.ru/retailer_selection/all'
-        response = requests.get(url)
-        soup = BeautifulSoup(response.text, 'html.parser')
-        script_tag = soup.find('script', {'id': '__NEXT_DATA__'})
-        script_content = script_tag.string if script_tag else ''
-        data = json.loads(script_content)
+        # Проверка на существование файла или если файл старше 15 дней, то создаем новый
+        if os.path.exists(constants.RETAILERS_LIST_PATH) and (datetime.datetime.now() - datetime.datetime.fromtimestamp(os.path.getctime(constants.RETAILERS_LIST_PATH))).days <= 15:
+            logger.info(f'Нашли файл {constants.RETAILERS_LIST_PATH}. Собираем данные от туда!')
+            with open(constants.RETAILERS_LIST_PATH, 'r') as file:
+                data = json.load(file)
+        else:
+            logger.info(f'Инициализируем новый файл {constants.RETAILERS_LIST_PATH}')
+            driver = uc.Chrome(headless=False)
+            
+            driver.get(url)
+            driver.implicitly_wait(10)    
+            
+            script_tag = driver.find_element(By.XPATH, '//*[@id="__NEXT_DATA__"]')
+            script_content = script_tag.get_attribute('innerHTML')
+            data = json.loads(script_content)
+            with open(constants.RETAILERS_LIST_PATH, 'w') as file:
+                json.dump(data, file)
+            logger.info(f"Собрали все данные и сохранили их в {constants.RETAILERS_LIST_PATH}")
 
         retailers_data = data['props']['pageProps']['storefrontProps']['reduxStoreState']['landing']['retailers']['entities']
         retailers = {retailer_info['name']: retailer_info['slug'] for retailer_id, retailer_info in retailers_data.items()}
@@ -111,5 +132,5 @@ class SberCategoriesParser():
 if __name__ == '__main__':
     parser = SberCategoriesParser()
     retailers = parser.get_retailers().keys()
-    print(retailers.keys())
+    print(retailers)
     
