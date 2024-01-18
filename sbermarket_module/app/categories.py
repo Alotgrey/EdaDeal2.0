@@ -1,6 +1,5 @@
 import requests
 import logging
-from bs4 import BeautifulSoup
 import json
 import os
 import datetime
@@ -73,6 +72,26 @@ class SberCategoriesParser():
         slug = canonical_url.split('/categories/')[-1]
         return slug
     
+    def __collect_raw_json_data_for_get_retailers(self, ) -> dict:
+        """
+        Парсит данные с сайта через Selenium, нужные для обработки в get_retailers
+        """
+        url = 'https://sbermarket.ru/retailer_selection/all'
+        
+        logger.info(f'Инициализируем новый файл {constants.RETAILERS_LIST_PATH}')
+        driver = uc.Chrome()
+        
+        driver.get(url)
+        driver.implicitly_wait(10)    
+        
+        script_tag = driver.find_element(By.XPATH, '//*[@id="__NEXT_DATA__"]')
+        script_content = script_tag.get_attribute('innerHTML')
+        data = json.loads(script_content)
+        with open(constants.RETAILERS_LIST_PATH, 'w') as file:
+            json.dump(data, file)
+        logger.info(f"Собрали все данные и сохранили их в {constants.RETAILERS_LIST_PATH}")
+        return data
+    
     def get_retailers(self) -> dict:
         """
         Возвращает список доступных ретейлеров с их идентификаторами.
@@ -80,25 +99,16 @@ class SberCategoriesParser():
         Возвращает:
         dict: Словарь, где ключи - названия ретейлеров, а значения - их идентификаторы.
         """
-        url = 'https://sbermarket.ru/retailer_selection/all'
         # Проверка на существование файла или если файл старше 15 дней, то создаем новый
-        if os.path.exists(constants.RETAILERS_LIST_PATH) and (datetime.datetime.now() - datetime.datetime.fromtimestamp(os.path.getctime(constants.RETAILERS_LIST_PATH))).days <= 15:
+        if os.path.exists(constants.RETAILERS_LIST_PATH):
+            if (datetime.datetime.now() - datetime.datetime.fromtimestamp(os.path.getctime(constants.RETAILERS_LIST_PATH))).days <= 15:
+                logger.warning(f'Прошло 15 дней с момента создания файла {constants.RETAILERS_LIST_PATH}. Проверьте нужно ли ему обновление!')
             logger.info(f'Нашли файл {constants.RETAILERS_LIST_PATH}. Собираем данные от туда!')
             with open(constants.RETAILERS_LIST_PATH, 'r') as file:
                 data = json.load(file)
         else:
-            logger.info(f'Инициализируем новый файл {constants.RETAILERS_LIST_PATH}')
-            driver = uc.Chrome(headless=False)
+            data = self.__collect_raw_json_data_for_get_retailers()
             
-            driver.get(url)
-            driver.implicitly_wait(10)    
-            
-            script_tag = driver.find_element(By.XPATH, '//*[@id="__NEXT_DATA__"]')
-            script_content = script_tag.get_attribute('innerHTML')
-            data = json.loads(script_content)
-            with open(constants.RETAILERS_LIST_PATH, 'w') as file:
-                json.dump(data, file)
-            logger.info(f"Собрали все данные и сохранили их в {constants.RETAILERS_LIST_PATH}")
 
         retailers_data = data['props']['pageProps']['storefrontProps']['reduxStoreState']['landing']['retailers']['entities']
         retailers = {retailer_info['name']: retailer_info['slug'] for retailer_id, retailer_info in retailers_data.items()}

@@ -126,14 +126,4 @@ class SberParser:
         self.save_result(csv_save_path)
 
 
-if __name__ == '__main__':
-    category_parser = SberCategoriesParser()
-    parser = SberParser()
-
-    #bread = category_parser.get_category_by_name('Хлеб')
-    for category in category_parser.categories:
-        base_url = category_parser.get_retailer_base_url('ПЯТЁРОЧКА', category_parser.get_category_slug(category))
-        parser.run(base_url, 5, r'D:\ворк\LenParser2\5ka.csv')
-    # parser.run(base_url, 5, 'bread_metro.csv')
-
 
