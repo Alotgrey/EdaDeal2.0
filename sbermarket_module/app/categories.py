@@ -90,6 +90,7 @@ class SberCategoriesParser():
         with open(constants.RETAILERS_LIST_PATH, 'w') as file:
             json.dump(data, file)
         logger.info(f"Собрали все данные и сохранили их в {constants.RETAILERS_LIST_PATH}")
+        driver.close()
         return data
     
     def get_retailers(self) -> dict:

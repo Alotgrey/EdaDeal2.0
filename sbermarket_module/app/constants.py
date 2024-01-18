@@ -29,4 +29,4 @@ SESSIONHEADERS = {
             "Accept": "application/json, text/plain, */*"
         }
 
-RETAILERS_LIST_PATH = r"sbermarket_module/app/retailers_list.json"
+RETAILERS_LIST_PATH = "retailers_list.json"
