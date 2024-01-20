@@ -2,6 +2,7 @@ import logging
 import requests
 import bs4
 import csv
+from selenium import webdriver
 
 import constants  # type: ignore
 from categories import SberCategoriesParser
@@ -9,6 +10,7 @@ from categories import SberCategoriesParser
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger('Sber')
 
+driver = webdriver.Firefox()
 
 class SberParser:
 
@@ -17,15 +19,14 @@ class SberParser:
         self.session.headers = constants.SESSIONHEADERS
         self.result = []
 
-    def load_page(self, url_template: str, page_number: int):
-        url_template += '?page={}'
-
+    def load_page(self, category_url, page_number):
+        url_template = f'{category_url}?page={{}}'
         url = url_template.format(page_number)
-        res = self.session.get(url=url)
-        #res.raise_for_status()
-        return res.text
+        driver.get(url)
+        res = driver.page_source
+        return res
 
-    def parse_page(self, text: str):
+    def parse_page(self, text):
         soup = bs4.BeautifulSoup(text, 'lxml')
         container = soup.select(
             'div.ProductCard_root__K6IZK.ProductCard_addToCartBig__h5PsY')
@@ -124,6 +125,4 @@ class SberParser:
             self.parse_page(text=text)
             logger.info(f'Получено {len(self.result)} единиц продукта')
         self.save_result(csv_save_path)
-
-
 
