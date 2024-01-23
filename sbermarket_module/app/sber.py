@@ -3,6 +3,7 @@ import requests
 import bs4
 import csv
 from selenium import webdriver
+import json
 
 import constants  # type: ignore
 from categories import SberCategoriesParser
@@ -18,6 +19,7 @@ class SberParser:
         self.session = requests.Session()
         self.session.headers = constants.SESSIONHEADERS
         self.result = []
+        self.names_set = set()
 
     def load_page(self, category_url, page_number):
         url_template = f'{category_url}?page={{}}'
@@ -61,6 +63,12 @@ class SberParser:
             logger.error('no_name')
             return
         name = name.text
+
+        if name in self.names_set:
+            logger.warning(f'Duplicate name: {name}. Skipping...')
+            return
+
+        self.names_set.add(name)
 
         volume_block = block.select_one('div.ProductCard_volume__PINyI')
         if not volume_block:
@@ -119,10 +127,18 @@ class SberParser:
                 writer.writerow(
                     [item.name, item.price, item.volume, item.url, item.picture])
 
+    def save_result_json(self, path):
+        if not path.endswith('.json'):
+            path += '.json'
+
+        with open(path, 'w', encoding='utf-8') as f:
+            json.dump([item._asdict() for item in self.result], f, ensure_ascii=False, indent=4)
+
     def run(self, base_url: str, num_pages: int, csv_save_path: str):
         for page_number in range(num_pages):  # КОЛВО СТРАНИЦ В КАТЕГОРИИ
             text = self.load_page(base_url, page_number)
             self.parse_page(text=text)
             logger.info(f'Получено {len(self.result)} единиц продукта')
-        self.save_result(csv_save_path)
+        #self.save_result(csv_save_path)
+        self.save_result_json(csv_save_path)
 

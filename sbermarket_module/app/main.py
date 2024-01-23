@@ -6,5 +6,5 @@ if __name__ == '__main__':
     parser = SberParser()
 
     for category in category_parser.categories:
-        base_url = category_parser.get_retailer_base_url('ПЕРЕКРЕСТОК', category_parser.get_category_slug(category))
-        parser.run(base_url, 5, 'all_items.csv')
+        base_url = category_parser.get_retailer_base_url('ПЯТЕРОЧКА', category_parser.get_category_slug(category))
+        parser.run(base_url, 5, 'all_items.json')
