@@ -1,0 +1,33 @@
+.header {
+    height: 100px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    background-color: #F8D7D7;
+    position: relative;
+    padding: 0 72px;
+    border-radius: 57px;
+}
+
+.header-brand {
+    text-decoration: none;
+    font-weight: 400;
+    font-family: Lobster;
+    font-size: 50px;
+    line-height: normal;
+    text-decoration: none;
+    margin-right: 72px;
+    color: #000;
+}
+
+.header-menu-item1 img {
+    width: 120px;
+    height: 100px;
+}
+
+.header-menu-cart img {
+    width: 60px;
+    height: 55px;
+    margin-left: 72px;
+}

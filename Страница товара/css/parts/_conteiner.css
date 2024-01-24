@@ -1,0 +1,37 @@
+.conteiner {
+    padding-top: 56px;
+    width: 1210px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 1024px) {
+    .conteinner {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+.conteiner-header {
+    padding-top: 40px;
+    width: 1210px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.conteiner-main {
+    padding-top: 122px;
+    width: 1210px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.conteiner-footer {
+    padding-top: 516px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+}
