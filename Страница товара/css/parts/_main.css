@@ -1,0 +1,87 @@
+.main {
+    display: grid;
+    grid-template-columns: 706px 471px;
+    grid-gap: 35px;
+}
+
+.service {
+    color: #000;
+    text-align: center;
+    font-family: "Saira Stencil One";
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.grid-grid {
+    margin-top: 22px;
+}
+
+.list-service {
+    display: grid;
+    grid-template-columns: 58px 165px 184px;
+    grid-gap: 29px;
+}
+
+.service-service {
+    color: #000;
+    text-align: center;
+    font-family: "Saira Stencil One";
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.btn1 {
+    margin: auto 0;
+    height: 35px;
+    border-radius: 105px;
+    background: #2FAE03;
+    color: #000;
+    text-align: center;
+    font-family: "Saira Stencil One";
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.main-shop {
+    margin-top: 91.5px;
+    display: grid;
+    grid-template-columns: 74px 368px;
+    grid-gap: 18px;
+}
+
+.service-main-service {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #000;
+    text-align: center;
+    font-family: Alice;
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.btn2 {
+    margin-top: 21.75px;
+    width: 464px;
+    height: 90px;
+    border-radius: 105px;
+    background: #2FAE03;
+    color: #000;
+    text-align: center;
+    font-family: "Saira Stencil One";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
