@@ -218,7 +218,7 @@
   /* Стили для .search-box */
   .search-box {
 	margin-top: 1.5%;
-	padding: 10px;
+	padding: 20px;
 	border-radius: 100px;
 	border: 1px solid #ccc;
 	outline: none;
@@ -226,6 +226,7 @@
 	height: 105px;
 	box-sizing: border-box;
 	background-color: #F8D7D7;
+	font-size: 50px;
   }
   
   .search-box::placeholder {
