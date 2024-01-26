@@ -1,9 +1,10 @@
-import requests
 import logging
 import json
 import os
 import datetime
-import undetected_chromedriver as uc
+
+from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.remote.webdriver import By
 
 import constants # type: ignore
@@ -13,12 +14,12 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger('SberCategories')
 
 class SberCategoriesParser():
-    def __init__(self) -> None:
-        self.session = requests.Session()
-        self.session.headers = constants.SESSIONHEADERS
-        
-        response: dict = requests.get('https://sbermarket.ru/api/v3/stores/25531/categories?depth=3&include=&reset_cache=true').json()
-        self.categories = response['categories']
+    def __init__(self) -> None:      
+        #response: dict = requests.get('https://sbermarket.ru/api/v3/stores/25531/categories?depth=3&include=&reset_cache=true').json()
+
+        with open(r'sbermarket_module\\app\\categories.json', 'r', encoding='utf-8') as file:
+            json_response = json.load(file)
+        self.categories = json_response['categories']
         
         self.category_getters = {category['name']: lambda name=category['name']: self.get_category_by_name(name) for category in self.categories}
     
@@ -79,7 +80,9 @@ class SberCategoriesParser():
         url = 'https://sbermarket.ru/retailer_selection/all'
         
         logger.info(f'Инициализируем новый файл {constants.RETAILERS_LIST_PATH}')
-        driver = uc.Chrome()
+        options = webdriver.FirefoxOptions()
+        options.add_argument("-headless")
+        driver = webdriver.Firefox(options=options)
         
         driver.get(url)
         driver.implicitly_wait(10)    

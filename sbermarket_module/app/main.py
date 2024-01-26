@@ -1,6 +1,9 @@
 from categories import SberCategoriesParser
 from sber import SberParser
 
+
+
+#!! Для корректного запуска требуется установленный Chrome на машине
 if __name__ == '__main__':
     category_parser = SberCategoriesParser()
     parser = SberParser()

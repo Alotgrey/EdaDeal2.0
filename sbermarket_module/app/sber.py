@@ -1,31 +1,32 @@
 import logging
-import requests
 import bs4
 import csv
-from selenium import webdriver
 import json
 
 import constants  # type: ignore
-from categories import SberCategoriesParser
+
+from selenium import webdriver
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger('Sber')
 
-driver = webdriver.Firefox()
+
 
 class SberParser:
 
     def __init__(self):
-        self.session = requests.Session()
-        self.session.headers = constants.SESSIONHEADERS
+        options = webdriver.FirefoxOptions()
+        options.add_argument("-headless")
+        self.driver = webdriver.Firefox(options=options)
+        
         self.result = []
         self.names_set = set()
 
     def load_page(self, category_url, page_number):
         url_template = f'{category_url}?page={{}}'
         url = url_template.format(page_number)
-        driver.get(url)
-        res = driver.page_source
+        self.driver.get(url)
+        res = self.driver.page_source
         return res
 
     def parse_page(self, text):
