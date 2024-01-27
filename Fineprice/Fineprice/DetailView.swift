@@ -9,7 +9,6 @@ import SwiftUI
 
 struct DetailView: View {
     var product : Product
-    var items = ["man", "shut", "yo", "ass", "up"]
     @State var showAlert = false
     @State var tighten = true
     
@@ -17,11 +16,12 @@ struct DetailView: View {
     var body: some View {
         ScrollView {
             Text(product.name)
+                .padding()
                 .font(.system(size: 30))
                 .fontWeight(.black)
             TabView {
-                ForEach (items, id: \.self) { item in
-                    Image(product.urlImage)
+                ForEach (product.shops, id: \.name) { shop in
+                    Image(uiImage: getImage(string: shop.urlImage))
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                 }
@@ -64,14 +64,14 @@ struct DetailView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 30)
-                        VStack {
+                        VStack (alignment: .leading) {
                             Text("\(shop.name):")
-                            Text("\(String(format: "%.2f", shop.price)) руб")
+                            Text(shop.price)
+                            //Text("\(String(format: "%.2f", shop.price)) руб")
                         }.padding(.horizontal, 20)
                         
                         Button(action: {
-                            showAlert = !showAlert
-                            //addToCart
+                            UIApplication.shared.open(URL(string: shop.url)!)
                         }) {
                             Text("В корзину")
                                 .padding(.horizontal, 15)
@@ -80,15 +80,12 @@ struct DetailView: View {
                                 .foregroundColor(.black)
                                 .clipShape(Capsule())
                         }.frame(maxWidth: .infinity, alignment: .trailing)
-                            .alert(isPresented: $showAlert) {
-                                Alert(title: Text("WOW"))
-                            }
                     }//TODO: Добавить информацию о количестве уже имеющихся в корзине из определенного магазина + убрать алерт
                     
                 }
             }.padding(.horizontal, 20)
             Button(action: {
-                //addToCart
+                UIApplication.shared.open(URL(string: product.selectedShop.url)!)
             }) {
                 Text("В корзину")
                     .fontWeight(.bold)
@@ -106,10 +103,10 @@ struct DetailView: View {
     DetailView(product: Product(id: 1,
                                 name: "Майонез",
                                 description: "Нежный майонез высшего качества, приготовленный из свежих яиц, отборного растительного масла и натурального уксуса. Идеально подходит для добавления в салаты, приготовления соусов или использования в качестве дипа. Обеспечивает богатый вкус и кремовую текстуру, чтобы удовлетворить ваши гастрономические предпочтения.",
-                                shops: [Shop(price: 75000, name: "Магнит", logoUrl: "logo1", url: "URLtemplate1"),
-                                         Shop(price: 95, name: "Лента", logoUrl: "logo2",url: "URLtemplate2"),
-                                         Shop(price: 85, name: "Пятерочка", logoUrl: "logo3", url: "URLtemplate3"),
-                                         Shop(price: 65, name: "Светофор", logoUrl: "logo4", url: "URLtemplate4")],
-                                selectedShop: Shop(price: 65, name: "Светофор", logoUrl: "logo4", url: "URLtemplate4"),
-                                urlImage: "product"))
+                                shops: [Shop(price: "75000", name: "Магнит", logoUrl: "magnitLogo", url: "https://vk.com/keril1", urlImage: "product"),
+                                        Shop(price: "95", name: "Лента", logoUrl: "lentaLogo",url: "https://vk.com/keril1", urlImage: "product"),
+                                        Shop(price: "85", name: "Пятерочка", logoUrl: "pyatLogo", url: "https://vk.com/keril1", urlImage: "product"),
+                                        Shop(price: "65", name: "Светофор", logoUrl: "svetLogo", url: "https://vk.com/keril1", urlImage: "product")],
+                                selectedShop: Shop(price: "65", name: "Светофор", logoUrl: "svetLogo", url: "https://vk.com/keril1", urlImage: "product")
+                                ))
 }

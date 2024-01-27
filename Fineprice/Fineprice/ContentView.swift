@@ -10,7 +10,6 @@ import SwiftUI
 struct ContentView: View {
     @State var model = Model()
     @State var searchText = ""
-    let items = ["Элемент 1", "Элемент 2", "Элемент 3", "Элемент 4", "Элемент 5", "Элемент 6"]
     
     var filteredProducts : [Product] {
         guard !searchText.isEmpty else { return model.products }
@@ -34,29 +33,29 @@ struct ContentView: View {
                                     {
                                         VStack {
                                             Text("\(product.name)")
-                                                .foregroundStyle(Color.white)
+                                                .foregroundStyle(Color.black)
                                                 .fontWeight(.bold)
-                                                .lineLimit(2)
-                                                .allowsTightening(true)
-                                            Image(product.urlImage)
+                                                .lineLimit(1)
+                                            Image(uiImage: getImage(string: product.selectedShop.urlImage))
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(width: 130)
                                                 .clipShape(RoundedRectangle(cornerRadius: 20))
                                             Button(action: {
-                                                //Add to cart
+                                                UIApplication.shared.open(URL(string: product.selectedShop.url)!)
                                             }) {
-                                                Text("\(String(format: "%.2f", product.selectedShop.price)) руб")
+//                                                Text("\(String(format: "%.2f", product.selectedShop.price)) руб")
+                                                Text(product.selectedShop.price)
                                                     .fontWeight(.semibold)
                                             }.padding(.horizontal, 20)
                                                 .padding(.vertical, 10)
-                                                .foregroundStyle(Color.black)
-                                                .background(Color.green)
+                                                .foregroundStyle(Color.white)
+                                                .background(.darkPinkie)
                                                 .clipShape(Capsule())
                                         }
                                     }
                                 }.padding(20)
-                                .background(Color.gray)
+                            .background(.pinkieElem)
                                 .clipShape(RoundedRectangle(cornerRadius: 20))
                             }
                             .padding(15)
