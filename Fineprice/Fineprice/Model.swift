@@ -8,15 +8,6 @@
 import Foundation
 import UIKit
 
-func getImage(string : String) -> UIImage {
-    if let url = URL(string: string), let data = try? Data(contentsOf: url) {
-        return UIImage(data: data) ?? UIImage(resource: .noimg)
-    }
-    else {
-        return UIImage(resource: .noimg)
-    }
-}
-
 struct Shop : Codable {
     var price : String //Double
     var name : String
@@ -33,6 +24,8 @@ struct Product : Codable, Identifiable {
     var selectedShop : Shop
 }
 
+
+
 class Model : Codable {
     var products : [Product]
     var shoppingCart : [Product]
@@ -42,6 +35,15 @@ class Model : Codable {
         self.shoppingCart = []
         self.jsonInit()
     }
+    
+//    func getImage(string : String) async -> UIImage {
+//        if let url = URL(string: string), let (data, _) = try? await URLSession.shared.data(from: url) {
+//            return UIImage(data: data) ?? UIImage(resource: .noimg)
+//        }
+//        else {
+//            return UIImage(resource: .noimg)
+//        }
+//    }
     
     func jsonInit() {
         if let path = Bundle.main.url(forResource: "merged", withExtension: "json") {

@@ -36,11 +36,17 @@ struct ContentView: View {
                                                 .foregroundStyle(Color.black)
                                                 .fontWeight(.bold)
                                                 .lineLimit(1)
-                                            Image(uiImage: getImage(string: product.selectedShop.urlImage))
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fit)
-                                                .frame(width: 130)
-                                                .clipShape(RoundedRectangle(cornerRadius: 20))
+                                            AsyncImage(url: URL(string: product.selectedShop.urlImage)) { image in
+                                                image
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fit)
+                                                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                                            } placeholder: {
+                                                Image("noimg")
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fit)
+                                                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                                            }.frame(width: 130)
                                             Button(action: {
                                                 UIApplication.shared.open(URL(string: product.selectedShop.url)!)
                                             }) {
@@ -52,13 +58,16 @@ struct ContentView: View {
                                                 .foregroundStyle(Color.white)
                                                 .background(.darkPinkie)
                                                 .clipShape(Capsule())
-                                        }
+                                        }.padding(20)
+                                        .background(.pinkieElem)
+                                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                                        //.fixedSize(horizontal: false, vertical: true)
+                                        
                                     }
-                                }.padding(20)
-                            .background(.pinkieElem)
-                                .clipShape(RoundedRectangle(cornerRadius: 20))
+                                }
+                                
                             }
-                            .padding(15)
+                            .padding(20)
                             
                         }.searchable(text: $searchText, placement: .automatic, prompt: "Найти по названию")
             }.tabItem {

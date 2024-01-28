@@ -21,9 +21,15 @@ struct DetailView: View {
                 .fontWeight(.black)
             TabView {
                 ForEach (product.shops, id: \.name) { shop in
-                    Image(uiImage: getImage(string: shop.urlImage))
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
+                    AsyncImage(url: URL(string: shop.urlImage)) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    } placeholder: {
+                        Image("noimg")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    }
                 }
             }.tabViewStyle(.page(indexDisplayMode: .always))
                 .frame(height: 250)
