@@ -1,0 +1,356 @@
+@font-face {
+    font-family: 'Gilroy';
+    src: url(fonts/gilroy-regular.ttf)
+}
+@font-face {
+    font-family: 'Gilroy-Bold';
+    src: url(fonts/gilroy-bold.ttf)
+}
+@font-face {
+    font-family: 'Gilroy-Medium';
+    src: url(fonts/gilroy-medium.ttf)
+}
+
+
+*{	
+	margin: 0;	
+}
+
+#main-container{
+	
+	position: relative;
+    max-width: 605px;
+    margin: 0 auto;
+    height: 140px;
+    
+}
+
+#main-header-menu{
+	display: flex;
+    justify-content: center; /* Центрируем содержимое */
+    align-items: center;
+    padding-bottom: 32px;
+    position: relative; /* для позиционирования абсолютных элементов внутри */
+
+}
+
+#main-header-menu{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding-bottom: 32px;
+
+}
+
+
+
+#main-header-menu a.menu-item1{
+	/* position: absolute;
+	width: 243px;
+	height: 99px;
+	left: calc(50% - 243px/2 - 243px);
+	top: 38px;
+	line-height: 62px; */
+	white-space: nowrap;
+	display: flex;
+	font-family: 'Lobster', bold;
+	font-size: 50px;
+	color: #000000;
+	
+	text-decoration: none;
+	padding: 0% 16.5% 0% 0.5%;
+	position: relative;
+}
+
+
+#main-header-menu a.menu-item2{
+	/* position: absolute;
+	width: 243px;
+	height: 99px;
+	left: calc(50% - 243px/2 - 7px);
+	top: 38px;
+	line-height: 62px; */ 
+	white-space: nowrap;
+	display: flex;
+	font-family: 'Lobster', bold;
+	font-size: 50px;
+	color: #F8D7D7;
+	
+	text-decoration: none;
+	padding: 0% 16.5% 0% 5%;
+	position: relative;
+}
+
+#main-header-menu a.menu-item3{
+	/* position: absolute;
+	width: 243px;
+	height: 99px;
+	left: calc(50% - 243px/2 - 7px);
+	top: 38px;
+	line-height: 62px; */ 
+	white-space: nowrap;
+	display: flex;
+	font-family: 'Lobster', bold;
+	font-size: 50px;
+	color: #F8D7D7;
+	position: relative;
+	text-decoration: none;
+	padding: 0% 16.5% 0% 0.5%;
+	
+}
+
+.header-menu-img1{
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    transform: translate(-50%, -50%); /* Центрируем элементы */
+    z-index: -1; /* Помещаем фон за содержимое */
+
+}
+
+.header-menu-img2{
+    position: absolute;
+    top: 40%;
+    left: 90%;
+    transform: translate(-50%, -50%); /* Центрируем элементы */
+    z-index: -1; /* Помещаем фон за содержимое */
+
+}
+
+
+#main-header-menu a.menu-item:hover{
+	color: #070707;
+}
+
+#main-content{
+	display: flex;
+}
+
+
+.menu-item3 img {
+    width: 60px;
+    height: 55px;
+}
+
+.menu-item2 img {
+    width: 110px;
+    height: 110px;
+}
+
+
+
+
+.slider {
+	margin: 0 auto; /* Центрирование слайдера по горизонтали */
+	width: 1212px;
+	height: 280px;
+	overflow: hidden;
+	border-radius: 100px;
+	position: relative;
+	margin-top: 5.58%;
+	border: 4px solid #F8D7D7; /* Красная граница толщиной в 2px */
+	
+}
+
+.slides {
+	width: 400%;
+	height: 100%;
+	display: flex;
+	transition: transform 0.5s;
+}
+
+.slide {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	border-radius: 10px;
+}
+
+.slide img {
+	width: 60%;
+	height: 60%;
+	object-fit: cover;
+	margin-top: 5%;
+	margin-left: 20%;
+}
+
+.navigation {
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.navigation label {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: rgba(0, 0, 0, 0.3);
+	margin: 0 5px;
+	cursor: pointer;
+}
+
+.navigation input[type="radio"] {
+	display: none;
+}
+
+.navigation input[type="radio"]:checked + label {
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+
+
+/* Применяем стили к родительскому элементу (например, к <body> или <div>) */
+.input-container {
+	display: flex;
+	justify-content: center; /* Выравнивание по горизонтали */
+	align-items: center; /* Выравнивание по вертикали */
+	
+  }
+  
+  /* Стили для .search-box */
+  .search-box {
+	margin-top: 1.5%;
+	padding: 10px;
+	border-radius: 100px;
+	border: 1px solid #ccc;
+	outline: none;
+	width: 1212px;
+	height: 105px;
+	box-sizing: border-box;
+	background-color: #F8D7D7;
+  }
+  
+  .search-box::placeholder {
+	font-size: 50px;
+	color: #888;
+  }
+  
+
+.markets-container {
+	display: flex;
+	justify-content: center; /* Выравнивание по горизонтали */
+	align-items: center; /* Выравнивание по вертикали */
+	margin-top: 1.5%;
+	margin-left: 3%;
+}
+
+.markets-item3{
+	margin-right: 3%;
+}
+
+.footer-container{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding-bottom: 32px;
+}
+
+.footer-item1{
+	margin-top: 20%;
+	margin-left: 22%;
+	white-space: nowrap;
+	display: flex;
+	font-family: 'Lobster', bold;
+	font-size: 50px;
+	color: #000000;
+	
+	text-decoration: none;
+	padding: 0% 16.5% 0% 0.5%;
+	position: relative;
+}
+
+.footer-img {
+	margin-top: 25%;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Центрируем элементы */
+    z-index: -1; /* Помещаем фон за содержимое */
+}
+
+/* FOR PROMOTIONS EXP*/
+
+.name-block {
+	display: flex;
+	font-family: Inter;
+	height: 780px;
+
+}
+
+.name-header {
+	align-items: center;	
+	justify-content: center; 
+ 	text-align: center;
+ 	color: #888;
+ 	font-size: 50px;
+ 	background-image: url('../images/Rectangle 1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: auto 100%;
+	background-position: center;
+	margin-bottom: 50px;
+}
+
+
+
+.filter-block{
+	font-size: 30px;
+	text-align: center;
+ 	background-image: url('../images/Rectangle 2.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: 90%;
+	background-position: top 0px right 15px;
+	margin-bottom: 40px;	
+    position: relative;
+    width: 200px;
+    height: 800px;
+	margin-left: 23%;
+
+}
+
+.product-img {
+	width: 70%;
+	border-radius: 10px;
+}
+
+.products-list {
+	position: relative;
+	width: 1000px;
+	height: 750;
+	background-color: white;
+	margin: 20px;
+}
+
+.product-item {	
+	justify-content: center;
+	align-items: center;
+	gap: 100px;
+	margin-bottom: 10px;
+	display: inline-block;
+ 	text-align: center;
+ 	font-weight: bold;
+}
+
+.product-price {
+	font-weight: bold;
+	font-size: 30px;
+	color: black;
+	background-color: #2FAE03;
+	border-radius: 10px;
+}
+
+.btn-show-more{
+	margin-left: 48.5%;
+	text-align: center;
+	color: black;
+	background-color: #F8D7D7;
+	padding: 15px 57px;
+	border: none;
+	border-radius: 30px;
+	margin-bottom: 40px;
+}
