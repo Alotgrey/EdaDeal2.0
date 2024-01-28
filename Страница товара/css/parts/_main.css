@@ -169,14 +169,3 @@
     background-color: #3C8322;
     cursor: pointer;
 }
-
-.pohozh {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: "Saira Stencil One";
-    font-size: 42px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}

@@ -8,7 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Saira+Stencil+One&display=swap" rel="stylesheet">
-
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -20,7 +21,7 @@
             <a href="/" class="header-menu-item1">
                 <img src="img/star.png" alt="Логотип">
             </a>
-
+            
             <a href="/cart_page" class="header-menu-cart">
                 <img src="img/cart.png" alt="Корзина">
             </a>
@@ -37,89 +38,89 @@
         </div>
     </div>
     <!-- /.conteiner -->
-
-
+    
+    
     <div class="conteiner-main">
         <main class="main">
             <div class="main-photo">
                 <div class="slider middle">
                     <div class="slides">
-                       <input type="radio" name="r" id="r1" checked>
-                       <input type="radio" name="r" id="r2">
-                       <input type="radio" name="r" id="r3">
-                       <input type="radio" name="r" id="r4">
-                       
-                       <div class="slide s1">
-                          <img src="img/image1.png" alt="Изображение" class="img">
-                       </div>
-                       <div class="slide">
-                          <img src="img/2.png" alt="Изображение" class="img">
-                       </div>
-                       <div class="slide">
-                          <img src="img/3.png" alt="Изображение" class="img">
-                       </div>
-                       <div class="slide">
-                          <img src="img/1.png" alt="Изображение" class="img">
-                       </div>
+                        <input type="radio" name="r" id="r1" checked>
+                        <input type="radio" name="r" id="r2">
+                        <input type="radio" name="r" id="r3">
+                        <input type="radio" name="r" id="r4">
+                        
+                        <div class="slide s1">
+                            <img src="img/image1.png" alt="Изображение" class="img">
+                        </div>
+                        <div class="slide">
+                            <img src="img/2.png" alt="Изображение" class="img">
+                        </div>
+                        <div class="slide">
+                            <img src="img/3.png" alt="Изображение" class="img">
+                        </div>
+                        <div class="slide">
+                            <img src="img/1.png" alt="Изображение" class="img">
+                        </div>
                     </div>
                     <div class="navigation">
-                       <label for="r1" class="bar"></label>
-                       <label for="r2" class="bar"></label>
-                       <label for="r3" class="bar"></label>
-                       <label for="r4" class="bar"></label>
+                        <label for="r1" class="bar"></label>
+                        <label for="r2" class="bar"></label>
+                        <label for="r3" class="bar"></label>
+                        <label for="r4" class="bar"></label>
                     </div>
-                 </div>
+                </div>
             </div>
             <!-- /.main-photo -->
-
+            
             <div class="second-colum">
                 <h1 class="service">Доступные сервисы</h1>
-
+                
                 <div class="grid-grid">
                     <div class="list-service">
                         <img src="img/image 2.png" alt="">
-
+                        
                         <span class="service-service">shopName</span>
-
+                        
                         <button class="btn1">price</button>
                     </div>
-
+                    
                 </div>
                 <!-- /.grid-grid -->
-
+                
                 <div class="grid-grid">
                     <div class="list-service">
                         <img src="img/image 2.png" alt="">
-
+                        
                         <span class="service-service">shopName</span>
-
+                        
                         <button class="btn1">price</button>
                     </div>
-
+                    
                 </div>
                 <!-- /.grid-grid -->
-
+                
                 <div class="grid-grid">
                     <div class="list-service">
                         <img src="img/image 2.png" alt="">
-
+                        
                         <span class="service-service">shopName</span>
-
+                        
                         <button class="btn1">price</button>
                     </div>
-
+                    
                 </div>
                 <!-- /.grid-grid -->
-
+                
                 <div class="grid-grid">
                     <div class="list-service">
                         <img src="img/image 2.png" alt="">
-
+                        
                         <span class="service-service">shopName</span>
-
+                        
                         <button class="btn1">price</button>
                     </div>
-
+                    
                 </div>
                 <!-- /.grid-grid -->
                 
@@ -136,12 +137,52 @@
         </main>
     </div>
     <!-- /.conteiner -->
-
+    
     <div class="conteiner-pohozh">
         <h1 class="pohozh">Похожие</h1>
-    </div>
-    <!-- /.conteiner-pohozh -->
 
+        <div class="gallery">
+            <!-- Свайпер -->
+            <div class="swiper gallery-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="#"><img class="gallery__img" src="img/3.png" alt="1"></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="#"><img class="gallery__img" src="img/2.png" alt="2"></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="#"><img class="gallery__img" src="img/3.png" alt="3"></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="#"><img class="gallery__img" src="img/2.png" alt="4"></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="#"><img class="gallery__img" src="img/3.png" alt="5"></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="#"><img class="gallery__img" src="img/2.png" alt="6"></a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="#"><img class="gallery__img" src="img/3.png" alt="7"></a>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Навигация -->
+            <div class="gallery__navigation">
+                <button class="gallery__btn gallery__btn-prev">
+                    <img src="img/Polygon1.png" alt=""><path d="M6 11L0.999995 6L6 0.999998" stroke="white" />
+                </button>
+                <button class="gallery__btn gallery__btn-next">
+                    <img src="img/Polygon2.png" alt=""><path d="M1 11L6.00001 6L1 0.999997" stroke="white" />
+                </button>
+            </div>
+
+        </div>
+    <!-- /.conteiner-pohozh -->
+    
     <div class="conteiner-footer">
         <footer class="footer">
             <a href="/help" class="footer-help"><span>Помощь</span></a>
@@ -149,6 +190,9 @@
         </footer>
     </div>
     <!-- /.conteiner -->
-
+    
+    <script src="js/fslightbox.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
