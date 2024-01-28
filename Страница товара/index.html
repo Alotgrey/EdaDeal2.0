@@ -15,13 +15,13 @@
     
     <div class="conteiner-header">
         <header class="header">
-            <a href="#" class="header-brand"><span>Акция</span></a>
+            <a href="/promotion" class="header-brand"><span>Акция</span></a>
             
-            <a href="#" class="header-menu-item1">
+            <a href="/" class="header-menu-item1">
                 <img src="img/star.png" alt="Логотип">
             </a>
 
-            <a href="#" class="header-menu-cart">
+            <a href="/cart_page" class="header-menu-cart">
                 <img src="img/cart.png" alt="Корзина">
             </a>
             <!-- /.cart -->
@@ -42,7 +42,33 @@
     <div class="conteiner-main">
         <main class="main">
             <div class="main-photo">
-                <img src="img/image1.png" alt="">
+                <div class="slider middle">
+                    <div class="slides">
+                       <input type="radio" name="r" id="r1" checked>
+                       <input type="radio" name="r" id="r2">
+                       <input type="radio" name="r" id="r3">
+                       <input type="radio" name="r" id="r4">
+                       
+                       <div class="slide s1">
+                          <img src="img/image1.png" alt="Изображение" class="img">
+                       </div>
+                       <div class="slide">
+                          <img src="img/2.png" alt="Изображение" class="img">
+                       </div>
+                       <div class="slide">
+                          <img src="img/3.png" alt="Изображение" class="img">
+                       </div>
+                       <div class="slide">
+                          <img src="img/1.png" alt="Изображение" class="img">
+                       </div>
+                    </div>
+                    <div class="navigation">
+                       <label for="r1" class="bar"></label>
+                       <label for="r2" class="bar"></label>
+                       <label for="r3" class="bar"></label>
+                       <label for="r4" class="bar"></label>
+                    </div>
+                 </div>
             </div>
             <!-- /.main-photo -->
 
@@ -111,11 +137,15 @@
     </div>
     <!-- /.conteiner -->
 
+    <div class="conteiner-pohozh">
+        <h1 class="pohozh">Похожие</h1>
+    </div>
+    <!-- /.conteiner-pohozh -->
+
     <div class="conteiner-footer">
         <footer class="footer">
-            <a href="#" class="footer-help"><span>Помощь</span></a>
-
-            <a href="#" class="footer-as"><span>О нас</span></a>
+            <a href="/help" class="footer-help"><span>Помощь</span></a>
+            <a href="/about" class="footer-as"><span>О нас</span></a>
         </footer>
     </div>
     <!-- /.conteiner -->

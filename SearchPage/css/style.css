@@ -163,7 +163,6 @@
 	display: flex;
 	justify-content: center; /* Выравнивание по горизонтали */
 	align-items: center; /* Выравнивание по вертикали */
-	
   }
   
   /* Стили для .search-box */
@@ -224,41 +223,30 @@
 	margin-left: 200px;
 	margin-top: 50px;
 	align-items: center;
-	gap: 50px;
-	font-size: 0px;
 	font-weight: bold;
 	text-align: center;
-	margin-bottom: 40px;
 }
 
 .products-list2 {
 	justify-content: center;
 	margin-left: 200px;
 	align-items: center;
-	gap: 50px;
-	font-size: 0px;
 	font-weight: bold;
 	text-align: center;
-	margin-bottom: 40px;
 }
 
 .products-list3 {
 	justify-content: center;
 	margin-left: 200px;
 	align-items: center;
-	gap: 50px;
-	font-size: 0px;
 	font-weight: bold;
 	text-align: center;
-	margin-bottom: 40px;
 }
 
 .products-list4 {
 	justify-content: center;
 	margin-left: 200px;
 	align-items: center;
-	gap: 50px;
-	font-size: 0px;
 	font-weight: bold;
 	text-align: center;
 	margin-bottom: 40px;
@@ -267,7 +255,6 @@
 .product-item {	
 	justify-content: center;
 	align-items: center;
-	gap: 100px;
 	margin-left: 10px;
 	margin-right: 10px;
 	display: inline-block;
@@ -275,15 +262,26 @@
  	font-weight: bold;
 }
 
-.product-price {
-	font-weight: bold;
-	width: 173px;
-	margin-left: 8px;
-	font-size: 30px;
+.btn-price {
+	margin-left: 2.5%;
+	margin-top: 5.5%;
+	width: 184.07;
+	height: 35.51px;
+	text-align: center;
 	color: black;
-	background-color: #2FAE03;
-	margin-top: 10px;
-	border-radius: 100px;
+	background-color: #F8D7D7;
+	border: none;
+	border-radius: 30px;
+	margin-bottom: 40px;
+    color: #000000; /* Цвет текста на кнопке */
+    padding: 5px 65px; /* Поля вокруг текста на кнопке */
+    border: none; /* Убираем границу кнопки */
+    cursor: pointer; /* Курсор в виде руки при наведении */
+	font-size: 20px;transition: background-color 0.3s ease;
+}
+
+.btn-price:hover {
+    background-color: #2FAE03; /* Новый цвет кнопки при наведении */
 }
 
 .btn-show-more{
@@ -297,7 +295,16 @@
 	border: none;
 	border-radius: 30px;
 	margin-bottom: 40px;
-	font-size: 20px;
+    color: #000000; /* Цвет текста на кнопке */
+    padding: 10px 20px; /* Поля вокруг текста на кнопке */
+    border: none; /* Убираем границу кнопки */
+    cursor: pointer; /* Курсор в виде руки при наведении */
+	font-size: 20px;transition: background-color 0.3s ease;
+}
+
+/* Добавляем стили при наведении курсора на кнопку */
+.btn-show-more:hover {
+    background-color: #2FAE03; /* Новый цвет кнопки при наведении */
 }
 
 #Foot {
