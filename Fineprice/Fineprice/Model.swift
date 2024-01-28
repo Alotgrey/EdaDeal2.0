@@ -24,16 +24,17 @@ struct Product : Codable, Identifiable {
     var selectedShop : Shop
 }
 
-
-
-class Model : Codable {
-    var products : [Product]
-    var shoppingCart : [Product]
+class Model : ObservableObject {
+    @Published var products : [Product]
+    @Published var shoppingCart : [Product]
+    //@Published var searchProducts : [Product]
     
     init() {
         self.products = []
         self.shoppingCart = []
-        self.jsonInit()
+        Task {
+            await jsonInit()
+        }
     }
     
 //    func getImage(string : String) async -> UIImage {
@@ -45,7 +46,7 @@ class Model : Codable {
 //        }
 //    }
     
-    func jsonInit() {
+    func jsonInitLOCAL() {
         if let path = Bundle.main.url(forResource: "merged", withExtension: "json") {
             do {
                 let data = try Data(contentsOf: path)
@@ -59,6 +60,18 @@ class Model : Codable {
             print("File not found")
         }
     }
+
+    func jsonInit() async {
+        if let url = URL(string: "https://run.mocky.io/v3/eb7c3125-8885-40a5-897d-52162bfb08ea") {
+            do {
+                let (data, _) = try await URLSession.shared.data(from: url)
+                self.products = try JSONDecoder().decode([Product].self, from: data)
+            }
+            catch {
+                print("Error fetching data")
+            }
+        }
+    }
     
     func testInit() {
 //        self.products.append(
@@ -70,48 +83,5 @@ class Model : Codable {
 //                             Shop(price: 85, name: "Пятерочка", logoUrl: "logo3", url: "https://vk.com/keril1", urlImage: "product"),
 //                             Shop(price: 65, name: "Светофор", logoUrl: "logo4", url: "https://vk.com/keril1", urlImage: "product")],
 //                    selectedShop: Shop(price: 65, name: "Светофор", logoUrl: "logo4", url: "https://vk.com/keril1", urlImage: "product")))
-//        self.products.append(
-//            Product(
-//                id: 2,
-//                name: "Хлеб",
-//                description: "Белый хлеб",
-//                shops: [
-//                    Shop(price: 30, name: "Магнит", logoUrl: "logo1", url: "URLtemplate1", urlImage: "product"),
-//                    Shop(price: 35, name: "Лента", logoUrl: "logo2", url: "URLtemplate2", urlImage: "product"),
-//                    Shop(price: 28, name: "Пятерочка", logoUrl: "logo3", url: "URLtemplate3", urlImage: "product"),
-//                    Shop(price: 32, name: "Светофор", logoUrl: "logo4", url: "URLtemplate4", urlImage: "product")
-//                ],
-//                selectedShop: Shop(price: 28, name: "Пятерочка", logoUrl: "logo3", url: "URLtemplate3", urlImage: "product"))
-//        )
-//
-//        self.products.append(
-//            Product(
-//                id: 3,
-//                name: "Молоко",
-//                description: "Обезжиренное молоко",
-//                shops: [
-//                    Shop(price: 50, name: "Магнит", logoUrl: "logo1", url: "URLtemplate1", urlImage: "product"),
-//                    Shop(price: 55, name: "Лента", logoUrl: "logo2", url: "URLtemplate2", urlImage: "product"),
-//                    Shop(price: 48, name: "Пятерочка", logoUrl: "logo3", url: "URLtemplate3", urlImage: "product"),
-//                    Shop(price: 52, name: "Светофор", logoUrl: "logo4", url: "URLtemplate4", urlImage: "product")
-//                ],
-//                selectedShop: Shop(price: 48, name: "Пятерочка", logoUrl: "logo3", url: "URLtemplate3", urlImage: "product"))
-//        )
-//
-//        self.products.append(
-//            Product(
-//                id: 4,
-//                name: "Яйца",
-//                description: "Куриные яйца, 10 шт.",
-//                shops: [
-//                    Shop(price: 70, name: "Магнит", logoUrl: "logo1", url: "URLtemplate1", urlImage: "product"),
-//                    Shop(price: 75, name: "Лента", logoUrl: "logo2", url: "URLtemplate2", urlImage: "product"),
-//                    Shop(price: 68, name: "Пятерочка", logoUrl: "logo3", url: "URLtemplate3", urlImage: "product"),
-//                    Shop(price: 72, name: "Светофор", logoUrl: "logo4", url: "URLtemplate4", urlImage: "product")
-//                ],
-//                selectedShop: Shop(price: 68, name: "Пятерочка", logoUrl: "logo3", url: "URLtemplate3", urlImage: "product")
-//            )
-//        )
-
     }
 }

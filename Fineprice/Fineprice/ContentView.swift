@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var model = Model()
-    @State var searchText = ""
+    @ObservedObject var model = Model()
     
+    @State var searchText = ""
+
     var filteredProducts : [Product] {
         guard !searchText.isEmpty else { return model.products }
         return model.products.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
@@ -67,8 +68,7 @@ struct ContentView: View {
                                 }
                                 
                             }
-                            .padding(20)
-                            
+                            .padding(20) 
                         }.searchable(text: $searchText, placement: .automatic, prompt: "Найти по названию")
             }.tabItem {
                 Image(systemName: "magnifyingglass")
