@@ -1,0 +1,61 @@
+.pohozh {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Saira Stencil One";
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.gallery {
+  position: relative;
+}
+
+.gallery__link {
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 164px;
+}
+
+.gallery__img {
+  width: 164px;
+  height: 164px;
+  object-fit: cover;
+}
+
+.gallery__navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 15px;
+}
+
+.gallery__btn {
+  position: absolute;
+  z-index: 2;
+  top: 60px;
+  border: none;
+  outline: none;
+  background-color: rgb(255, 255, 255);
+}
+
+.gallery__btn:hover {
+  background-color: rgb(73, 73, 73);
+}
+
+.gallery__btn-prev {
+  left: -12.5px;
+}
+
+.gallery__btn-next {
+  right: -12.5px;
+}
+
+.swiper-button-disabled {
+  background-color: rgb(174, 174, 174);
+  cursor: default;
+}

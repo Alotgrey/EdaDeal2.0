@@ -30,14 +30,16 @@
 }
 
 .conteiner-footer {
-    padding-top: 516px;
+    padding-top: 86px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: auto;
 }
 
 .conteiner-pohozh {
+    width: 1080px;
+    height: 164px;
+    max-width: 1980px;
     padding-top: 186px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
 }
