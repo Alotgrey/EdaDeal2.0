@@ -17,7 +17,7 @@ class SberCategoriesParser():
     def __init__(self) -> None:      
         #response: dict = requests.get('https://sbermarket.ru/api/v3/stores/25531/categories?depth=3&include=&reset_cache=true').json()
 
-        with open(r'sbermarket_module\\app\\categories.json', 'r', encoding='utf-8') as file:
+        with open(r'categories.json', 'r', encoding='utf-8') as file:
             json_response = json.load(file)
         self.categories = json_response['categories']
         
