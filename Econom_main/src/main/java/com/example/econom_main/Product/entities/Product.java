@@ -22,18 +22,21 @@ public class Product {
     @Column
     String name;
 
-    @Column
-    BigDecimal cost;
-
-    @Column
-    String image_url;
-
-    @Column
-    Boolean status;
-
     @ManyToOne
-    Shop shop;
+    private Category category;
 
-    @ManyToOne
-    Category category;
+    @Column
+    String link_magnit;
+
+    @Column
+    String link_5ka;
+
+    @Column
+    String link_crossroad;
+
+    @Column
+    String link_lenta;
+
+    @Column
+    String link_metro;
 }

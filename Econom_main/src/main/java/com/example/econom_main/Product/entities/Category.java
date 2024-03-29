@@ -18,4 +18,10 @@ public class Category {
 
     @Column(name = "name")
     String name;
+
+    @Column
+    Integer parent_id;
+
+    @Column
+    Integer level;
 }
