@@ -24,14 +24,55 @@ struct Product : Codable, Identifiable {
     var selectedShop : Shop
 }
 
-class Model : ObservableObject {
+
+
+class Model : ObservableObject, Codable {
     @Published var products : [Product]
-    @Published var shoppingCart : [Product]
+    @Published var shoppingCart : [String : [Product]] {
+        didSet {
+            let defaults = UserDefaults.standard
+            let encoder = JSONEncoder()
+            if let m = try? encoder.encode(self) {
+                defaults.set(m, forKey: "model")
+            }
+        }
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+            case products, shoppingCart
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+            var values = encoder.container(keyedBy: CodingKeys.self)
+            try values.encode(products, forKey: .products)
+            try values.encode(shoppingCart, forKey: .shoppingCart)
+    }
+    
+    
     //@Published var searchProducts : [Product]
+    required init(from decoder: any Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        products = try values.decode([Product].self, forKey: .products)
+        shoppingCart = try values.decode([String : [Product]].self, forKey: .shoppingCart)
+    }
+    
     
     init() {
-        self.products = []
-        self.shoppingCart = []
+        let defaults = UserDefaults.standard
+        if let data = defaults.object(forKey: "model") as? Data,
+           let model = try? JSONDecoder().decode(Model.self, from: data) {
+            self.products = model.products
+            self.shoppingCart = model.shoppingCart
+            //self.shoppingCart = ["Magnit": [], "Pyatorochka" : []]
+        }
+        else {
+            print("Bad init")
+            self.products = []
+            self.shoppingCart = ["Magnit": [], "Pyatorochka" : []]
+            
+        }
+        
+        //self.jsonInitLOCAL()
         Task {
             await jsonInit()
         }
@@ -44,6 +85,9 @@ class Model : ObservableObject {
 //        else {
 //            return UIImage(resource: .noimg)
 //        }
+//    }
+//    func addToShoppingCart(product: Product, shop: String) {
+//        shoppingCart[shop]?.append(product)
 //    }
     
     func jsonInitLOCAL() {
@@ -62,10 +106,18 @@ class Model : ObservableObject {
     }
 
     func jsonInit() async {
-        if let url = URL(string: "https://run.mocky.io/v3/eb7c3125-8885-40a5-897d-52162bfb08ea") {
+        if let url = URL(string: "https://run.mocky.io/v3/37c404b2-90fa-4b19-aa10-2e2e7fffe32b") {
             do {
                 let (data, _) = try await URLSession.shared.data(from: url)
-                self.products = try JSONDecoder().decode([Product].self, from: data)
+                DispatchQueue.main.async {
+                    do {
+                        self.products = try JSONDecoder().decode([Product].self, from: data)
+                    }
+                    catch {
+                        print("Error parsing JSON from WEB")
+                    }
+                }
+                
             }
             catch {
                 print("Error fetching data")
