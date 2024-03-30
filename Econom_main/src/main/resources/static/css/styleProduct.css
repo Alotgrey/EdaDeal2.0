@@ -1,0 +1,387 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    display: inline-block;
+}
+
+ul {
+    list-style-type: none;
+}
+
+body {
+    font-family: 'Lobster', sans-serif;
+    font-family: 'Saira Stencil One', sans-serif;
+    font-size: 50px;
+    line-height: 100%;
+    overflow-x: hidden;
+    min-width: 280px;
+}
+
+img {
+    width: 100%;
+}
+
+.conteiner {
+    padding-top: 56px;
+    width: 1210px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 1024px) {
+    .conteinner {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
+.conteiner-header {
+    padding-top: 40px;
+    width: 1210px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.conteiner-main {
+    padding-top: 122px;
+    width: 1210px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.conteiner-footer {
+    padding-top: 86px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+}
+
+.conteiner-pohozh {
+    width: 1080px;
+    height: 164px;
+    max-width: 1980px;
+    padding-top: 186px;
+    margin: 0 auto;
+}
+
+.footer {
+    height: 416px;
+    background-color: #F8D7D7;
+    border-top-left-radius: 57px;
+    border-top-right-radius: 57px;
+    max-width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+.footer-help {
+    padding-top: 29px;
+    color: #000;
+    text-align: center;
+    font-family: Lobster;
+    font-size: 53px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-right: 381px;
+    text-decoration: none;
+}
+
+.footer-as {
+    padding-top: 29px;
+    color: #000;
+    text-align: center;
+    font-family: Lobster;
+    font-size: 53px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none;
+}
+
+.header {
+    height: 100px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    background-color: #F8D7D7;
+    position: relative;
+    padding: 0 72px;
+    border-radius: 57px;
+}
+
+.header-brand {
+    text-decoration: none;
+    font-weight: 400;
+    font-family: Lobster;
+    font-size: 50px;
+    line-height: normal;
+    text-decoration: none;
+    margin-right: 72px;
+    color: #000;
+}
+
+.header-menu-item1 img {
+    width: 120px;
+    height: 100px;
+}
+
+.header-menu-cart img {
+    width: 60px;
+    height: 55px;
+    margin-left: 72px;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 706px 471px;
+    grid-gap: 35px;
+}
+
+.slider {
+    width: 706px;
+    height: 706px;
+    overflow: hidden;
+    border: 20px solid #F8D7D7;
+    border-radius: 60px;
+}
+
+.middle {
+    transform: translate(0, 0);
+}
+
+.navigation {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+}
+
+.bar {
+    width: 24px;
+    height: 24px;
+    margin: 6px;
+    cursor: pointer;
+    background-color: #F8D7D7;
+    border-radius: 10px;
+    transition: all 0.4s ease;
+}
+
+.bar:hover {
+    background-color: #760000;
+    transform:scale(1.1);
+}
+
+input[name="r"] {
+    position: absolute;
+    visibility: hidden;
+}
+
+.slides {
+    width: 400%;
+    height: 100%;
+    display: flex;
+}
+
+.slide {
+    width: 25%;
+    transition: all 0.6s ease;
+}
+
+.img {
+    width: 100%;
+    height: 100%;
+}
+
+#r1:checked ~ .s1 {
+    margin-left: 0;
+}
+
+#r2:checked ~ .s1 {
+    margin-left: -25%;
+}
+
+#r3:checked ~ .s1 {
+    margin-left: -50%;
+}
+
+#r4:checked ~ .s1 {
+    margin-left: -75%;
+}
+
+.service {
+    color: #000;
+    text-align: center;
+    font-family: "Saira Stencil One";
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.grid-grid {
+    margin-top: 22px;
+}
+
+.list-service {
+    display: grid;
+    grid-template-columns: 58px 165px 184px;
+    grid-gap: 29px;
+}
+
+.service-service {
+    color: #000;
+    text-align: center;
+    font-family: "Saira Stencil One";
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.btn1 {
+    margin: auto 0;
+    height: 35px;
+    border-radius: 105px;
+    background: #2FAE03;
+    color: #000;
+    text-align: center;
+    font-family: "Saira Stencil One";
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    transition: all 200ms ease-in-out;
+}
+
+.btn1:hover{
+    background-color: #3C8322;
+    cursor: pointer;
+}
+
+.main-shop {
+    margin-top: 91.5px;
+    display: grid;
+    grid-template-columns: 74px 368px;
+    grid-gap: 18px;
+}
+
+.service-main-service {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #000;
+    text-align: center;
+    font-family: Alice;
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.btn2 {
+    margin-top: 21.75px;
+    width: 464px;
+    height: 90px;
+    border-radius: 105px;
+    background: #2FAE03;
+    color: #000;
+    text-align: center;
+    font-family: "Saira Stencil One";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    transition: all 200ms ease-in-out;
+}
+
+.btn2:hover {
+    background-color: #3C8322;
+    cursor: pointer;
+}
+
+.text-name {
+    height: 105px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    background-color: #F8D7D7;
+    position: relative;
+    padding: 0 72px;
+    border-radius: 47px;
+}
+
+.pohozh {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Saira Stencil One";
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.gallery {
+    position: relative;
+}
+
+.gallery__link {
+    display: block;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 164px;
+}
+
+.gallery__img {
+    width: 164px;
+    height: 164px;
+    object-fit: cover;
+}
+
+.gallery__navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 15px;
+}
+
+.gallery__btn {
+    position: absolute;
+    z-index: 2;
+    top: 60px;
+    border: none;
+    outline: none;
+    background-color: rgb(255, 255, 255);
+}
+
+.gallery__btn:hover {
+    background-color: rgb(73, 73, 73);
+}
+
+.gallery__btn-prev {
+    left: -12.5px;
+}
+
+.gallery__btn-next {
+    right: -12.5px;
+}
+
+.swiper-button-disabled {
+    background-color: rgb(174, 174, 174);
+    cursor: default;
+}
