@@ -2,15 +2,16 @@ package com.example.econom_main.Product.services;
 
 import com.example.econom_main.Product.entities.Product;
 import com.example.econom_main.Product.repositories.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 @Service
+@RequiredArgsConstructor
 public class ProductService {
-    @Autowired
-    ProductRepository productRepository;
+
+    private final ProductRepository productRepository;
 
     public List<Product> getAllProducts(){
         return (List<Product>) productRepository.findAll();

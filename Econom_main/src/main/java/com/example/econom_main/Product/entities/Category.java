@@ -5,23 +5,26 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Table(name = "categories")
 public class Category {
+
     @Id
-    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
-    String name;
+    private String name;
 
-    @Column
-    Integer parent_id;
+    @ManyToOne
+    @JoinColumn(name = "parent_id")
+    private Category parent;
 
-    @Column
-    Integer level;
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
+    private List<Category> children = new ArrayList<>();
 }
