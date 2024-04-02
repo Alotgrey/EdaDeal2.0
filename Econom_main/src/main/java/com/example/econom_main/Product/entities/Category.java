@@ -20,7 +20,7 @@ public class Category {
     private Long id;
 
     private String name;
-
+    private Boolean isFinal;
     @ManyToOne
     @JoinColumn(name = "parent_id")
     private Category parent;
