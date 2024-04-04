@@ -1,0 +1,328 @@
+*{
+    margin: 0;
+}
+
+#main-container{
+
+    position: relative;
+    max-width: 605px;
+    margin: 0 auto;
+    height: 140px;
+
+}
+
+#main-header-menu{
+    display: flex;
+    justify-content: center; /* Центрируем содержимое */
+    align-items: center;
+    padding-bottom: 32px;
+    position: relative; /* для позиционирования абсолютных элементов внутри */
+
+}
+
+#main-header-menu{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 32px;
+
+}
+
+
+
+#main-header-menu a.menu-item1{
+    /* position: absolute;
+    width: 243px;
+    height: 99px;
+    left: calc(50% - 243px/2 - 243px);
+    top: 38px;
+    line-height: 62px; */
+    white-space: nowrap;
+    display: flex;
+    top: 50px;
+    right: 150px;
+    font-family: 'Lobster', bold;
+    font-size: 50px;
+    color: #000000;
+
+    text-decoration: none;
+    position: relative;
+}
+
+
+#main-header-menu a.menu-item2{
+    /* position: absolute;
+    width: 243px;
+    height: 99px;
+    left: calc(50% - 243px/2 - 7px);
+    top: 38px;
+    line-height: 62px; */
+    white-space: nowrap;
+    display: flex;
+    top: 50px;
+    right: 35px;
+    font-family: 'Lobster', bold;
+    font-size: 50px;
+    color: #F8D7D7;
+
+    text-decoration: none;
+    position: relative;
+}
+
+#main-header-menu a.menu-item3{
+    /* position: absolute;
+    width: 243px;
+    height: 99px;
+    left: calc(50% - 243px/2 - 7px);
+    top: 38px;
+    line-height: 62px; */
+    white-space: nowrap;
+    top: 55px;
+    left: 80px;
+    display: flex;
+    font-family: 'Lobster', bold;
+    font-size: 50px;
+    color: #F8D7D7;
+    position: relative;
+    text-decoration: none;
+}
+
+.header-menu-img1{
+    position: absolute;
+    width: 735px;
+    height: 100px;
+    top: 90%;
+    left: 10%;
+    transform: translate(-50%, -50%); /* Центрируем элементы */
+    z-index: -1; /* Помещаем фон за содержимое */
+
+}
+
+.header-menu-img2{
+    position: absolute;
+    width: 725px;
+    height: 100px;
+    top: 90%;
+    left: 90%;
+    transform: translate(-50%, -50%); /* Центрируем элементы */
+    z-index: -1; /* Помещаем фон за содержимое */
+
+}
+
+
+.header-menu-img3{
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Центрируем элементы */
+    z-index: -1; /* Помещаем фон за содержимое */
+
+}
+
+#main-header-menu a.menu-item:hover{
+    color: #070707;
+}
+
+#main-content{
+    display: flex;
+}
+
+
+.menu-item3 img {
+    width: 60px;
+    height: 55px;
+}
+
+.menu-item2 img {
+    width: 110px;
+    height: 110px;
+}
+
+#Inp{
+
+    position: relative;
+    margin: 0 auto;
+
+}
+
+.input-container {
+    display: flex;
+    justify-content: center; /* Выравнивание по горизонтали */
+    align-items: center; /* Выравнивание по вертикали */
+}
+
+/* Стили для .search-box */
+.search-box {
+    margin-top: 2.5%;
+    padding: 20px;
+    border-radius: 100px;
+    border: 1px solid #ccc;
+    outline: none;
+    width: 1212px;
+    height: 105px;
+    font-size: 50px;
+    box-sizing: border-box;
+    background-color: #F8D7D7;
+    padding-top: 25px;
+}
+
+.search-box::placeholder {
+    font-size: 50px;
+    color: #888;
+}
+
+#Filter{
+    position: relative;
+    max-width: 605px;
+    margin: 0 auto;
+}
+
+
+#Filter a.menu-item1 {
+    white-space: nowrap;
+    font-size: 30px;
+    color: #000000;
+    position: relative;
+    top: 105px;
+    right: 220px;
+    transform: translate(-50%, -50%);
+    text-decoration: none;
+    z-index: 1;
+}
+
+.filter-menu-img4 {
+    position: absolute;
+    top: 80px;
+    right: 650px;
+    width: 251px;
+    height: 1027px;
+    z-index: -1; /* Помещаем фон за содержимое */
+}
+
+.product-img {
+    width: 95%;
+    border-radius: 10px;
+}
+
+.products-list1 {
+    justify-content: center;
+    margin-left: 200px;
+    margin-top: 50px;
+    align-items: center;
+    font-weight: bold;
+    text-align: center;
+}
+
+.products-list2 {
+    justify-content: center;
+    margin-left: 200px;
+    align-items: center;
+    font-weight: bold;
+    text-align: center;
+}
+
+.products-list3 {
+    justify-content: center;
+    margin-left: 200px;
+    align-items: center;
+    font-weight: bold;
+    text-align: center;
+}
+
+.products-list4 {
+    justify-content: center;
+    margin-left: 200px;
+    align-items: center;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.product-item {
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+}
+
+.btn-price {
+    margin-left: 2.5%;
+    margin-top: 5.5%;
+    width: 184.07px;
+    height: 35.51px;
+    text-align: center;
+    color: black;
+    background-color: #F8D7D7;
+    border: none;
+    border-radius: 30px;
+    margin-bottom: 40px;
+    color: #000000; /* Цвет текста на кнопке */
+    padding: 5px 65px; /* Поля вокруг текста на кнопке */
+    border: none; /* Убираем границу кнопки */
+    cursor: pointer; /* Курсор в виде руки при наведении */
+    font-size: 20px;transition: background-color 0.3s ease;
+}
+
+.btn-price:hover {
+    background-color: #2FAE03; /* Новый цвет кнопки при наведении */
+}
+
+.btn-show-more{
+    margin-left: 44.5%;
+    width: 356px;
+    height: 48.07px;
+    text-align: center;
+    color: black;
+    background-color: #F8D7D7;
+    padding: 15px 27px;
+    border: none;
+    border-radius: 30px;
+    margin-bottom: 40px;
+    color: #000000; /* Цвет текста на кнопке */
+    padding: 10px 20px; /* Поля вокруг текста на кнопке */
+    border: none; /* Убираем границу кнопки */
+    cursor: pointer; /* Курсор в виде руки при наведении */
+    font-size: 20px;transition: background-color 0.3s ease;
+}
+
+/* Добавляем стили при наведении курсора на кнопку */
+.btn-show-more:hover {
+    background-color: #2FAE03; /* Новый цвет кнопки при наведении */
+}
+
+#Foot {
+    position: relative;
+    margin: 0 auto;
+}
+
+.footer-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 32px;
+}
+
+.footer-item1{
+    margin-top: 100%;
+    margin-left: 22%;
+    white-space: nowrap;
+    display: flex;
+    font-family: 'Lobster', bold;
+    font-size: 50px;
+    color: #000000;
+
+    text-decoration: none;
+    padding: 0% 16.5% 0% 0.5%;
+    position: relative;
+}
+
+.footer-img {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Центрируем элементы */
+    z-index: -1; /* Помещаем фон за содержимое */
+}
