@@ -20,6 +20,16 @@ ParseResult = collections.namedtuple(
     )
 )
 
+ParseItemResult = collections.namedtuple(
+    'ParseItemResult',
+    (
+        'name',
+        'price',
+        'volume',
+        'picture',
+    )
+)
+
 
 SESSIONHEADERS = {
             "User-Agent":

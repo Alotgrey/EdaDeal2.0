@@ -21,7 +21,7 @@ class SberParser:
         options = webdriver.FirefoxOptions()
         options.add_argument("-headless")
         self.driver = webdriver.Firefox(options=options)
-        
+        self.data = []
         self.result = []
         self.names_set = set()
 
@@ -31,6 +31,92 @@ class SberParser:
         self.driver.get(url)
         res = self.driver.page_source
         return res
+
+    def load_item_page(self, url):
+        self.driver.get(url)
+        res = self.driver.page_source
+        return res
+
+    def parese_item_page(self, text):
+        soup = bs4.BeautifulSoup(text, 'lxml')
+        container = soup.select(
+            'div.ProductDetailWrapper_root__DK_og')
+        for block in container:
+            try:
+                self.parse_block(block=block)
+            except Exception as e:
+                logger.error(f'Error while parsing block: {e}')
+                continue
+
+    def parse_item_block(self, block):
+
+        picture_block = block.select_one(
+            'picture.Picture_root__5uXZZ PreviewImage_picture__xosjt')
+        if not picture_block:
+            logger.error('no_picture_block')
+            return
+
+        picture = picture_block.find('img')
+        if not picture:
+            logger.error('no_picture')
+            return
+        picture = picture['src']
+
+        name_block = block.select_one('div.ProductTitle_captionContainer__1Z_Gu')
+        if not name_block:
+            logger.error('no_name_block')
+            return
+
+        name = name_block.select_one('h1.ProductTitle_title__aJyqe')
+        if not name:
+            logger.error('no_name')
+            return
+        name = name.text
+
+        if name in self.names_set:
+            logger.warning(f'Duplicate name: {name}. Skipping...')
+            return
+
+        price_block = block.select_one(
+            'h3._Heading_1v100_1._Heading3B_1v100_36._Heading_1y7f8_29')
+
+        #if not price_block:
+         #   price_block = block.select_one('div.ProductCardPrice_price__Kv7Q7.CommonProductCard_priceText__bW6F9')
+        if not price_block:
+            logger.error('no_price_block')
+            return
+        price = price_block.text
+
+        volume_block = block.select_one('p.ProductCTAPrice_volume__kgHsx')
+        if not volume_block:
+            logger.error('no_volume_block')
+            return
+
+        volume = volume_block.text
+
+        self.result.append(constants.ParseResult(
+            name=name,
+            price=price,
+            volume=volume,
+            picture=picture,
+        ))
+
+    def run_item(self, base_url: str):
+        text = self.load_item_page(base_url)
+        self.parese_item_page(text=text)
+        for item in self.result:
+            self.data.append({
+                'name': item.name,
+                'price': item.price,
+                'volume': item.volume,
+                'picture': item.picture
+            })
+        json_data = json.dumps(self.data)
+        return json_data
+
+            #logger.info(f'Получено {len(self.result)} единиц продукта')
+        #self.save_result(csv_save_path)
+        #self.save_result_json(csv_save_path)
 
     def parse_page(self, text):
         soup = bs4.BeautifulSoup(text, 'lxml')
@@ -149,3 +235,104 @@ class SberParser:
         #self.save_result(csv_save_path)
         self.save_result_json(csv_save_path)
 
+
+
+class itemParser:
+
+    def __init__(self):
+        options = webdriver.FirefoxOptions()
+        options.add_argument("-headless")
+        self.driver = webdriver.Firefox(options=options)
+        self.data = []
+        self.result = []
+        self.names_set = set()
+
+    def load_page(self, category_url, page_number):
+        url_template = f'{category_url}?page={{}}'
+        url = url_template.format(page_number)
+        self.driver.get(url)
+        res = self.driver.page_source
+        return res
+
+    def load_item_page(self, url):
+        self.driver.get(url)
+        res = self.driver.page_source
+        return res
+
+    def parese_item_page(self, text):
+        soup = bs4.BeautifulSoup(text, 'lxml')
+        container = soup.select(
+            'div.ProductDetailWrapper_root__DK_og')
+        for block in container:
+            try:
+                self.parse_item_block(block=block)
+            except Exception as e:
+                logger.error(f'Error while parsing block: {e}')
+                continue
+
+    def parse_item_block(self, block):
+
+        picture_block = block.select_one(
+            'picture.Picture_root__5uXZZ.PreviewImage_picture__xosjt')
+        if not picture_block:
+            logger.error('no_picture_block')
+            return
+
+        picture = picture_block.find('img')
+        if not picture:
+            logger.error('no_picture')
+            return
+        picture = picture['src']
+
+        name_block = block.select_one('div.ProductTitle_captionContainer__1Z_Gu')
+        if not name_block:
+            logger.error('no_name_block')
+            return
+
+        name = name_block.select_one('h1.ProductTitle_title__aJyqe')
+        if not name:
+            logger.error('no_name')
+            return
+        name = name.text
+
+        if name in self.names_set:
+            logger.warning(f'Duplicate name: {name}. Skipping...')
+            return
+
+        price_block = block.select_one(
+            'h3._Heading_1v100_1._Heading3B_1v100_36._Heading_1y7f8_29')
+
+        #if not price_block:
+         #   price_block = block.select_one('div.ProductCardPrice_price__Kv7Q7.CommonProductCard_priceText__bW6F9')
+        if not price_block:
+            logger.error('no_price_block')
+            return
+        price = price_block.text
+
+        volume_block = block.select_one('p.ProductCTAPrice_volume__kgHsx')
+        if not volume_block:
+            logger.error('no_volume_block')
+            return
+
+        volume = volume_block.text
+
+        self.result.append(constants.ParseItemResult(
+            name=name,
+            price=price,
+            volume=volume,
+            picture=picture,
+        ))
+
+    def run_item(self, base_url: str):
+        text = self.load_item_page(base_url)
+        self.parese_item_page(text=text)
+        for item in self.result:
+            self.data.append({
+                'name': item.name,
+                'price': item.price,
+                'volume': item.volume,
+                'picture': item.picture
+            })
+        json_data = json.dumps(self.data)
+        print(json_data)
+        return json_data
