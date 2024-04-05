@@ -1,5 +1,7 @@
 package com.example.econom_main.Product.services;
 
+import com.example.econom_main.Product.dtos.CategoryDto;
+import com.example.econom_main.Product.dtos.ProductDto;
 import com.example.econom_main.Product.entities.Category;
 import com.example.econom_main.Product.entities.Product;
 import com.example.econom_main.Product.repositories.CategoryRepository;
@@ -17,7 +19,7 @@ public class ProductService {
     private final CategoryRepository categoryRepository;
 
     public List<Category> getAllCategories() {
-        return (List<Category>) categoryRepository.findAll();
+        return categoryRepository.findAll();
     }
 
     public Category getCategoryById(Long id){
@@ -32,15 +34,20 @@ public class ProductService {
         return category;
     }
 
-    public void addNewCategory(Category category){
+    public void addNewCategory(CategoryDto categoryDto){
+        Category category = new Category();
+        category.setName(categoryDto.getName());
+        category.setImage_url(categoryDto.getImage_url());
+        category.setIsFinal(categoryDto.getIsFinal());
+        category.setParent(categoryRepository.getById(categoryDto.getParent_id()));
         categoryRepository.save(category);
     }
     public List<Product> getAllProducts(){
-        return (List<Product>) productRepository.findAll();
+        return productRepository.findAll();
     }
 
     public List<Product> getAllProductsFromCategory(Long category_id){
-        return (List<Product>) productRepository.findProductByCategory_Id(category_id);
+        return productRepository.findProductsByCategory_Id(category_id);
     }
 
     public Product getProductById(Long id){
@@ -55,7 +62,16 @@ public class ProductService {
         return product;
     }
 
-    public void addNewProduct(Product product){
+    public void addNewProduct(ProductDto productDto){
+        Product product = new Product();
+        product.setName(productDto.getName());
+        product.setImage_url(productDto.getImage_url());
+        product.setCategory(categoryRepository.getById(productDto.getId()));
+        product.setLink_crossroad(productDto.getLink_crossroad());
+        product.setLink_5ka(productDto.getLink_5ka());
+        product.setLink_lenta(productDto.getLink_lenta());
+        product.setLink_magnit(productDto.getLink_magnit());
+        product.setLink_metro(productDto.getLink_metro());
         productRepository.save(product);
     }
 }

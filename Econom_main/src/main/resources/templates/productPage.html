@@ -32,7 +32,7 @@
     
     <div class="conteiner">
         <div class="text-name">
-            <div>
+            <div th:text="${product.name}">
                 Name
             </div>
         </div>
@@ -43,94 +43,37 @@
     <div class="conteiner-main">
         <main class="main">
             <div class="main-photo">
-                <div class="slider middle">
-                    <div class="slides">
-                        <input type="radio" name="r" id="r1" checked>
-                        <input type="radio" name="r" id="r2">
-                        <input type="radio" name="r" id="r3">
-                        <input type="radio" name="r" id="r4">
-                        
-                        <div class="slide s1">
-                            <img src="../../static/productStatic/js/img/image1.png" alt="Изображение" class="img">
-                        </div>
-                        <div class="slide">
-                            <img src="../../static/productStatic/js/img/2.png" alt="Изображение" class="img">
-                        </div>
-                        <div class="slide">
-                            <img src="../../static/productStatic/js/img/3.png" alt="Изображение" class="img">
-                        </div>
-                        <div class="slide">
-                            <img src="../../static/productStatic/js/img/1.png" alt="Изображение" class="img">
-                        </div>
-                    </div>
-                    <div class="navigation">
-                        <label for="r1" class="bar"></label>
-                        <label for="r2" class="bar"></label>
-                        <label for="r3" class="bar"></label>
-                        <label for="r4" class="bar"></label>
-                    </div>
+                <div class="slide s1">
+                    <img th:src="${product.image_url}" alt="Изображение" class="img">
                 </div>
             </div>
             <!-- /.main-photo -->
             
             <div class="second-colum">
                 <h1 class="service">Доступные сервисы</h1>
-                
-                <div class="grid-grid">
-                    <div class="list-service">
-                        <img src="../../static/productStatic/js/img/image%202.png" alt="">
-                        
-                        <span class="service-service">shopName</span>
-                        
-                        <button class="btn1">price</button>
+
+                <div th:each="sc : ${product.priceList}">
+                    <div class="grid-grid">
+                        <div class="list-service">
+                            <img src="../../static/productStatic/js/img/image%202.png" alt="">
+
+                            <span class="service-service" th:text="${sc.name}">shopName</span>
+
+                            <button class="btn1" th:text="${sc.cost}">price</button>
+                        </div>
                     </div>
-                    
                 </div>
-                <!-- /.grid-grid -->
-                
-                <div class="grid-grid">
-                    <div class="list-service">
-                        <img src="../../static/productStatic/js/img/image%202.png" alt="">
-                        
-                        <span class="service-service">shopName</span>
-                        
-                        <button class="btn1">price</button>
-                    </div>
-                    
-                </div>
-                <!-- /.grid-grid -->
-                
-                <div class="grid-grid">
-                    <div class="list-service">
-                        <img src="../../static/productStatic/js/img/image%202.png" alt="">
-                        
-                        <span class="service-service">shopName</span>
-                        
-                        <button class="btn1">price</button>
-                    </div>
-                    
-                </div>
-                <!-- /.grid-grid -->
-                
-                <div class="grid-grid">
-                    <div class="list-service">
-                        <img src="../../static/productStatic/js/img/image%202.png" alt="">
-                        
-                        <span class="service-service"></span>
-                        
-                        <button class="btn1">price</button>
-                    </div>
-                    
-                </div>
-                <!-- /.grid-grid -->
-                
+
+
+
+
                 <div class="main-shop">
                     <img src="../../static/productStatic/js/img/image%202.png" alt="">
-                    
-                    <span class="service-main-service">mainShopName</span>
+
+                    <span class="service-main-service" th:text="${product.bestCost.name}">mainShopName</span>
                 </div>
                 <!-- /.main-shop -->
-                <button class="btn2">price</button>
+                <button class="btn2" th:text="${product.bestCost.cost}">price</button>
                 
             </div>
             <!-- /.second-colum -->

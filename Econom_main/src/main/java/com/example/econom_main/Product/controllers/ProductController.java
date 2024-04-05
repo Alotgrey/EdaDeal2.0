@@ -1,21 +1,27 @@
 package com.example.econom_main.Product.controllers;
 
+import com.example.econom_main.Product.entities.Category;
+import com.example.econom_main.Product.services.ProductCostService;
 import com.example.econom_main.Product.services.ProductService;
-import com.example.econom_main.Product.entities.Product;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
+@RequiredArgsConstructor
 public class ProductController {
-
     @Autowired
-    private ProductService productService;
+    private ProductCostService productCostService;
 
-    @GetMapping("/products")
-    private String getProduct(){
+    @GetMapping("/")
+    private String getMainPage(){
+        return "mainPage";
+    }
+    @GetMapping ("/products/{product_id}")
+    private String getProduct(@PathVariable("product_id") Long product_id, Model model){
+        model.addAttribute("product", productCostService.getProductCostById(product_id));
         return "productPage";
     }
 }

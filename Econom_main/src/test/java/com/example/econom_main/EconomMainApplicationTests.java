@@ -8,6 +8,7 @@ class EconomMainApplicationTests {
 
     @Test
     void contextLoads() {
+
     }
 
 }
