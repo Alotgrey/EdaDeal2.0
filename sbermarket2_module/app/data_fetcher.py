@@ -42,13 +42,13 @@ class DataFetcher():
     
     def __validate_browser_path(self):
         try:
-            driver = self.__get_driver(headless=True)
+            driver = self.get_driver(headless=True)
             driver.quit()
         except FileNotFoundError:
             raise FileNotFoundError(f'Не найден путь к браузеру Chrome: {self.browser_path}')
     
         
-    def __get_driver(self, headless=False):
+    def get_driver(self, headless=False):
         try:
             driver = uc.Chrome(headless=headless)
         except TypeError:
@@ -57,7 +57,7 @@ class DataFetcher():
         
     def __get_all_data(self) -> dict:
         logging.info('Открываю браузер хром для получения токена')
-        driver = self.__get_driver()
+        driver = self.get_driver()
         
         driver.get('https://sbermarket.ru/')
         user_agent = driver.execute_script("return navigator.userAgent;")
