@@ -1,4 +1,8 @@
 from fastapi import APIRouter
+import sys
+sys.path.append("..")
+
+from sbermarket_module.app.sber import itemParser
 
 router = APIRouter(
     prefix='/api/v2/parser'
@@ -6,5 +10,7 @@ router = APIRouter(
 
 @router.post('/item/url/')
 def get_item_data(url: str) -> dict:
-    ...
-    return {}
+    parser = itemParser()
+    item_data = parser.run_item(url)[0]
+
+    return {"price": float(item_data['price'])}
