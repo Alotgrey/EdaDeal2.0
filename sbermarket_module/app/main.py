@@ -1,5 +1,5 @@
-from categories import SberCategoriesParser
-from sber import SberParser, itemParser
+from sbermarket_module.app.categories import SberCategoriesParser
+from sbermarket_module.app.sber import SberParser, itemParser
 
 
 

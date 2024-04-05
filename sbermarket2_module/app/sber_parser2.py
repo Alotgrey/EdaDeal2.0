@@ -1,5 +1,5 @@
-from data_fetcher import DataFetcher
-from constants import CHROME_PATH
+from sbermarket2_module.app.data_fetcher import DataFetcher
+from sbermarket2_module.app.constants import CHROME_PATH
 
 import logging
 import time

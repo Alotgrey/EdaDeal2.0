@@ -1,7 +1,4 @@
 from fastapi import APIRouter
-import sys
-sys.path.append("..")
-
 from sbermarket_module.app.sber import itemParser
 
 router = APIRouter(

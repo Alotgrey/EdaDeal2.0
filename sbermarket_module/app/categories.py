@@ -7,8 +7,8 @@ from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.remote.webdriver import By
 
-import constants # type: ignore
-from exceptions import *
+import sbermarket_module.app.constants as constants
+from sbermarket_module.app.exceptions import *
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger('SberCategories')

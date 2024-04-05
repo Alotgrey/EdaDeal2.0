@@ -4,7 +4,7 @@ import json
 import time
 import re
 
-from constants import UTILS_PATH
+from sbermarket2_module.app.constants import UTILS_PATH
 
 
 class DataFetcher():

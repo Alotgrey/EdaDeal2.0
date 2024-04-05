@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app.configuration.server import Server
+from APIHandler_module.app.configuration.server import Server
 
 
 def create_app(_=None) -> FastAPI:

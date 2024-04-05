@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.configuration.routes import __routes__
+from APIHandler_module.app.configuration.routes import __routes__
 
 class Server:
     
