@@ -5,10 +5,15 @@ import json
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
-import constants  # type: ignore
-
 from selenium import webdriver
+
+
+import sys
+sys.path.append("..")
+import sbermarket_module.app.constants as constants
+
+# import constants
+
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger('Sber')
@@ -333,6 +338,4 @@ class itemParser:
                 'volume': item.volume,
                 'picture': item.picture
             })
-        json_data = json.dumps(self.data)
-        print(json_data)
-        return json_data
+        return self.data
