@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "edadeal2-0"
+version = "0.1.0"
+description = ""
+authors = ["MRossa <maxim.rossa@mail.ru>"]
+readme = "README.md"
+packages = [{include = "edadeal2"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+undetected-chromedriver = "^3.5.5"
+fastapi = {extras = ["uvicorn"], version = "^0.110.1"}
+uvicorn = {extras = ["standard"], version = "^0.29.0"}
+bs4 = "^0.0.2"
+selenium = "^4.19.0"
+lxml = "^5.2.1"
+
+[tool.poetry.group.dev.dependencies]
+isort = "^5.13.2"
+black = "^24.3.0"
+mypy = "^1.9.0"
+wemake-python-styleguide = "^0.19.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
