@@ -2,6 +2,9 @@ import logging
 import bs4
 import csv
 import json
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 import constants  # type: ignore
 
@@ -32,7 +35,7 @@ class SberParser:
     def parse_page(self, text):
         soup = bs4.BeautifulSoup(text, 'lxml')
         container = soup.select(
-            'div.ProductCard_root__K6IZK.ProductCard_addToCartBig__h5PsY')
+            'div.ProductCard_root__K6IZK')
         for block in container:
             try:
                 self.parse_block(block=block)
@@ -79,18 +82,21 @@ class SberParser:
         volume = volume_block.text
 
         price_block = block.select_one(
-            'div.ProductCardPrice_root__OfEqa.ProductCard_price__aRuGG')
+            'div.ProductCardPrice_price__Kv7Q7.ProductCardPrice_accent__GwwRX.CommonProductCard_priceText__bW6F9')
         if not price_block:
-            logger.error('no_price_block')
-            return
+            price_block = block.select_one('div.ProductCardPrice_price__Kv7Q7.CommonProductCard_priceText__bW6F9')
+            if not price_block:
+                logger.error('no_price_block')
+                return
 
-        price = price_block.find('div', class_='ProductCardPrice_price__Kv7Q7')
-        if not price:
-            logger.error('no_price')
-            return
-        for span in price.find_all('span'):
+        # price = price_block.text
+        # price = price_block.find('div', class_='ProductCardPrice_price__Kv7Q7')
+        # if not price:
+        #     logger.error('no_price')
+        #     return
+        for span in price_block.find_all('span'):
             span.decompose()
-        price = price.get_text(strip=True)
+        price = price_block.get_text(strip=True)
 
         picture_block = block.select_one(
             'picture.Picture_root__5uXZZ.ProductCard_picture__lNFOz')
