@@ -1,42 +1,41 @@
 import collections
 
-HEADERS = (
-    'Name',
-    'Price',
-    'Volume',
-    'URL',
-    'Picture',
 
+HEADERS = (
+    "Name",
+    "Price",
+    "Volume",
+    "URL",
+    "Picture",
 )
 
 ParseResult = collections.namedtuple(
-    'ParseResult',
+    "ParseResult",
     (
-        'name',
-        'price',
-        'volume',
-        'url',
-        'picture',
-    )
+        "name",
+        "price",
+        "volume",
+        "url",
+        "picture",
+    ),
 )
 
 ParseItemResult = collections.namedtuple(
-    'ParseItemResult',
+    "ParseItemResult",
     (
-        'name',
-        'price',
-        'volume',
-        'picture',
-    )
+        "name",
+        "price",
+        "volume",
+        "picture",
+    ),
 )
 
 
 SESSIONHEADERS = {
-            "User-Agent":
-            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.105 Safari/537.36",
-            # "Referer": "https://sbermarket.ru/5ka/c/moloko-sir-yajtsa-rastitelnie-produkti-c44b0ed/moloko-ff6a59e",
-            "Sec-Fetch-Mode": "cors",
-            "Accept": "application/json, text/plain, */*"
-        }
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.105 Safari/537.36",
+    # "Referer": "https://sbermarket.ru/5ka/c/moloko-sir-yajtsa-rastitelnie-produkti-c44b0ed/moloko-ff6a59e",
+    "Sec-Fetch-Mode": "cors",
+    "Accept": "application/json, text/plain, */*",
+}
 
 RETAILERS_LIST_PATH = r"retailers_list.json"
