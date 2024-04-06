@@ -1,8 +1,6 @@
 package com.example.econom_main.Product.controllers;
 
-import com.example.econom_main.Product.entities.Category;
 import com.example.econom_main.Product.services.ProductCostService;
-import com.example.econom_main.Product.services.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,5 +21,11 @@ public class ProductController {
     private String getProduct(@PathVariable("product_id") Long product_id, Model model){
         model.addAttribute("product", productCostService.getProductCostById(product_id));
         return "productPage";
+    }
+
+    @GetMapping("/categories")
+    private String getMainCategory(Model model){
+        model.addAttribute("categories", productCostService.getCategoriesByParent(1L));
+        return "categoriesPage";
     }
 }

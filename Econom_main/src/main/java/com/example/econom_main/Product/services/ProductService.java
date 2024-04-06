@@ -4,6 +4,8 @@ import com.example.econom_main.Product.dtos.CategoryDto;
 import com.example.econom_main.Product.dtos.ProductDto;
 import com.example.econom_main.Product.entities.Category;
 import com.example.econom_main.Product.entities.Product;
+import com.example.econom_main.Product.mappers.CategoryMapper;
+import com.example.econom_main.Product.mappers.ProductMapper;
 import com.example.econom_main.Product.repositories.CategoryRepository;
 import com.example.econom_main.Product.repositories.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,9 +19,23 @@ public class ProductService {
 
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
+    private final CategoryMapper categoryMapper;
+    private final ProductMapper productMapper;
 
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
+    }
+
+    public List<Product> getAllProducts(){
+        return productRepository.findAll();
+    }
+
+    public List<Category> getAllCategoriesByParentId(Long id){
+        return categoryRepository.findCategoriesByParent_Id(id);
+    }
+
+    public List<Product> getAllProductsFromCategory(Long category_id){
+        return productRepository.findProductsByCategory_Id(category_id);
     }
 
     public Category getCategoryById(Long id){
@@ -28,26 +44,7 @@ public class ProductService {
         if (optionalCategory.isPresent()){
             category = optionalCategory.get();
         }
-        else{
-            throw new RuntimeException("Category not found for id: " + id);
-        }
         return category;
-    }
-
-    public void addNewCategory(CategoryDto categoryDto){
-        Category category = new Category();
-        category.setName(categoryDto.getName());
-        category.setImage_url(categoryDto.getImage_url());
-        category.setIsFinal(categoryDto.getIsFinal());
-        category.setParent(categoryRepository.getById(categoryDto.getParent_id()));
-        categoryRepository.save(category);
-    }
-    public List<Product> getAllProducts(){
-        return productRepository.findAll();
-    }
-
-    public List<Product> getAllProductsFromCategory(Long category_id){
-        return productRepository.findProductsByCategory_Id(category_id);
     }
 
     public Product getProductById(Long id){
@@ -62,16 +59,11 @@ public class ProductService {
         return product;
     }
 
+    public void addNewCategory(CategoryDto categoryDto){
+        categoryRepository.save(categoryMapper.toCategory(categoryDto));
+    }
+
     public void addNewProduct(ProductDto productDto){
-        Product product = new Product();
-        product.setName(productDto.getName());
-        product.setImage_url(productDto.getImage_url());
-        product.setCategory(categoryRepository.getById(productDto.getId()));
-        product.setLink_crossroad(productDto.getLink_crossroad());
-        product.setLink_5ka(productDto.getLink_5ka());
-        product.setLink_lenta(productDto.getLink_lenta());
-        product.setLink_magnit(productDto.getLink_magnit());
-        product.setLink_metro(productDto.getLink_metro());
-        productRepository.save(product);
+        productRepository.save(productMapper.toProduct(productDto));
     }
 }

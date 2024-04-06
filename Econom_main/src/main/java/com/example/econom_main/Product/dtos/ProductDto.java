@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 public class ProductDto {
-    private Long id;
+
     String name;
     private String image_url;
     private Long category_id;

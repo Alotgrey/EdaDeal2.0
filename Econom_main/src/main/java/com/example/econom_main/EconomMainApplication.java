@@ -1,5 +1,6 @@
 package com.example.econom_main;
 
+import com.example.econom_main.Product.entities.Category;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
