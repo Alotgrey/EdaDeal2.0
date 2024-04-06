@@ -3,7 +3,7 @@ from fastapi import APIRouter
 from sbermarket_module.app.sber import itemParser
 
 
-router = APIRouter(prefix="/api/v2/parser")
+router = APIRouter(prefix="/api/v1/parser")
 
 
 @router.post("/item/url/")
