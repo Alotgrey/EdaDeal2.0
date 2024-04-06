@@ -1,0 +1,50 @@
+.header {
+    height: 100px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFAB00;
+    position: relative;
+    padding: 0 72px;
+    border-radius: 57px;
+}
+
+.main-header {
+    display: flex;
+    align-items: center;
+    margin-left: 450px;
+}
+
+.header-brand {
+    text-decoration: none;
+    font-weight: 400;
+    font-family: Lobster;
+    font-size: 50px;
+    line-height: normal;
+    text-decoration: none;
+    margin-right: 50px;
+    color: #000;
+}
+
+.header-menu-item1 img {
+    width: 120px;
+    height: 100px;
+}
+
+.header-menu-item2 {
+    text-decoration: none;
+    font-weight: 400;
+    font-family: Lobster;
+    font-size: 50px;
+    line-height: normal;
+    text-decoration: none;
+    margin-left: 50px;
+    color: #000;
+}
+
+.header-menu-cart img {
+    width: 60px;
+    height: 55px;
+    margin-left: 300px;
+}
