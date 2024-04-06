@@ -1,5 +1,6 @@
 package com.example.econom_main.Product.services;
 
+import com.example.econom_main.Product.dtos.CategoryListDto;
 import com.example.econom_main.Product.entities.Category;
 import com.example.econom_main.Product.entities.ProductCost;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,9 @@ public class ProductCostService {
         return new ProductCost(productService.getProductById(id), costService.findCostById(id));
     }
 
-    public List<Category> getCategoriesByParent(Long id){
-        return productService.getAllCategoriesByParentId(id);
+    public CategoryListDto getCategoriesTree(){
+        return productService.getCategoryListDtoById(1L);
     }
+
+
 }

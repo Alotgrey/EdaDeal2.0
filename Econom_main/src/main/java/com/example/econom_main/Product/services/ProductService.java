@@ -1,6 +1,7 @@
 package com.example.econom_main.Product.services;
 
 import com.example.econom_main.Product.dtos.CategoryDto;
+import com.example.econom_main.Product.dtos.CategoryListDto;
 import com.example.econom_main.Product.dtos.ProductDto;
 import com.example.econom_main.Product.entities.Category;
 import com.example.econom_main.Product.entities.Product;
@@ -22,12 +23,12 @@ public class ProductService {
     private final CategoryMapper categoryMapper;
     private final ProductMapper productMapper;
 
-    public List<Category> getAllCategories() {
-        return categoryRepository.findAll();
+    public List<CategoryDto> getAllCategories() {
+        return categoryRepository.findAll().stream().map(categoryMapper::toDto).toList();
     }
 
-    public List<Product> getAllProducts(){
-        return productRepository.findAll();
+    public List<ProductDto> getAllProducts(){
+        return productRepository.findAll().stream().map(productMapper::toDto).toList();
     }
 
     public List<Category> getAllCategoriesByParentId(Long id){
@@ -57,6 +58,10 @@ public class ProductService {
             throw new RuntimeException("Product not found for id: " + id);
         }
         return product;
+    }
+
+    public CategoryListDto getCategoryListDtoById(Long id){
+        return categoryMapper.listGenerator(this.getCategoryById(id));
     }
 
     public void addNewCategory(CategoryDto categoryDto){

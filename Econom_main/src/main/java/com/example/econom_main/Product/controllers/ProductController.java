@@ -1,5 +1,6 @@
 package com.example.econom_main.Product.controllers;
 
+import com.example.econom_main.Product.dtos.CategoryListDto;
 import com.example.econom_main.Product.services.ProductCostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,5 @@ public class ProductController {
         return "productPage";
     }
 
-    @GetMapping("/categories")
-    private String getMainCategory(Model model){
-        model.addAttribute("categories", productCostService.getCategoriesByParent(1L));
-        return "categoriesPage";
-    }
+
 }

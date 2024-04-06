@@ -8,8 +8,8 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 public class ProductDto {
-
-    String name;
+    private Long id;
+    private String name;
     private String image_url;
     private Long category_id;
     private String link_magnit;
