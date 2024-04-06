@@ -1,73 +1,77 @@
 <!DOCTYPE html>
-<html lang="ru">
-
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fineprice</title>
-    <link rel="stylesheet" href="css\style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Saira+Stencil+One&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="css/style.css">
 </head>
+<body>
+    
+    <div class="conteiner-header">
+        <header class="header">
+            <ul class="main-header">
+                <a href="/PromotionPage/promotion.html" class="header-brand"><span>Акция</span></a>
+            
+                <a href="/MainPage/main_page.html" class="header-menu-item1">
+                    <img src="img/logo.svg" alt="Логотип">
+                </a>
+            
+                <a href="/MainPage/kategory.html" class="header-menu-item2"><span>Каталог</span></a>
+            </ul>
 
-    <body>
-        <div id = "main">
-            <div id = "main-container">
-                <header id = "main-header">
-                    <div id = "main-header-menu">
-                        <img class="header-menu-img1 " src="images/Rectangle 3.png">
-                        <img class="header-menu-img2 " src="images/Rectangle 4.png">
-                        <a href="/promotion" class="menu-item1">Акции</a>
-                        <a href="/" class="menu-item2">
-                            <img src="images/star.png" alt="">
-                        </a>
-                        <a href="/cart_page" class="menu-item3">
-                            <img src="images/cart.png" alt="">
-                        </a>
-
-                    </div>
-                            
-                </header>
-             
+            <a href="/CartPage/cart_page.html" class="header-menu-cart">
+                <img src="img/cart.png" alt="Корзина">
+            </a>
+            <!-- /.cart -->
+        </header>
+    </div>
+    <!-- /.conteiner -->
+    
+    <div class="conteiner">
+        <div class="sale-header">
+            <div>
+                Большая скидка сегодня
             </div>
-
-        <div id="sale-block">
-
-            <div class="sale-header">
-                <span>Большая скидка сегодня </span>
-            </div>
-
-            <div class="products-list">
-                <div class="product-item">
-                    <img class="product-img" src="images/image1.png">
-                    <div class="product-price">price </div>
-                </div>
-                <div class="product-item">
-                    <img class="product-img" src="images/image1.png">
-                    <div class="product-price">price </div>
-                </div>
-                <div class="product-item">
-                    <img class="product-img" src="images/image1.png">
-                    <div class="product-price">price </div>
-                </div>
-                <div class="product-item">
-                    <img class="product-img" src="images/image1.png">
-                    <div class="product-price">price </div>
-                </div>
-                <div class="product-item">
-                    <img class="product-img" src="images/image1.png">
-                    <div class="product-price">price </div>
-                </div>
-            </div>
-            <button class = "btn-show-more">Show more</button>
         </div>
-
+    <!-- /.conteiner -->
+    
+        <div class="products-list">
+            <div class="product-item">
+                <img class="product-img" src="images/image1.png">
+                <div class="product-price">price </div>
+            </div>
+            <div class="product-item">
+                <img class="product-img" src="images/image1.png">
+                <div class="product-price">price </div>
+            </div>
+            <div class="product-item">
+                <img class="product-img" src="images/image1.png">
+                <div class="product-price">price </div>
+            </div>
+            <div class="product-item">
+                <img class="product-img" src="images/image1.png">
+                <div class="product-price">price </div>
+            </div>
+            <div class="product-item">
+                <img class="product-img" src="images/image1.png">
+                <div class="product-price">price </div>
+            </div>
+        </div>
+        <button class = "btn-show-more">Show more</button>
+        
         <div id="sale-block">
-
+            
             <div class="sale-header">
                 <span>Выгодные популярные товары </span>
             </div>
-
+            
             <div class="products-list">
                 <div class="product-item">
                     <img class="product-img" src="images/image1.png">
@@ -92,17 +96,15 @@
             </div>
             <button class = "btn-show-more">Show more</button>
         </div>
-
-
-            <div class = "footer-container">
-                <img class="footer-img" src="images/Rectangle 6.png">
-
-                <a href="/help" class="footer-item1">Помощь</a>
-                <a href="/about" class="footer-item1">О нас</a>
-
-            </div>
-        </div>
-
-
-
-    </body>
+    </div>
+        <!-- /.conteiner -->
+    
+    <div class="conteiner-footer">
+        <footer class="footer">
+            <a href="/help" class="footer-help"><span>Помощь</span></a>
+            <a href="/about" class="footer-as"><span>О нас</span></a>
+        </footer>
+    </div>
+    <!-- /.conteiner -->
+</body>
+</html>
