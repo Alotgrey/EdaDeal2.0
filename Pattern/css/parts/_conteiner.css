@@ -29,9 +29,9 @@
 }
 
 .conteiner-footer {
-    padding-top: 30%;
-    height: 20vh;
     align-items: bottom;
+    bottom: 0;
+    right: 0;
 }
 
 @media (min-width: 5%) {
