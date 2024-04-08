@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from sbermarket_module.app.sber import itemParser
+from APIHandler.app.pkg.sbermarket_module.app.sber import itemParser
 
 
 router = APIRouter(prefix="/api/v1/parser")

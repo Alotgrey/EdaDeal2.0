@@ -1,7 +1,7 @@
-from pkg.sbermarket2_module.app.src.sber_parser2 import SberParser2
-from pkg.sbermarket2_module.app.utils import constants, data_fetcher
-from pkg.sbermarket_module.app.categories import SberCategoriesParser
-from pkg.sbermarket_module.app.sber import SberParser, itemParser
+from APIHandler.app.pkg.sbermarket2_module.app.src.sber_parser2 import SberParser2
+from APIHandler.app.pkg.sbermarket2_module.app.utils import constants, data_fetcher
+from APIHandler.app.pkg.sbermarket_module.app.categories import SberCategoriesParser
+from APIHandler.app.pkg.sbermarket_module.app.sber import SberParser, itemParser
 
 
 if __name__ == "__main__":

@@ -3,9 +3,10 @@ import json
 import logging
 import os
 
-from pkg.sbermarket_module.app import constants, exceptions
 from selenium import webdriver
 from selenium.webdriver.remote.webdriver import By
+
+from APIHandler.app.pkg.sbermarket_module.app import constants, exceptions
 
 
 logging.basicConfig(level=logging.INFO)

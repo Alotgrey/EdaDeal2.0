@@ -2,7 +2,7 @@ import json
 import logging
 import re
 
-from pkg.sbermarket2_module.app.utils.data_fetcher import DataFetcher
+from APIHandler.app.pkg.sbermarket2_module.app.utils.data_fetcher import DataFetcher
 
 
 class SberParser2:

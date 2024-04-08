@@ -3,11 +3,12 @@ import json
 import logging
 
 import bs4
-import pkg.sbermarket_module.app.constants as constants
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+
+from APIHandler.app.pkg.sbermarket_module.app import constants
 
 
 logging.basicConfig(level=logging.INFO)

@@ -4,7 +4,8 @@ import re
 import time
 
 import undetected_chromedriver as uc  # type: ignore
-from pkg.sbermarket2_module.app.utils.constants import UTILS_PATH
+
+from APIHandler.app.pkg.sbermarket2_module.app.utils.constants import UTILS_PATH
 
 
 class DataFetcher:
