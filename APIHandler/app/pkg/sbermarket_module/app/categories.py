@@ -3,11 +3,9 @@ import json
 import logging
 import os
 
+from pkg.sbermarket_module.app import constants, exceptions
 from selenium import webdriver
 from selenium.webdriver.remote.webdriver import By
-
-import sbermarket_module.app.constants as constants
-from sbermarket_module.app.exceptions import *
 
 
 logging.basicConfig(level=logging.INFO)
@@ -16,22 +14,20 @@ logger = logging.getLogger("SberCategories")
 
 class SberCategoriesParser:
     def __init__(self) -> None:
-        # response: dict = requests.get('https://sbermarket.ru/api/v3/stores/25531/categories?depth=3&include=&reset_cache=true').json()
+        # Инициализация переменных экземпляра
+        self.categories = []
+        self.category_getters = {}
 
+        # Загрузка категорий из JSON-файла
         with open(r"categories.json", "r", encoding="utf-8") as file:
             json_response = json.load(file)
         self.categories = json_response["categories"]
 
+        # Заполнение словаря category_getters
         self.category_getters = {
-            category["name"]: lambda name=category["name"]: self.get_category_by_name(
-                name
-            )
-            for category in self.categories
-        }
+            category["name"]: lambda name=category["name"]: self.get_category_by_name(name) for category in self.categories}
 
-    def get_category_by_name(
-        self, name: str, categories=None, lazy: bool = True
-    ) -> dict:
+    def get_category_by_name(self, name: str, categories=None, lazy: bool = True) -> dict:
         """
         Ищет и возвращает категорию по её названию. Поиск может быть выполнен как в текущем списке категорий,
         так и рекурсивно в дочерних категориях.
@@ -162,7 +158,7 @@ class SberCategoriesParser:
             return f"https://sbermarket.ru/{retailer_slug}/c/{category_slug}"
         else:
             retailers_list = list(self.get_retailers().keys())
-            raise BadRetailerName(
+            raise exceptions.BadRetailerName(
                 f"Неверное имя ретейлера! Список разрешенных ретейлеров {retailers_list}"
             )
 

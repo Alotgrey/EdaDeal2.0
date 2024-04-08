@@ -4,20 +4,13 @@ import re
 import time
 
 import undetected_chromedriver as uc  # type: ignore
-
-from sbermarket2_module.app.constants import UTILS_PATH
+from pkg.sbermarket2_module.app.utils.constants import UTILS_PATH
 
 
 class DataFetcher:
-    def __init__(self, browser_path) -> None:
+    def __init__(self, browser_path=None) -> None:
         self.browser_path = browser_path
-        try:
-            self.__validate_browser_path()
-        except FileNotFoundError as e:
-            logging.error(
-                f"Не корректно задан путь к браузеру Chrome в переменной browser_path={self.browser_path}"
-            )
-            raise e
+        self.__validate_browser_path()
 
     def get_cookies(
         self,
@@ -49,47 +42,64 @@ class DataFetcher:
             token = all_data["token"]
         return token
 
-    def get_driver(self, headless=False):
-        try:
-            driver = uc.Chrome(headless=headless)
-        except TypeError:
+    def get_driver(self, headless_mode: bool = False):
+        if self.browser_path is None:
+            driver = uc.Chrome(headless=headless_mode)
+        else:
             driver = uc.Chrome(
-                headless=headless,
+                headless=headless_mode,
                 browser_executable_path=self.browser_path,
             )
+        logging.debug("Создали экземпляр WebDriver")
         return driver
 
-    def __validate_browser_path(self):
-        try:
-            driver = self.get_driver(headless=True)
+    # ? Сделать этот метод - staticmethod и не создавать driver если его не передали?? 🤔
+    def get_page_source_code(self, url, driver=None, headless_mode: bool = False, is_driver_quit=True) -> str:
+        if driver is None:
+            driver = self.get_driver(headless_mode=headless_mode)
+
+        driver.get(url)
+        page_data = driver.page_source
+        # ? А нужно ли выходить из драйвера?
+        if is_driver_quit:
             driver.quit()
-        except FileNotFoundError:
-            raise FileNotFoundError(
-                f"Не найден путь к браузеру Chrome: {self.browser_path}"
-            )
+        return page_data
+
+    def __validate_browser_path(self):
+        logging.debug("Ищем путь до Chrome WebDriver")
+        try:
+            driver = self.get_driver(headless_mode=True)
+            driver.quit()
+        except (FileNotFoundError, TypeError):
+            if self.browser_path is None:
+                error_text = f"Не найден путь к браузеру Chrome: {self.browser_path}. Укажите browser_path в аргументах"
+                # logging.error(error_text)
+                raise FileNotFoundError(error_text)
+            error_text = f"Некорректный путь к браузеру Chrome: {self.browser_path}"
+            # logging.error(error_text)
+            raise FileNotFoundError(error_text)
 
     def __get_all_data(self) -> dict:
         logging.info("Открываю браузер хром для получения токена")
-        driver = self.get_driver()
+        driver = self.get_driver(headless_mode=True)
 
         driver.get("https://sbermarket.ru/")
         user_agent = driver.execute_script("return navigator.userAgent;")
         time.sleep(5)
-        token = re.findall(
-            'STOREFRONT_API_V3_CLIENT_TOKEN: "([^"]+)"', driver.page_source
-        )[0]
+        token = re.findall('STOREFRONT_API_V3_CLIENT_TOKEN: "([^"]+)"', driver.page_source)[0]
         cookies = driver.get_cookies()
 
         cookies_dict = {}
         for cookie in cookies:
             cookies_dict[cookie["name"]] = cookie["value"]
 
-        driver.quit()
         logging.info(f"Токен получен: {token}")
 
         self.__save_token_in_file(token=token)
         self.__save_cookies_in_file(cookies=cookies_dict)
         self.__save_user_agent_in_file(user_agent=user_agent)
+
+        driver.quit()
 
         return {"token": token, "cookies": cookies, "user_agent": user_agent}
 
@@ -148,11 +158,11 @@ class DataFetcher:
         return token
 
 
-if __name__ == "__main__":
-    from sbermarket2_module.app.constants import CHROME_PATH
+# if __name__ == "__main__":
+#     from sbermarket2_module.app.utils.constants import CHROME_PATH
 
-    test = DataFetcher(CHROME_PATH)
-    cookies = test.get_cookies()
-    token = test.get_token()
+#     test = DataFetcher(CHROME_PATH)
+#     cookies = test.get_cookies()
+#     token = test.get_token()
 
-    print(cookies, token)
+#     print(cookies, token)
