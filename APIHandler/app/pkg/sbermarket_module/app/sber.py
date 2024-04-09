@@ -1,7 +1,7 @@
 import csv
 import json
 import logging
-
+from typing import Dict
 import bs4
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -253,105 +253,96 @@ class SberParser:
         self.save_result_json(csv_save_path)
 
 
-class itemParser:
+class ItemParser:
 
-    def __init__(self):
+    @staticmethod
+    def run_item(base_url: str) -> Dict[str, str]:
         options = webdriver.FirefoxOptions()
         options.add_argument("-headless")
-        self.driver = webdriver.Firefox(options=options)
-        self.data = []
-        self.result = []
-        self.names_set = set()
+        driver = webdriver.Firefox(options=options)
 
-    def load_page(self, category_url, page_number):
-        url_template = f"{category_url}?page={{}}"
-        url = url_template.format(page_number)
-        self.driver.get(url)
-        res = self.driver.page_source
-        return res
+        data = {}
 
-    def load_item_page(self, url):
-        self.driver.get(url)
-        res = self.driver.page_source
-        return res
+        try:
+            driver.get(base_url)
+            res = driver.page_source
 
-    def parese_item_page(self, text):
+            data = ItemParser.parse_item_page(text=res)
+
+        except Exception as e:
+            logger.error(f"Error while parsing item: {e}")
+
+        finally:
+            driver.quit()
+
+        return data
+
+    @staticmethod
+    def parse_item_page(text: str) -> Dict[str, str]:
+        data = {}
+
         soup = bs4.BeautifulSoup(text, "lxml")
         container = soup.select("div.ProductDetailWrapper_root__DK_og")
+
         for block in container:
             try:
-                self.parse_item_block(block=block)
+                item_data = ItemParser.parse_item_block(block)
+                data = {
+                    "name": item_data["name"],
+                    "price": item_data["price"],
+                    "volume": item_data["volume"],
+                    "picture": item_data["picture"]
+                }
+                break  # Assuming we only need data for one item
             except Exception as e:
-                logger.error(f"Error while parsing block: {e}")
-                continue
+                logger.error(f"Error while parsing item page: {e}")
 
-    def parse_item_block(self, block):
+        return data
 
-        picture_block = block.select_one(
-            "picture.Picture_root__5uXZZ.PreviewImage_picture__xosjt"
-        )
+    @staticmethod
+    def parse_item_block(block) -> Dict[str, str]:
+        item_data = {}
+
+        picture_block = block.select_one("picture.Picture_root__5uXZZ.PreviewImage_picture__xosjt")
         if not picture_block:
             logger.error("no_picture_block")
-            return
+            return item_data
 
         picture = picture_block.find("img")
         if not picture:
             logger.error("no_picture")
-            return
+            return item_data
         picture = picture["src"]
 
         name_block = block.select_one("div.ProductTitle_captionContainer__1Z_Gu")
         if not name_block:
             logger.error("no_name_block")
-            return
+            return item_data
 
         name = name_block.select_one("h1.ProductTitle_title__aJyqe")
         if not name:
             logger.error("no_name")
-            return
+            return item_data
         name = name.text
 
-        if name in self.names_set:
-            logger.warning(f"Duplicate name: {name}. Skipping...")
-            return
-
-        price_block = block.select_one(
-            "h3._Heading_1v100_1._Heading3B_1v100_36._Heading_1y7f8_29"
-        )
-
-        # if not price_block:
-        #   price_block = block.select_one('div.ProductCardPrice_price__Kv7Q7.CommonProductCard_priceText__bW6F9')
+        price_block = block.select_one("h3._Heading_1v100_1._Heading3B_1v100_36._Heading_1y7f8_29")
         if not price_block:
             logger.error("no_price_block")
-            return
+            return item_data
         price = price_block.text
 
         volume_block = block.select_one("p.ProductCTAPrice_volume__kgHsx")
         if not volume_block:
             logger.error("no_volume_block")
-            return
-
+            return item_data
         volume = volume_block.text
 
-        self.result.append(
-            constants.ParseItemResult(
-                name=name,
-                price=price,
-                volume=volume,
-                picture=picture,
-            )
-        )
+        item_data = {
+            "name": name,
+            "price": price,
+            "volume": volume,
+            "picture": picture
+        }
 
-    def run_item(self, base_url: str):
-        text = self.load_item_page(base_url)
-        self.parese_item_page(text=text)
-        for item in self.result:
-            self.data.append(
-                {
-                    "name": item.name,
-                    "price": item.price,
-                    "volume": item.volume,
-                    "picture": item.picture,
-                }
-            )
-        return self.data
+        return item_data
+
