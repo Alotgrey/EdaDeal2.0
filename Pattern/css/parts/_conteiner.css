@@ -11,9 +11,18 @@
     height: 10%;
     width: 95%;
     max-width: 100%;
-        margin-left: auto;
+    margin-left: auto;
     margin-right: auto;
 }
+
+
+.main-header {
+    width: 65%;
+    outline: none;
+    border: none;
+    border-bottom: none;
+}
+
 
 .conteiner-search {
     padding-top: 2%;
@@ -53,9 +62,4 @@
         padding-left: 0px;
         padding-right: 0px;
     }
-    .conteinner-footer {
-        padding-left: 0px;
-        padding-right: 0px;
-    }
 }
-
