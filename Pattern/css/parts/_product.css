@@ -34,7 +34,20 @@
 	color: #474747;
 	z-index: 0;
 	height: 20vh;
+	box-shadow: 0 0 5px #eccf2a;
+ 	-moz-box-shadow: 0 0 5px #eccf2a;
+ 	-ms-box-shadow: 0 0 5px #eccf2a;
+ 	-o-box-shadow: 0 0 5px #eccf2a;
+ 	-webkit-box-shadow: 0 0 5pxrgb(170, 154, 62)F;
 }
+
+.product:hover {
+	box-shadow: 0 0 12px #eccf2a;
+	-moz-box-shadow: 0 0 12px #eccf2a;
+	-o-box-shadow: 0 0 12px #eccf2a;
+	-ms-box-shadow: 0 0 12px #eccf2a;
+	-webkit-box-shadow: 0 0 12px #eccf2a;
+   }
 
 .products {
 	list-style: none;
@@ -64,7 +77,7 @@
 }
 
 .product:hover .product-photo img {
-	transform: scale(1.02);
+	transform: scale(1.04);
 }
 
 .product-buttons-wrap {
@@ -77,10 +90,40 @@
 .buttons {
     position: absolute; 
     bottom: 10px;
-    right: 10px;
-    left: 10px;
-	top: -1px;
+    right: 5px;
+    left: 5px;
+	top: -10px;
     font-size: 20px;
 	background: #FFAB00;
     border-radius: 30px;
+	transition: background-color 0.3s;
+}
+
+.buttons:hover {
+	background-color: #cf8a00;
+	cursor: pointer;
+}
+
+@media (max-width: 1272px)
+{
+	.buttons {
+		font-size: 17px;
+	}
+}
+
+@media (max-width: 1135px)
+{
+	.buttons {
+		font-size: 12px;
+	}
+	.main-header {
+		width: 75%;
+	}
+}
+
+@media (max-width: 600px)
+{
+	.buttons {
+		font-size: 7px;
+	}
 }
