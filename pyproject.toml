@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["MRossa <maxim.rossa@mail.ru>"]
 readme = "README.md"
-packages = [{include = "edadeal2"}]
+packages = [{include = "APIHandler"}]
 
 [tool.poetry.dependencies]
 python = "^3.12"
