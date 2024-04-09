@@ -11,6 +11,8 @@
     height: 10%;
     width: 95%;
     max-width: 100%;
+        margin-left: auto;
+    margin-right: auto;
 }
 
 .conteiner-search {
@@ -20,12 +22,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .conteiner-main {
-    padding-top: 5%;
-    width: 90%;
-    max-width: 100%;
+    padding-top: 2%;
+    width: 40%;
+    max-width: 70%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .conteiner-footer {
