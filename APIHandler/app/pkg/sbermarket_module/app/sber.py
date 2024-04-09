@@ -2,6 +2,7 @@ import csv
 import json
 import logging
 from typing import Dict
+
 import bs4
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -257,6 +258,9 @@ class ItemParser:
 
     @staticmethod
     def run_item(base_url: str) -> Dict[str, str]:
+
+        parser = ItemParser()
+
         options = webdriver.FirefoxOptions()
         options.add_argument("-headless")
         driver = webdriver.Firefox(options=options)
@@ -267,7 +271,7 @@ class ItemParser:
             driver.get(base_url)
             res = driver.page_source
 
-            data = ItemParser.parse_item_page(text=res)
+            data = parser.parse_item_page(text=res)
 
         except Exception as e:
             logger.error(f"Error while parsing item: {e}")
@@ -277,8 +281,7 @@ class ItemParser:
 
         return data
 
-    @staticmethod
-    def parse_item_page(text: str) -> Dict[str, str]:
+    def parse_item_page(self, text: str) -> Dict[str, str]:
         data = {}
 
         soup = bs4.BeautifulSoup(text, "lxml")
@@ -286,7 +289,7 @@ class ItemParser:
 
         for block in container:
             try:
-                item_data = ItemParser.parse_item_block(block)
+                item_data = self.parse_item_block(block)
                 data = {
                     "name": item_data["name"],
                     "price": item_data["price"],
@@ -299,8 +302,7 @@ class ItemParser:
 
         return data
 
-    @staticmethod
-    def parse_item_block(block) -> Dict[str, str]:
+    def parse_item_block(self, block) -> Dict[str, str]:
         item_data = {}
 
         picture_block = block.select_one("picture.Picture_root__5uXZZ.PreviewImage_picture__xosjt")
@@ -345,4 +347,3 @@ class ItemParser:
         }
 
         return item_data
-
