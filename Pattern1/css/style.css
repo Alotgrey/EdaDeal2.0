@@ -1,0 +1,9 @@
+@import "reset.css";
+@import "parts/_conteiner.css";
+@import "parts/_header.css";
+@import "parts/_footer.css";
+@import "parts/_main.css";
+@import "parts/_name.css";
+@import "parts/_search-form.css";
+@import "parts/_category-popup.css";
+@import "parts/_product.css"
