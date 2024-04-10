@@ -89,10 +89,9 @@
 
 .buttons {
     position: absolute; 
-    bottom: 10px;
-    right: 5px;
-    left: 5px;
-	top: -10px;
+	width: 70%;
+	left: 15%;
+	bottom: 10px;
     font-size: 20px;
 	background: #FFAB00;
     border-radius: 30px;
@@ -104,17 +103,24 @@
 	cursor: pointer;
 }
 
-@media (max-width: 1272px)
+@media (max-width: 1580px)
 {
 	.buttons {
 		font-size: 17px;
 	}
 }
 
-@media (max-width: 1135px)
+@media (max-width: 1272px)
 {
 	.buttons {
 		font-size: 12px;
+	}
+}
+
+@media (max-width: 1135px)
+{
+	.buttons {
+		font-size: 10px;
 	}
 	.main-header {
 		width: 75%;
