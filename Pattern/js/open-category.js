@@ -1,5 +1,5 @@
 document.getElementById("open-category-popup-btn").addEventListener("click",function(){
-    document.getElementById("category-popup-id").classList.add("open")
+    document.getElementById("category-popup-id").classList.toggle("open")
 }) 
 
 window.addEventListener('keydown', (e) => {
@@ -8,7 +8,7 @@ window.addEventListener('keydown', (e) => {
     }
 });
 
-document.querySelector("#category-popup-id .box").addEventListener('click', event => {
+document.querySelector("#category-popup-id .category-box").addEventListener('click', event => {
     event._isClickWithInModal = true;
 });
 document.getElementById("category-popup-id").addEventListener('click', event => {

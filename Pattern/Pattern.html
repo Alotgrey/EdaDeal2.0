@@ -15,17 +15,18 @@
 <body>
 
     <script defer src="js/open-category.js"></script>
+    <script defer src="js/open-basket.js"></script>
     <script defer src="js/category-list.js"></script>
     
-    <div class="conteiner-header">
+    <div class="container-header">
         <header class="header">
             <a>
             </a>
 
             <ul class="main-header">
-                <button class="open-category-btn" id="open-category-popup-btn">
+                <a class="header-promotion" id="open-category-popup-btn">
                     Каталог
-                </button>
+                </a>
 
                 <a href="/MainPage/main_page.html" class="header-logo">
                     <img src="img/logo.svg" alt="Логотип">
@@ -36,17 +37,17 @@
                 </a>
             </ul>
              
-            <a href="/CartPage/cart_page.html" class="header-cart">
+            <a class="header-cart" id="open-basket-popup-btn">
                 <img src="img/cart_fill.svg" alt="Корзина">
             </a>
 
             <!-- /.cart -->
         </header>
     </div>
-    <!-- /.conteiner -->
+    <!-- /.container -->
 
     <div class="category-popup" id="category-popup-id">
-        <div class="box">
+        <div class="category-box">
             <ul class="category-list">
                 <li data-subcategories='["Рыба", "Мясо"]'><a href="#">Категория 1</a></li>
                 <li data-subcategories='["Овощи", "Фрукты"]'><a href="#">Категория 2</a></li>
@@ -59,7 +60,20 @@
         </div>
     </div>
 
-    <div class="conteiner-search">
+    
+    <div class="basket-popup" id="basket-popup-id">
+        <div class="basket-box">
+            <div class="basket-box-title">
+                <a class="basket-box-title-text">
+                    Корзина
+                </a>
+            </li class="basket-product-wrapper">
+            </div>
+        </div>
+        <button class="basket-popup-close-btn" id="close-basket-popup-id"></button>
+    </div>
+
+    <div class="container-search">
         <div class="search-form">
             <input class="search-form___txt", type="text"
             placeholder="Поиск..."> 
@@ -69,7 +83,7 @@
         </div>
     </div>
 
-    <ul class="conteiner-main">
+    <ul class="container-main">
         <li class="product-wrapper">
             <a href="" class="product">
                 <div class="product-photo">
@@ -112,15 +126,13 @@
         </li>
     </ul>
 
-
-
-    <div class="conteiner-footer">
+    <div class="container-footer">
         <footer class="footer">
             <a href="/help" class="footer-helpus"><span>Помощь</span></a>
-            <a href="/help" class="footer-helpus"><span>Часто задаваемые вопросы</span></a>
+            <a href="/help" class="footer-helpus"><span>О нас</span></a>
         </footer>
     </div>
-    <!-- /.conteiner -->
+    <!-- /.container -->
     
     <script src="js/fslightbox.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
