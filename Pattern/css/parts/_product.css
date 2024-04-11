@@ -93,9 +93,10 @@ box-shadow: 0 0 12px #eccf2a;
 .buttons {
     position: absolute; 
 	width: 80%;
-    font-size: 20px;
+    font-size: 15px;
 	background: #FFAB00;
     border-radius: 30px;
+	white-space: nowrap;
 }
 
 .buttons:hover {
