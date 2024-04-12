@@ -4,7 +4,7 @@
     flex-flow: row nowrap;
     align-items: center;
     justify-content: center;
-    background-color: #F8D7D7;
+    background-color: #FFAB00;
     position: relative;
     padding: 0 72px;
     border-radius: 57px;
@@ -31,3 +31,30 @@
     height: 55px;
     margin-left: 72px;
 }
+
+/* Применяем стили к родительскому элементу (например, к <body> или <div>) */
+.input-container {
+	display: flex;
+	justify-content: center; /* Выравнивание по горизонтали */
+	align-items: center; /* Выравнивание по вертикали */
+	
+  }
+  
+  /* Стили для .search-box */
+  .search-box {
+	margin-top: 1.5%;
+	padding: 20px;
+	border-radius: 100px;
+	border: 1px solid #ffffff;
+	outline: none;
+	width: 1212px;
+	height: 105px;
+	box-sizing: border-box;
+	background-color: #FDD994;
+	font-size: 50px;
+  }
+  
+  .search-box::placeholder {
+	font-size: 50px;
+	color: #888;
+  }
