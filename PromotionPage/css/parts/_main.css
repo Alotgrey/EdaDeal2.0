@@ -17,7 +17,7 @@
 .product-img {
    width: 240px;
    height: 240px;
-   border: 20px solid #FFAB00;
+   border: 10px solid #FFAB00;
    border-radius: 60px;
 }
 
@@ -47,7 +47,7 @@
 	font-size: 30px;
 	color: black;
 	background-color: #FFAB00;
-	border-radius: 10px;
+	border-radius: 40px;
 }
 
 .product-price:hover{
@@ -65,7 +65,7 @@
 	padding: 25px 70px;
    font-size: 30px;
 	border: none;
-	border-radius: 30px;
+	border-radius: 50px;
    margin-left: auto;
    margin-right: auto;
 	margin-bottom: 40px;
