@@ -7,43 +7,62 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Saira+Stencil+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+    <script defer src="js/open-category.js"></script>
+    <script defer src="js/category-list.js"></script>
     
     <div class="conteiner-header">
         <header class="header">
-            <a href="/promotion" class="header-brand"><span>Акция</span></a>
-            
-            <a href="/" class="header-menu-item1">
-                <img src="img/logo.svg" alt="Логотип">
+            <a>
             </a>
+
+            <ul class="main-header">
+                <a class="header-promotion" id="open-category-popup-btn">
+                    Каталог
+                </a>
+
+                <a href="/MainPage/main_page.html" class="header-logo">
+                    <img src="img/logo.svg" alt="Логотип">
+                </a>
             
-            <a href="/cart_page" class="header-menu-cart">
-                <img src="img/cart.png" alt="Корзина">
+                <a href="/CategoriesPage/Categories.html" class="header-promotion">
+                    <span>Акция</span>
+                </a>
+            </ul>
+             
+            <a href="/CartPage/cart_page.html" class="header-cart">
+                <img src="img/cart_fill.svg" alt="Корзина">
             </a>
+
             <!-- /.cart -->
         </header>
     </div>
     <!-- /.conteiner -->
-    
-    <div class="input-container">
-        <input class="search-box" type="search" placeholder="Название товара">
+
+    <div class="category-popup" id="category-popup-id">
+        <div class="box">
+            <ul class="category-list">
+                <li data-subcategories='["Рыба", "Мясо"]'><a href="#">Категория 1</a></li>
+                <li data-subcategories='["Овощи", "Фрукты"]'><a href="#">Категория 2</a></li>
+                <li data-subcategories='["Молоко", "Молочные продукты"]'><a href="#">Категория 3</a></li>
+            </ul>  
+            <ul class="subcategory-list" id="subcategory-list">
+
+            </ul>
+            <button class="category-popup-close-btn" id="close-category-popup-id"></button>
+        </div>
     </div>
 
-    <!-- <div class="conteiner">
-        <div class="text-name">
-            <div>
-                Name
-            </div>
-        </div>
-    </div> -->
-    <!-- /.conteiner -->
-    
-    
+    <div class="input-container">
+        <input class="search-box" type="search" placeholder="Поиск">
+    </div>
+
     <div class="conteiner-main">
         <main class="main">
             <div class="main-photo">
@@ -183,14 +202,28 @@
                     <img src="img/Polygon2.png" alt=""><path d="M1 11L6.00001 6L1 0.999997" stroke="white" />
                 </button>
             </div>
-
         </div>
-    <!-- /.conteiner-pohozh -->
-    
+
+
+    <!-- <ul class="conteiner-main">
+        <li class="product-wrapper">
+            <a href="" class="product">
+                <div class="product-photo">
+                    <img src="img/search.svg" alt="">
+                </div>
+                <div class="product-buttons-wrap">
+                    <button class="buttons">В корзину</button>
+                </div>
+            </a>
+        </li>
+    </ul> -->
+
+
+
     <div class="conteiner-footer">
         <footer class="footer">
-            <a href="/help" class="footer-help"><span>Помощь</span></a>
-            <a href="/about" class="footer-as"><span>О нас</span></a>
+            <a href="/help" class="footer-helpus"><span>Помощь</span></a>
+            <a href="/help" class="footer-helpus"><span>О нас</span></a>
         </footer>
     </div>
     <!-- /.conteiner -->

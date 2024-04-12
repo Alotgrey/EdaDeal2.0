@@ -1,39 +1,62 @@
 .conteiner {
-    padding-top: 56px;
-    width: 1210px;
+    padding-top: 5%;
+    width: 100%;
     max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    align-items: top;
+    justify-content: top;
 }
 
-@media (max-width: 1024px) {
+@media (min-width: 5%) {
     .conteinner {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .conteinner-header {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .conteinner-main {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .conteinner-footer {
         padding-left: 0px;
         padding-right: 0px;
     }
 }
 
 .conteiner-header {
-    padding-top: 40px;
-    width: 1210px;
+    padding-top: 1%;
+    height: 10%;
+    width: 95%;
     max-width: 100%;
+        margin-left: auto;
+    margin-right: auto;
+}
+
+.conteiner-search {
+    padding-top: 2%;
+    width: 95%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-left: auto;
     margin-right: auto;
 }
 
 .conteiner-main {
-    padding-top: 122px;
-    width: 1210px;
-    max-width: 100%;
+    padding-top: 2%;
+    width: 40%;
+    max-width: 70%;
     margin-left: auto;
     margin-right: auto;
 }
 
 .conteiner-footer {
-    padding-top: 86px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: auto;
+    align-items: bottom;
+    bottom: 0;
+    right: 0;
 }
 
 .conteiner-pohozh {

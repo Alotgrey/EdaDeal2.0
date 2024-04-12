@@ -1,10 +1,4 @@
 .text-name {
-    height: 105px;
     display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    background-color: #FFAF00;
-    position: relative;
-    padding: 0 72px;
-    border-radius: 47px;
+    justify-content: center;
 }
