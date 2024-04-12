@@ -14,7 +14,6 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor
 public class CategoryMapper {
-    @Autowired
     private final CategoryRepository categoryRepository;
     public Category toCategory(CategoryDto categoryDto){
         Category category = new Category();

@@ -23,12 +23,9 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 public class DataInsert {
-    @Autowired
-    private CostService costService;
-    @Autowired
-    private ProductService productService;
-    @Autowired
-    private ProductCostService productCostService;
+    private final CostService costService;
+    private final ProductService productService;
+    private final ProductCostService productCostService;
     @GetMapping ("/api/categories")
     private List<CategoryDto> getCategories(){
         return productService.getAllCategories();

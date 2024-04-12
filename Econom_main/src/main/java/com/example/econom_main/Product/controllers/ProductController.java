@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequiredArgsConstructor
 public class ProductController {
-    @Autowired
-    private ProductCostService productCostService;
+    private final ProductCostService productCostService;
 
     @GetMapping("/")
     private String getMainPage(){

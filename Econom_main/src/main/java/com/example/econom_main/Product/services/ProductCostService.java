@@ -12,9 +12,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ProductCostService {
-    @Autowired
     private final CostService costService;
-    @Autowired
     private final ProductService productService;
 
     public ProductCost getProductCostById(Long id) {
