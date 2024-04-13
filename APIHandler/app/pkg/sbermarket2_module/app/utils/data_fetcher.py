@@ -12,12 +12,15 @@ class DataFetcher:
     def __init__(self, browser_path=None, headless_mode: bool = False) -> None:
         self.browser_path = browser_path
         self.__validate_browser_path()
-        self.driver = self.get_driver(headless_mode=headless_mode)
+        self.driver = self.__get_driver(headless_mode=headless_mode)
 
     def __enter__(self):
         return self
 
     def __exit__(self, exception_type, exception_value, traceback):
+        self.quit()
+
+    def quit(self) -> None:
         try:
             self.driver.quit()
         except Exception as e:
@@ -54,7 +57,7 @@ class DataFetcher:
             token = all_data["token"]
         return token
 
-    def get_driver(self, headless_mode: bool = False):
+    def __get_driver(self, headless_mode: bool = False):
         if self.browser_path is None:
             driver = uc.Chrome(headless=headless_mode)
         else:
@@ -73,7 +76,7 @@ class DataFetcher:
     def __validate_browser_path(self):
         logging.debug("Ищем путь до Chrome WebDriver")
         try:
-            driver = self.get_driver(headless_mode=True)
+            driver = self.__get_driver(headless_mode=True)
             driver.quit()
         except (FileNotFoundError, TypeError):
             if self.browser_path is None:
