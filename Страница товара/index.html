@@ -15,6 +15,7 @@
 <body>
 
     <script defer src="js/open-category.js"></script>
+    <script defer src="js/open-basket.js"></script>
     <script defer src="js/category-list.js"></script>
     
     <div class="conteiner-header">
@@ -36,7 +37,7 @@
                 </a>
             </ul>
              
-            <a href="/CartPage/cart_page.html" class="header-cart">
+            <a class="header-cart" id="open-basket-popup-btn">
                 <img src="img/cart_fill.svg" alt="Корзина">
             </a>
 
@@ -46,7 +47,7 @@
     <!-- /.conteiner -->
 
     <div class="category-popup" id="category-popup-id">
-        <div class="box">
+        <div class="category-box">
             <ul class="category-list">
                 <li data-subcategories='["Рыба", "Мясо"]'><a href="#">Категория 1</a></li>
                 <li data-subcategories='["Овощи", "Фрукты"]'><a href="#">Категория 2</a></li>
@@ -59,42 +60,58 @@
         </div>
     </div>
 
-    <div class="input-container">
-        <input class="search-box" type="search" placeholder="Поиск">
+    <div class="basket-popup" id="basket-popup-id">
+        <div class="basket-box">
+            <div class="basket-box-title">
+                Корзина
+            </div>
+            <ul class="basket-wrapper">
+                <li class="basket-product">
+                    <div class="basket-product-photo">
+                        <img src="img/search.svg" alt="">
+                    </div>
+                    <div class="basket-info">
+                    </div>
+                    <div class="basket-button-wrapper">
+                        <button class="basket-button">
+                        </button>
+                    </div>
+                </li>
+                <li class="basket-product">
+                    <div class="basket-product-photo">
+                        <img src="img/search.svg" alt="">
+                    </div>
+                    <div class="basket-info">
+                    </div>
+                    <div class="basket-button-wrapper">
+                        <button class="basket-button">
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <button class="basket-popup-close-btn" id="close-basket-popup-id"></button>
+    </div>
+
+    <div class="container-search">
+        <div class="search-form">
+            <input class="search-form___txt", type="text"
+            placeholder="Поиск..."> 
+            <button class="search-form___btn">
+                <img class="search-form___image" src="img/search.svg"></button>
+            </button>
+        </div>
     </div>
 
     <div class="conteiner-main">
         <main class="main">
-            <div class="main-photo">
-                <div class="slider middle">
-                    <div class="slides">
-                        <input type="radio" name="r" id="r1" checked>
-                        <input type="radio" name="r" id="r2">
-                        <input type="radio" name="r" id="r3">
-                        <input type="radio" name="r" id="r4">
-                        
-                        <div class="slide s1">
-                            <img src="img/luk.jpg" alt="Изображение" class="img">
-                        </div>
-                        <div class="slide">
-                            <img src="img/2.png" alt="Изображение" class="img">
-                        </div>
-                        <div class="slide">
-                            <img src="img/3.png" alt="Изображение" class="img">
-                        </div>
-                        <div class="slide">
-                            <img src="img/1.png" alt="Изображение" class="img">
-                        </div>
-                    </div>
-                    <div class="navigation">
-                        <label for="r1" class="bar"></label>
-                        <label for="r2" class="bar"></label>
-                        <label for="r3" class="bar"></label>
-                        <label for="r4" class="bar"></label>
+            <div class="slider middle">
+                <div class="slides">
+                    <div class="slide s1">
+                        <img src="img/luk.jpg" alt="Изображение" class="img">
                     </div>
                 </div>
             </div>
-            <!-- /.main-photo -->
             
             <div class="second-colum">
                 <h1 class="service">Доступные сервисы</h1>
@@ -160,51 +177,6 @@
         </main>
     </div>
     <!-- /.conteiner -->
-    
-    <div class="conteiner-pohozh">
-        <h1 class="pohozh">Похожие</h1>
-
-        <div class="gallery">
-            <!-- Свайпер -->
-            <div class="swiper gallery-swiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <a href="#"><img class="gallery__img" src="img/3.png" alt="1"></a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#"><img class="gallery__img" src="img/2.png" alt="2"></a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#"><img class="gallery__img" src="img/3.png" alt="3"></a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#"><img class="gallery__img" src="img/2.png" alt="4"></a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#"><img class="gallery__img" src="img/3.png" alt="5"></a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#"><img class="gallery__img" src="img/2.png" alt="6"></a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#"><img class="gallery__img" src="img/3.png" alt="7"></a>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- Навигация -->
-            <div class="gallery__navigation">
-                <button class="gallery__btn gallery__btn-prev">
-                    <img src="img/Polygon1.png" alt=""><path d="M6 11L0.999995 6L6 0.999998" stroke="white" />
-                </button>
-                <button class="gallery__btn gallery__btn-next">
-                    <img src="img/Polygon2.png" alt=""><path d="M1 11L6.00001 6L1 0.999997" stroke="white" />
-                </button>
-            </div>
-        </div>
-
-
     <!-- <ul class="conteiner-main">
         <li class="product-wrapper">
             <a href="" class="product">
@@ -220,7 +192,7 @@
 
 
 
-    <div class="conteiner-footer">
+    <div class="container-footer">
         <footer class="footer">
             <a href="/help" class="footer-helpus"><span>Помощь</span></a>
             <a href="/help" class="footer-helpus"><span>О нас</span></a>

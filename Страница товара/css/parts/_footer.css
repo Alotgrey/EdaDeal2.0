@@ -1,8 +1,8 @@
 .footer {
-    position: absolute;
+    position: relative;
     bottom: 0;
     left: 0;
-    height: 7vh;
+    height: 15vh;
     background-color: #fadead;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;

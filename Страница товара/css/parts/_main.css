@@ -5,8 +5,10 @@
 }
 
 .slider {
-    width: 706px;
-    height: 706px;
+    width: 600px;
+    height: 600px;
+    margin-left: 110px;
+    margin-top: 180px;
     overflow: hidden;
     border: 10px solid #FFAB00;
     border-radius: 60px;
@@ -15,79 +17,21 @@
  .middle {
     transform: translate(0, 0);
  }
- 
- .navigation {
-    position: absolute;
-    bottom: 16px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
- }
- 
- .bar {
-    width: 24px;
-    height: 24px;
-    margin: 6px;
-    cursor: pointer;
-    background-color: #F8D7D7;
-    border-radius: 10px;
-    transition: all 0.4s ease;
- }
- 
- .bar:hover {
-    background-color: #760000;
-    transform:scale(1.1);
- }
- 
- input[name="r"] {
-    position: absolute;
-    visibility: hidden;
- }
- 
- .slides {
-    width: 400%;
-    height: 100%;
-    display: flex;
- }
- 
- .slide {
-    width: 25%;
-    transition: all 0.6s ease;
- }
- 
- .img {
-    width: 100%;
-    height: 100%;
- }
- 
- #r1:checked ~ .s1 {
-    margin-left: 0;
- }
- 
- #r2:checked ~ .s1 {
-    margin-left: -25%;
- }
- 
- #r3:checked ~ .s1 {
-    margin-left: -50%;
- }
- 
- #r4:checked ~ .s1 {
-    margin-left: -75%;
- }
 
 .service {
     color: #000;
     text-align: center;
     font-family: "Saira Stencil One";
-    font-size: 42px;
+    font-size: 41px;
+    margin-top: 150px;
     font-style: normal;
+    white-space: nowrap;
     font-weight: 400;
     line-height: normal;
 }
 
 .grid-grid {
-    margin-top: 22px;
+   margin-top: 25px;
 }
 
 .list-service {
@@ -125,8 +69,8 @@
 }
 
 .btn1:hover{
-    background-color: #FFAB00;
-    cursor: pointer;
+   background-color: #cf8a00;
+	cursor: pointer;
 }
 
 .main-shop {
@@ -153,6 +97,7 @@
     margin-top: 21.75px;
     width: 464px;
     height: 90px;
+    margin-bottom: 150px;
     border-radius: 105px;
     background: #FFAB00;
     color: #000;
@@ -166,6 +111,6 @@
 }
 
 .btn2:hover {
-    background-color: #FFAB00;
-    cursor: pointer;
+   background-color: #cf8a00;
+	cursor: pointer;
 }

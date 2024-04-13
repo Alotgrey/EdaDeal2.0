@@ -1,6 +1,6 @@
 .header {
   height: 6vh;
-  width: 80%;
+  width: 76%;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -9,6 +9,7 @@
   border-radius: 58px;
   margin-right: auto;
   margin-left: auto;
+  margin-top: 1%;
   padding: 20px; 
 }
 
@@ -17,75 +18,37 @@
   align-items: center;
   justify-content: space-between;
   margin: 0 20px; 
+  width: 65%;
+  outline: none;
+  border: none;
+  border-bottom: none;
 }
-
-.header-brand {
-    text-decoration: none;
-    font-weight: 400;
-    font-family: Lobster;
-    font-size: 50px;
-    line-height: normal;
-    text-decoration: none;
-    margin-right: 72px;
-    color: #000;
-}
-
-.header-menu-item1 img {
-    width: 120px;
-    height: 100px;
-}
-
-.header-menu-cart img {
-    width: 60px;
-    height: 55px;
-    margin-left: 72px;
-}
-
-/* Применяем стили к родительскому элементу (например, к <body> или <div>) */
-.input-container {
-	display: flex;
-	justify-content: center; /* Выравнивание по горизонтали */
-	align-items: center; /* Выравнивание по вертикали */
-	
-  }
-  
-  /* Стили для .search-box */
-  .search-box {
-	margin-top: 1.5%;
-	padding: 20px;
-	border-radius: 100px;
-	border: 1px solid #ffffff;
-	outline: none;
-	width: 1212px;
-	height: 105px;
-	box-sizing: border-box;
-	background-color: #FDD994;
-	font-size: 50px;
-  }
-  
-  .search-box::placeholder {
-	font-size: 50px;
-	color: #888;
-  }
 
 .header-promotion, .header-category {
-    text-decoration: none;
-    font-weight: 400;
-    font-family: Inter;
-    font-size: 25px;
-    line-height: normal;
-    text-decoration: none;
-    color: #000;
-    padding: 0px 15px; 
+  text-decoration: none;
+  font-weight: 400;
+  font-family: Inter;
+  font-size: 25px;
+  line-height: normal;
+  color: #000;
+  padding: 0px 15px; 
+  user-select: none; 
 }
 
 .header-promotion:hover{
-    cursor: pointer;
+  cursor: pointer;
 }
+
+
 
 .header-logo img, .header-cart img {
   width: 50px; 
   height: 50px; 
   line-height: normal;
   margin: 10px; 
+  user-select: none; 
+}
+
+.header-cart img:hover{
+  cursor: pointer;
 }

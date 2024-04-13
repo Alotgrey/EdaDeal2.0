@@ -1,9 +1,63 @@
 @import "reset.css";
-@import "parts/_conteiner.css";
+@import "parts/_container.css";
 @import "parts/_header.css";
 @import "parts/_footer.css";
 @import "parts/_main.css";
 @import "parts/_name.css";
 @import "parts/_search-form.css";
 @import "parts/_category-popup.css";
-@import "parts/_product.css"
+@import "parts/_product.css";
+@import "parts/_basket-popup.css";
+
+@media (min-width: 1500px){
+    .header-promotion, .header-category {
+        font-size: 50px;
+    }
+
+    .header-logo img, .header-cart img {
+        width: 50px; 
+        height: 50px; 
+    }
+
+    .buttons {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1400px){
+    .header-logo img, .header-cart img {
+        width: 40px; 
+        height: 40px; 
+    }
+
+    .buttons {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 1000px){
+    .header-logo img, .header-cart img {
+        width: 30px; 
+        height: 30px; 
+    }
+
+    .category-box {
+        height: 100%;
+        max-width: 100%;
+    }
+
+    .buttons {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 720px){
+    .header-promotion, .header-category {
+        font-size: 15px;
+    }
+
+    .header-logo img, .header-cart img {
+        width: 30px; 
+        height: 30px; 
+    }
+}

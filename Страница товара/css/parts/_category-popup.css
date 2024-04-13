@@ -15,7 +15,7 @@
     transition: opacity .4s, visibility .4s;
 }
 
-.box {
+.category-box {
     height: 80vh;
     max-width: 60%;
     width: 100%;
@@ -35,7 +35,7 @@
     opacity: 1;
 }
 
-.category-popup.open .box{
+.category-popup.open .category-box{
     transform: scale(1);
 }
 

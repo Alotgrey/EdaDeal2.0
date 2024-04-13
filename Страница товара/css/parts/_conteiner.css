@@ -30,7 +30,7 @@
     height: 10%;
     width: 95%;
     max-width: 100%;
-        margin-left: auto;
+    margin-left: auto;
     margin-right: auto;
 }
 
@@ -57,12 +57,4 @@
     align-items: bottom;
     bottom: 0;
     right: 0;
-}
-
-.conteiner-pohozh {
-    width: 1080px;
-    height: 164px;
-    max-width: 1980px;
-    padding-top: 186px;
-    margin: 0 auto;
 }
