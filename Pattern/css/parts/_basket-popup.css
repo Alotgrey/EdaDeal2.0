@@ -109,18 +109,41 @@
 
 .basket-info{
     position: absolute;
+    padding: 10px;
     left: 29%;
     right: 30%;
     top: 0;
     bottom: 0;
+    font-size: 14px;
 }
 
-.basket-button-wrapper{
-    position: absolute;
+.basket-button-wrapper {
+    position: relative;
     left: 70%;
     right: 70%;
     top: 0;
     bottom: 0;
     width: 30%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.basket-buttons {
+    width: 20%;
+    height: 20%;
+    font-size: 15px;
+	background: #FFAB00;
+	white-space: nowrap;
+}
+
+.basket-buttons:hover {
+	background-color: #cf8a00;
+	cursor: pointer;
+}
+
+.product-counter{
+    width: 40%;
+    height: 30%;
+}
