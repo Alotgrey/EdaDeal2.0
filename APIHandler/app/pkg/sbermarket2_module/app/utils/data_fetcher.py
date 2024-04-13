@@ -9,9 +9,20 @@ from APIHandler.app.pkg.sbermarket2_module.app.utils.constants import UTILS_PATH
 
 
 class DataFetcher:
-    def __init__(self, browser_path=None) -> None:
+    def __init__(self, browser_path=None, headless_mode: bool = False) -> None:
         self.browser_path = browser_path
         self.__validate_browser_path()
+        self.driver = self.get_driver(headless_mode=headless_mode)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exception_type, exception_value, traceback):
+        try:
+            self.driver.quit()
+        except Exception as e:
+            #TODO: доделать обработку ошибок
+            raise e
 
     def get_cookies(
         self,
@@ -54,16 +65,9 @@ class DataFetcher:
         logging.debug("Создали экземпляр WebDriver")
         return driver
 
-    # ? Сделать этот метод - staticmethod и не создавать driver если его не передали?? 🤔
-    def get_page_source_code(self, url, driver=None, headless_mode: bool = False, is_driver_quit=True) -> str:
-        if driver is None:
-            driver = self.get_driver(headless_mode=headless_mode)
-
-        driver.get(url)
-        page_data = driver.page_source
-        # ? А нужно ли выходить из драйвера?
-        if is_driver_quit:
-            driver.quit()
+    def get_page_source_code(self, url) -> str:
+        self.driver.get(url)
+        page_data = self.driver.page_source
         return page_data
 
     def __validate_browser_path(self):
@@ -82,13 +86,11 @@ class DataFetcher:
 
     def __get_all_data(self) -> dict:
         logging.info("Открываю браузер хром для получения токена")
-        driver = self.get_driver(headless_mode=True)
-
-        driver.get("https://sbermarket.ru/")
-        user_agent = driver.execute_script("return navigator.userAgent;")
+        self.driver.get("https://sbermarket.ru/")
+        user_agent = self.driver.execute_script("return navigator.userAgent;")
         time.sleep(5)
-        token = re.findall('STOREFRONT_API_V3_CLIENT_TOKEN: "([^"]+)"', driver.page_source)[0]
-        cookies = driver.get_cookies()
+        token = re.findall('STOREFRONT_API_V3_CLIENT_TOKEN: "([^"]+)"', self.driver.page_source)[0]
+        cookies = self.driver.get_cookies()
 
         cookies_dict = {}
         for cookie in cookies:
@@ -99,8 +101,6 @@ class DataFetcher:
         self.__save_token_in_file(token=token)
         self.__save_cookies_in_file(cookies=cookies_dict)
         self.__save_user_agent_in_file(user_agent=user_agent)
-
-        driver.quit()
 
         return {"token": token, "cookies": cookies, "user_agent": user_agent}
 
