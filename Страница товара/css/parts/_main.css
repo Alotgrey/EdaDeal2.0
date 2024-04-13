@@ -53,7 +53,7 @@
     align-items: center;
 }
 
-.btn1 {
+.btn_grid {
     margin: auto 0;
     height: 35px;
     border-radius: 105px;
@@ -68,7 +68,7 @@
     transition: all 200ms ease-in-out;
 }
 
-.btn1:hover{
+.btn_grid:hover{
    background-color: #cf8a00;
 	cursor: pointer;
 }
@@ -93,7 +93,7 @@
     line-height: normal;
 }
 
-.btn2 {
+.btn_main {
     margin-top: 21.75px;
     width: 464px;
     height: 90px;
@@ -110,7 +110,7 @@
     transition: all 200ms ease-in-out;
 }
 
-.btn2:hover {
+.btn_main:hover {
    background-color: #cf8a00;
 	cursor: pointer;
 }
