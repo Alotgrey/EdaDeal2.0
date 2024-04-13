@@ -27,7 +27,8 @@ struct Product : Codable, Identifiable {
 
 
 class Model : ObservableObject, Codable {
-    @Published var products : [Product]
+    @Published var searchProducts : [Product]
+    @Published var categoryProducts : [Product]
     @Published var shoppingCart : [String : [Product]] {
         didSet {
             let defaults = UserDefaults.standard
@@ -39,20 +40,20 @@ class Model : ObservableObject, Codable {
     }
     
     private enum CodingKeys: String, CodingKey {
-            case products, shoppingCart
+            case searchProducts, categoryProducts, shoppingCart
     }
     
     public func encode(to encoder: Encoder) throws {
             var values = encoder.container(keyedBy: CodingKeys.self)
-            try values.encode(products, forKey: .products)
+            try values.encode(searchProducts, forKey: .searchProducts)
+            try values.encode(categoryProducts, forKey: .categoryProducts)
             try values.encode(shoppingCart, forKey: .shoppingCart)
     }
     
-    
-    //@Published var searchProducts : [Product]
     required init(from decoder: any Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        products = try values.decode([Product].self, forKey: .products)
+        searchProducts = try values.decode([Product].self, forKey: .searchProducts)
+        categoryProducts = try values.decode([Product].self, forKey: .categoryProducts)
         shoppingCart = try values.decode([String : [Product]].self, forKey: .shoppingCart)
     }
     
@@ -61,21 +62,23 @@ class Model : ObservableObject, Codable {
         let defaults = UserDefaults.standard
         if let data = defaults.object(forKey: "model") as? Data,
            let model = try? JSONDecoder().decode(Model.self, from: data) {
-            self.products = model.products
+            self.searchProducts = model.searchProducts
+            self.categoryProducts = model.categoryProducts
             self.shoppingCart = model.shoppingCart
             //self.shoppingCart = ["Magnit": [], "Pyatorochka" : []]
         }
         else {
             print("Bad init")
-            self.products = []
+            self.searchProducts = []
+            self.categoryProducts = []
             self.shoppingCart = ["Magnit": [], "Pyatorochka" : []]
             
         }
         
         //self.jsonInitLOCAL()
-        Task {
-            await jsonInit()
-        }
+//        Task {
+//            await jsonInit()
+//        }
     }
     
 //    func getImage(string : String) async -> UIImage {
@@ -94,7 +97,8 @@ class Model : ObservableObject, Codable {
         if let path = Bundle.main.url(forResource: "merged", withExtension: "json") {
             do {
                 let data = try Data(contentsOf: path)
-                products = try JSONDecoder().decode([Product].self, from: data)
+                searchProducts = try JSONDecoder().decode([Product].self, from: data)
+                categoryProducts = try JSONDecoder().decode([Product].self, from: data)
             }
             catch {
                 print("Error loading JSON: \(error)")
@@ -105,13 +109,33 @@ class Model : ObservableObject, Codable {
         }
     }
 
-    func jsonInit() async {
+    func searchInit() async {
         if let url = URL(string: "https://run.mocky.io/v3/37c404b2-90fa-4b19-aa10-2e2e7fffe32b") {
             do {
                 let (data, _) = try await URLSession.shared.data(from: url)
                 DispatchQueue.main.async {
                     do {
-                        self.products = try JSONDecoder().decode([Product].self, from: data)
+                        self.searchProducts = try JSONDecoder().decode([Product].self, from: data)
+                    }
+                    catch {
+                        print("Error parsing JSON from WEB")
+                    }
+                }
+                
+            }
+            catch {
+                print("Error fetching data")
+            }
+        }
+    }
+    
+    func categoriesInit() async {
+        if let url = URL(string: "https://run.mocky.io/v3/37c404b2-90fa-4b19-aa10-2e2e7fffe32b") {
+            do {
+                let (data, _) = try await URLSession.shared.data(from: url)
+                DispatchQueue.main.async {
+                    do {
+                        self.categoryProducts = try JSONDecoder().decode([Product].self, from: data)
                     }
                     catch {
                         print("Error parsing JSON from WEB")

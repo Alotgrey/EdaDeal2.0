@@ -13,8 +13,8 @@ struct SearchView: View {
     @State var searchText = ""
     //Реализация поиска
     var filteredProducts : [Product] {
-        guard !searchText.isEmpty else { return model.products }
-        return model.products.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+        guard !searchText.isEmpty else { return model.searchProducts }
+        return model.searchProducts.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
     }
     
     var body: some View {
@@ -64,6 +64,11 @@ struct SearchView: View {
                         }
                         .padding(20)
             }.searchable(text: $searchText, placement: .automatic, prompt: "Найти по названию")
+                .onAppear {
+                    Task {
+                        await model.searchInit()
+                    }
+                }
                 
         }
     }
