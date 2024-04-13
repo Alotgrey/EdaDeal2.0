@@ -9,14 +9,14 @@ router = APIRouter(prefix="/api/v2/parser")
 
 
 @router.post("/item/url/")
-def get_item_data(url: str, number_market: int) -> dict:
-    fetcher = DataFetcher(CHROME_PATH)
-    parser = SberParser2(fetcher=fetcher)
-    try:
-        item_data = parser.get_item_data(url, number_market)
-        if item_data:
-            return item_data
-        else:
-            raise HTTPException(status_code=404, detail="Item data not found")
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+async def get_item_data(url: str, number_market: int) -> dict:
+    with DataFetcher(CHROME_PATH) as fetcher:
+        parser = SberParser2()
+        try:
+            item_data = await parser.get_item_data(url=url, number_market=number_market, prev_ver=True, fetcher=fetcher)
+            if item_data:
+                return item_data
+            else:
+                raise HTTPException(status_code=404, detail="Item data not found")
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=str(e))
