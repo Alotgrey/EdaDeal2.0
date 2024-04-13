@@ -1,32 +1,19 @@
-.main {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: center;
-    display: grid;
-    grid-template-columns: 806px 471px;
-    grid-gap: 250px;
-}
-
 .category {
     display: flex;
+    height: 40px;
     flex-flow: row nowrap;
     align-items: center;
-    justify-content: center;
-    padding: 20px 500px; /* Задайте отступы, чтобы прямоугольник был достаточно большим */
-    border-radius: 57px; /* Закругленные края */
-    background-color: #FFAB00; /* Цвет фона */
-    margin-left: 2%; 
-    margin-right: 2%;
+    padding: 30px;
+    border-radius: 53px;
+    width: 50%;
+    background-color: #FFAB00; 
 }
 
 
 .categoryURL {
-   font-weight: 400;
-   font-family: Lobster;
-   font-size: 50px;
+   font-family: Inter;
+   font-size: 25px;
    line-height: normal;
    text-decoration: none;
-   text-align: center;
    color: #000;
 }

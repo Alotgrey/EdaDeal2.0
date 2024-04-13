@@ -1,0 +1,126 @@
+.basket-popup{
+    position: fixed;
+    display: flex;
+    right: -45%;
+    width: 55%;
+    height: 80vh;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.0);
+    align-items: top;
+    justify-content: center;
+    overflow-x: hidden;
+    transition: all 0.9s ease;
+}
+
+.basket-box {
+    height: 80vh;
+    max-width: 60%;
+    width: 100%;
+    padding: 20px;
+    background-color: #fadead;
+    overflow-y: auto;
+    display: column; 
+    flex-direction: row; 
+    justify-content: left; 
+    align-items: top;
+    border: 2px solid;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.basket-box-title
+{
+    height: 5%;
+    text-decoration: none;
+    font-weight: 400;
+    font-family: Inter;
+    font-size: 25px;
+    line-height: normal;
+    color: #000;
+    user-select: none; 
+}
+
+.basket-popup.open{
+    transition: all right 0.9s ease;
+    right: -215px;
+}
+
+.open-basket-btn {
+    text-decoration: none;
+    font-weight: 400;
+    font-family: Inter;
+    font-size: 40px;
+    line-height: normal;
+    color: #000;
+    padding: 0px 15px;
+    background-color: rgba(0, 0, 0, 0); 
+    border: 2px solid rgba(0, 0, 0, 0); 
+    cursor: pointer;
+}
+
+.basket-popup-close-btn{
+    background-color: rgba(0, 0, 0, 0); 
+    border: 2px solid rgba(0, 0, 0, 0); 
+}
+
+.basket-wrapper{
+    height: 75%;
+    width: 100%;
+    padding: 10px 0 0 0;
+    overflow-y: auto;
+}
+
+.basket-product{
+    display: flex;
+	border: 1px solid #000000;
+	border-radius: 3px;
+	position: relative;
+    margin: 0 20px 20px 0;
+	text-decoration: none;
+	color: #474747;
+	z-index: 0;
+    list-style-type: none;
+    height: 30%;
+    background-color: white;
+}
+
+.basket-products {
+	list-style: none;
+	margin: 0 -20px 0 0;
+	padding: 0;
+}
+
+.basket-product-photo {
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    right: 10px;
+    bottom: 10px;
+    width: 28%;
+    border: 2px solid;
+    border-radius: 30px;
+}
+
+.basket-product-photo img {
+	max-width: 100%;
+	max-height: 100%;
+	margin: auto;
+	transition: transform .4s ease-out;
+}
+
+.basket-info{
+    position: absolute;
+    left: 29%;
+    right: 30%;
+    top: 0;
+    bottom: 0;
+}
+
+.basket-button-wrapper{
+    position: absolute;
+    left: 70%;
+    right: 70%;
+    top: 0;
+    bottom: 0;
+    width: 30%;
+}
+

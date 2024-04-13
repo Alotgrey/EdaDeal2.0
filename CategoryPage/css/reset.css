@@ -13,14 +13,12 @@ ul {
 }
 
 body {
-    font-family: 'Lobster', sans-serif;
-    font-family: 'Saira Stencil One', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 50px;
     line-height: 100%;
-    min-width: 280px;
+    min-width: 620px;
 }
 
 img {
     width: 100%;
 }
-
