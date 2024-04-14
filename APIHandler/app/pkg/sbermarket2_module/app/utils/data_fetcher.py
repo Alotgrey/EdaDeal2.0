@@ -3,16 +3,20 @@ import logging
 import re
 import time
 
-import undetected_chromedriver as uc  # type: ignore
+from selenium import webdriver
 
 from APIHandler.app.pkg.sbermarket2_module.app.utils.constants import UTILS_PATH
+
+
+#import undetected_chromedriver as uc  # type: ignore
+
+
 
 
 class DataFetcher:
     def __init__(self, browser_path=None, headless_mode: bool = False) -> None:
         self.browser_path = browser_path
-        self.__validate_browser_path()
-        self.driver = self.__get_driver(headless_mode=headless_mode)
+        self.driver: webdriver.Firefox = self.__get_driver(headless_mode=headless_mode)
 
     def __enter__(self):
         return self
@@ -58,13 +62,10 @@ class DataFetcher:
         return token
 
     def __get_driver(self, headless_mode: bool = False):
-        if self.browser_path is None:
-            driver = uc.Chrome(headless=headless_mode)
-        else:
-            driver = uc.Chrome(
-                headless=headless_mode,
-                browser_executable_path=self.browser_path,
-            )
+        options = webdriver.FirefoxOptions()
+        if headless_mode:
+            options.add_argument("-headless")
+        driver = webdriver.Firefox(options=options)
         logging.debug("Создали экземпляр WebDriver")
         return driver
 
@@ -72,20 +73,6 @@ class DataFetcher:
         self.driver.get(url)
         page_data = self.driver.page_source
         return page_data
-
-    def __validate_browser_path(self):
-        logging.debug("Ищем путь до Chrome WebDriver")
-        try:
-            driver = self.__get_driver(headless_mode=True)
-            driver.quit()
-        except (FileNotFoundError, TypeError):
-            if self.browser_path is None:
-                error_text = f"Не найден путь к браузеру Chrome: {self.browser_path}. Укажите browser_path в аргументах"
-                # logging.error(error_text)
-                raise FileNotFoundError(error_text)
-            error_text = f"Некорректный путь к браузеру Chrome: {self.browser_path}"
-            # logging.error(error_text)
-            raise FileNotFoundError(error_text)
 
     def __get_all_data(self) -> dict:
         logging.info("Открываю браузер хром для получения токена")
