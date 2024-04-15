@@ -15,7 +15,8 @@ public class ProductController {
 
     @GetMapping("/")
     private String getMainPage(){
-        return "mainPage";
+
+        return "productPage";
     }
     @GetMapping ("/products/{product_id}")
     private String getProduct(@PathVariable("product_id") Long product_id, Model model){

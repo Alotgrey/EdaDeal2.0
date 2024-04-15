@@ -23,12 +23,14 @@ public class CostService {
     }
 
     public Cost findCostById(Long id){
+        redisTemplate.opsForHash().delete(HASH_KEY, id);
         Cost cost = (Cost) redisTemplate.opsForHash().get(HASH_KEY, id);
+        return cost;
+        /*
         if (cost != null){
             return cost;
         }
         else{
-            /*
             String url = "";
 
             HttpRequest request = HttpRequest.newBuilder()
@@ -43,8 +45,9 @@ public class CostService {
 
             return weather;
 
-            */
+
         }
+        */
     }
 
     public String deleteCost(int id){

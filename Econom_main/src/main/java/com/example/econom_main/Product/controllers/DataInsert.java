@@ -13,10 +13,7 @@ import com.example.econom_main.Product.services.ProductCostService;
 import com.example.econom_main.Product.services.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,6 +23,7 @@ public class DataInsert {
     private final CostService costService;
     private final ProductService productService;
     private final ProductCostService productCostService;
+
     @GetMapping ("/api/categories")
     private List<CategoryDto> getCategories(){
         return productService.getAllCategories();
@@ -55,4 +53,5 @@ public class DataInsert {
     private CategoryListDto getMainCategory(){
         return productCostService.getCategoriesTree();
     }
+
 }
