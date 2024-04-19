@@ -69,11 +69,7 @@
     border-right: 1px solid #000;
 }
 
-.category-list-elem{
-
-}
-
-.category-list-text {
+.category-list a {
     text-decoration: none;
     width: auto; 
     font-size: 30px;
@@ -81,31 +77,52 @@
     transition: color 0.3s ease-in-out; 
 }
 
-.category-list-text:hover {
+.category-list a:hover {
     color: #ff6600; 
+}
+
+.category-elem{
+    user-select: none;
+    text-decoration: none;
+    width: auto; 
+    font-size: 30px;
+    color: black; 
+    transition: color 0.3s ease-in-out; 
+}
+  
+.category-elem:hover{
+    color: #ff6600;
     cursor: pointer;
 }
 
-
 .subcategory-list {
-    position: absolute;
-    height: 83%;
-    top: 45px;
-    left: 300px;
-    display: grid;
-    grid-template-columns: 1fr; 
-    grid-auto-rows: 40px; 
-    width: 70%;
-    gap: 10px; 
+    width: 75%; 
     list-style-type: none; 
     padding: 0; 
     align-items: start; 
     margin-right: auto;
     margin-left: 20px;
-    visibility: hidden;
 }
 
-.subcategory-list-text {
+.milk-category, .meat-category, .sweets-category {
+    visibility: hidden;
+    opacity: 0;
+    text-decoration: none;
+    width: 0;
+    height: 0; 
+    font-size: 30px;
+    color: black; 
+    transition: color 0.3s ease-in-out; 
+}
+
+.milk-category.open, .meat-category.open, .sweets-category.open  {
+    opacity: 1;
+    visibility: visible;
+    width: auto;
+    height: auto; 
+}
+
+.subcategory-list a {
     text-decoration: none;
     width: auto; 
     font-size: 30px;
@@ -113,6 +130,11 @@
     transition: color 0.3s ease-in-out; 
 }
 
-.subcategory-list-text:hover {
-    color: #ff6600; 
+
+.subcategory-elem{
+    text-decoration: none;
+    width: auto; 
+    font-size: 30px;
+    color: black; 
+    transition: color 0.3s ease-in-out; 
 }

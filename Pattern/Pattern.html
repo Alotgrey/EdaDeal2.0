@@ -16,7 +16,7 @@
 
     <script defer src="js/open-category.js"></script>
     <script defer src="js/open-basket.js"></script>
-    <script defer src="js/category-list.js"></script>
+    <!-- <script defer src="js/category-list.js"></script> -->
     
     <div class="container-header">
         <header class="header">
@@ -46,36 +46,24 @@
     <div class="category-popup" id="category-popup-id">
         <div class="category-box">
             <ul class="category-list">
-                <div class="category-list-elem">
-                    <div class="category-list-text">
-                        Категория 1
-                    </div>
-                    <ul class="subcategory-list">
-                        <div class="subcategory-list-text">Подкатегория 1.1</div>
-                    </ul>
-                </div>
-                <div class="category-list-elem">
-                    <div class="category-list-text">
-                        Категория 2
-                    </div>
-                    <ul class="subcategory-list">
-                        <div class="subcategory-list-text">Подкатегория 2.1</div>
-                    </ul>
-                </div>
-                <div class="category-list-elem">
-                    <div class="category-list-text">
-                        Категория 3
-                    </div>
-                    <ul class="subcategory-list">
-                        <div class="subcategory-list-text">Подкатегория 3.1</div>
-                    </ul>
-                </div>
+                <li><div class="category-elem" id="milk-category">Молоко</div></li>
+                <li><div class="category-elem" id="meat-category">Мясо</div></li>
+                <li><div class="category-elem" id="sweets-category">Сладости</div></li>
             </ul>  
-
+            <ul class="subcategory-list" id="subcategory-list">
+                <li><div class="milk-category">Молоко</div></li>
+                <li><div class="milk-category">Молоко</div></li>
+                <li><div class="milk-category">Молоко</div></li>
+                <li><div class="meat-category">Мясо</div></li>
+                <li><div class="meat-category">Мясо</div></li>
+                <li><div class="meat-category">Мясо</div></li>
+                <li><div class="sweets-category">Сладости</div></li>
+                <li><div class="sweets-category">Сладости</div></li>
+                <li><div class="sweets-category">Сладости</div></li>
+            </ul>
             <button class="category-popup-close-btn" id="close-category-popup-id"></button>
         </div>
     </div>
-
     
     <div class="basket-popup" id="basket-popup-id">
         <div class="basket-box">
