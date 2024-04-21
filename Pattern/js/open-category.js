@@ -35,7 +35,7 @@ function toggleCategoryVisibility(categoryId) {
     }
 
     categories[categoryId].forEach(function(category) {
-        category.classList.toggle('open');
+        category.classList.add('open');
     });
 }
 document.getElementById('milk-category').addEventListener('mouseover', function() {

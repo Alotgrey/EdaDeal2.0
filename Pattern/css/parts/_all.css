@@ -42,11 +42,9 @@
 }
 
 .container-footer {
-    position: absolute;
     align-items: bottom;
     bottom: 0;
     right: 0;
-    left: 0;
 }
 
 @media (min-width: 5%) {
