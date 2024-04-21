@@ -1,0 +1,140 @@
+.category-popup{
+    position: fixed;
+    display: flex;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.3);
+    align-items: top;
+    justify-content: center;
+    overflow-y: auto;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .4s, visibility .4s;
+}
+
+.category-box {
+    height: 80vh;
+    max-width: 60%;
+    width: 100%;
+    padding: 45px;
+    background-color: #fadead;
+    transform: scale(0);
+    transition: transform .100s;
+    overflow-y: auto;
+    display: flex; 
+    flex-direction: row; 
+    justify-content: left; 
+    align-items: right;
+}
+
+.category-popup.open{
+    visibility: visible;
+    opacity: 1;
+}
+
+.category-popup.open .category-box{
+    transform: scale(1);
+}
+
+.open-category-btn {
+    text-decoration: none;
+    font-weight: 400;
+    font-family: Inter;
+    font-size: 40px;
+    line-height: normal;
+    color: #000;
+    padding: 0px 15px;
+    background-color: rgba(0, 0, 0, 0); 
+    border: 2px solid rgba(0, 0, 0, 0); 
+    cursor: pointer;
+}
+
+.category-popup-close-btn{
+    background-color: rgba(0, 0, 0, 0); 
+    border: 2px solid rgba(0, 0, 0, 0); 
+}
+
+.category-list {
+    display: grid;
+    grid-template-columns: 1fr; 
+    grid-auto-rows: 40px; 
+    width: 25%;
+    gap: 10px; 
+    list-style-type: none; 
+    padding: 0; 
+    align-items: start; 
+    border-right: 1px solid #000;
+}
+
+.category-list a {
+    text-decoration: none;
+    width: auto; 
+    font-size: 30px;
+    color: black; 
+    transition: color 0.3s ease-in-out; 
+}
+
+.category-list a:hover {
+    color: #ff6600; 
+}
+
+.category-elem{
+    user-select: none;
+    text-decoration: none;
+    width: auto; 
+    font-size: 30px;
+    color: black; 
+    transition: color 0.3s ease-in-out; 
+}
+  
+.category-elem:hover{
+    color: #ff6600;
+    cursor: pointer;
+}
+
+.subcategory-list {
+    width: 75%; 
+    list-style-type: none; 
+    padding: 0; 
+    align-items: start; 
+    margin-right: auto;
+    margin-left: 20px;
+}
+
+.milk-category, .meat-category, .sweets-category {
+    visibility: hidden;
+    opacity: 0;
+    text-decoration: none;
+    width: 0;
+    height: 0; 
+    font-size: 30px;
+    color: black; 
+    transition: color 0.3s ease-in-out; 
+}
+
+.milk-category.open, .meat-category.open, .sweets-category.open  {
+    opacity: 1;
+    visibility: visible;
+    width: auto;
+    height: auto; 
+}
+
+.subcategory-list a {
+    text-decoration: none;
+    width: auto; 
+    font-size: 30px;
+    color: black; 
+    transition: color 0.3s ease-in-out; 
+}
+
+
+.subcategory-elem{
+    text-decoration: none;
+    width: auto; 
+    font-size: 30px;
+    color: black; 
+    transition: color 0.3s ease-in-out; 
+}

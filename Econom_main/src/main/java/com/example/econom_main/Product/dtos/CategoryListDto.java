@@ -8,9 +8,9 @@ import java.util.List;
 @Data
 @RequiredArgsConstructor
 public class CategoryListDto {
-    private Long id;
-    private String name;
-    private String image_url;
-    private Boolean isFinal;
-    private List<CategoryListDto> children;
+    public Long id;
+    public String name;
+    public String image_url;
+    public Boolean isFinal;
+    public List<CategoryListDto> children;
 }

@@ -12,6 +12,7 @@ import com.example.econom_main.Product.repositories.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -36,7 +37,18 @@ public class ProductService {
     }
 
     public List<Product> getAllProductsFromCategory(Long category_id){
-        return productRepository.findProductsByCategory_Id(category_id);
+        List<Product> products = new ArrayList<>();
+        Category category = categoryRepository.findById(category_id).get();
+        if (category.getIsFinal()){
+            products = productRepository.findProductsByCategory_Id(category_id);
+        }
+        else {
+            List<Category> children = categoryRepository.findCategoriesByParent_Id(category_id);
+            for (Category child : children){
+                products.addAll(productRepository.findProductsByCategory_Id(child.getId()));
+            }
+        }
+        return products;
     }
 
     public Category getCategoryById(Long id){

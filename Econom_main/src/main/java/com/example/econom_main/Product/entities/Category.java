@@ -16,12 +16,12 @@ import java.util.List;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private String image_url;
-    private Boolean isFinal;
+    public Long id;
+    public String name;
+    public String image_url;
+    public Boolean isFinal;
     @ManyToOne
     @JoinColumn(name = "parent_id")
-    private Category parent;
+    public Category parent;
 
 }

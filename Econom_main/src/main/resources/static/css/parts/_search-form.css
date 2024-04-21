@@ -1,0 +1,28 @@
+.search-form{
+    border: 1px solid #FFAB00;
+    background-color: #fadead;
+    display: inline-flex;
+    height: 40px;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    padding: 30px;
+    border-radius: 53px;
+    width: 50%;
+}
+
+.search-form___txt{
+    background-color: #fadead;
+    display: flex;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    width: 100%;
+}
+
+.search-form___btn{
+    width: 20px;
+    height: 20px;
+    border: none;
+    background-color: #fadead;
+}

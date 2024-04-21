@@ -1,0 +1,216 @@
+<head th:fragment="headFragment">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fineprice</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/parts/_all.css}">
+</head>
+
+
+<th:block th:fragment="headerFragment">
+    <script defer th:src="@{/fragment/js/open-category.js}"></script>
+    <script defer th:src="@{/fragment/js/open-basket.js}"></script>
+
+    <div class="container-header">
+        <header class="header">
+            <a>
+            </a>
+
+            <ul class="main-header">
+                <a class="header-promotion" id="open-category-popup-btn">
+                    Каталог
+                </a>
+
+                <a href="/fragment/main_page.html" class="header-logo">
+                    <img th:src="@{/images/logo.svg}" alt="Логотип">
+                </a>
+
+                <a href="/CategoriesPage/Categories.html" class="header-promotion">
+                    <span>Акция</span>
+                </a>
+            </ul>
+
+            <a class="header-cart" id="open-basket-popup-btn">
+                <img th:src="@{/images/cart_fill.svg}" alt="Корзина">
+            </a>
+        </header>
+    </div>
+
+    <div class="category-popup" id="category-popup-id">
+        <div class="category-box">
+            <ul class="category-list">
+                <li><div class="category-elem" id="milk-category">Молоко, сыры</div></li>
+                <li><div class="category-elem" id="meat-category">Мясо, птица</div></li>
+                <li><div class="category-elem" id="sweets-category">Сладости</div></li>
+            </ul>
+            <ul class="subcategory-list" id="subcategory-list">
+                <li><div class="milk-category">Молоко, сыры</div></li>
+                <li><div class="milk-category">Молоко, сыры</div></li>
+                <li><div class="milk-category">Молоко, сыры</div></li>
+                <li><div class="meat-category">Мясо</div></li>
+                <li><div class="meat-category">Мясо</div></li>
+                <li><div class="meat-category">Мясо</div></li>
+                <div class="subcatlist" th:each="subCategory : ${sweets}">
+                    <li><div class="sweets-category"><a th:href="${'/category/' + subCategory.id}" th:text="${subCategory.name}"></a></div></li>
+                </div>
+            </ul>
+            <button class="category-popup-close-btn" id="close-category-popup-id"></button>
+        </div>
+    </div>
+    <div class="basket-popup" id="basket-popup-id">
+        <div class="basket-box">
+            <div class="basket-box-title">
+                Корзина
+            </div>
+            <ul class="basket-wrapper">
+                <li class="basket-product">
+                    <div class="basket-product-photo">
+                        <img th:src="@{/images/search.svg}" alt="">
+                    </div>
+                    <div class="basket-info-wrapper">
+                        <div class="basket-info">
+                            Допустим текст
+                            Допустим текст
+                            Допустим текст
+                        </div>
+                        <div class="basket-button-wrapper">
+                            <div class="basket-wrapper-btn">
+                                <button class="basket-buttons">
+                                    +
+                                </button>
+                                <div class="product-counter">
+                                    10
+                                </div>
+                                <button class="basket-buttons">
+                                    -
+                                </button>
+                            </div>
+                            <div class="basket-price">
+                                Цена:
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="price">
+                Итого:
+            </div>
+        </div>
+        <button class="basket-popup-close-btn" id="close-basket-popup-id"></button>
+    </div>
+    <div class="container-search">
+        <div class="search-form">
+            <input class="search-form___txt", type="text" placeholder="Поиск...">
+            <button class="search-form___btn">
+                <img class="search-form___image" th:src="@{/images/search.svg}"></button>
+            </button>
+        </div>
+    </div>
+</th:block>
+
+<th:block th:fragment="productsFragment">
+    <div class="container-main">
+        <ul class="container-product-list" th:each="product : ${products}">
+            <li class="product-wrapper">
+                <a th:href="${'/products/' + product.id}" class="product">
+                    <div class="product-photo">
+                        <img th:src="${product.image_url}" alt="">
+                    </div>
+                    <div class="product-buttons-wrap">
+                        <button class="buttons">В корзину</button>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</th:block>
+
+<th:block th:fragment="oneProductFragment">
+    <div class="conteiner-main-product">
+        <main class="main">
+            <div class="slider middle">
+                <div class="slides">
+                    <div class="slide s1">
+                        <img th:src="@{/images/luk.jpg}" alt="Изображение" class="img">
+                    </div>
+                </div>
+            </div>
+
+            <div class="second-colum">
+                <h1 class="service">Доступные сервисы</h1>
+
+                <div class="grid-grid">
+                    <div class="list-service">
+                        <img th:src="@{/images/image 2.png}" alt="">
+
+                        <span class="service-service">shopName</span>
+
+                        <button class="btn_grid">price</button>
+                    </div>
+
+                </div>
+                <!-- /.grid-grid -->
+
+                <div class="grid-grid">
+                    <div class="list-service">
+                        <img th:src="@{/images/image 2.png}" alt="">
+
+                        <span class="service-service">shopName</span>
+
+                        <button class="btn_grid">price</button>
+                    </div>
+
+                </div>
+                <!-- /.grid-grid -->
+
+                <div class="grid-grid">
+                    <div class="list-service">
+                        <img th:src="@{/images/image 2.png}" alt="">
+
+                        <span class="service-service">shopName</span>
+
+                        <button class="btn_grid">price</button>
+                    </div>
+
+                </div>
+                <!-- /.grid-grid -->
+
+                <div class="grid-grid">
+                    <div class="list-service">
+                        <img th:src="@{/images/image 2.png}" alt="">
+
+                        <span class="service-service">shopName</span>
+
+                        <button class="btn_grid">price</button>
+                    </div>
+
+                </div>
+                <!-- /.grid-grid -->
+
+                <div class="main-shop">
+                    <img th:src="@{/images/image 2.png}" alt="">
+
+                    <span class="service-main-service">mainShopName</span>
+                </div>
+                <!-- /.main-shop -->
+                <button class="btn_main">price</button>
+
+            </div>
+            <!-- /.second-colum -->
+        </main>
+    </div>
+</th:block>
+
+<th:block th:fragment="footerFragment">
+    <div class="container-footer">
+        <footer class="footer">
+            <a href="/help" class="footer-helpus"><span>Помощь</span></a>
+            <a href="/help" class="footer-helpus"><span>О нас</span></a>
+        </footer>
+    </div>
+</th:block>

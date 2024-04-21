@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -15,7 +16,7 @@ public class ProductCostService {
     private final CostService costService;
     private final ProductService productService;
 
-    public ProductCost getProductCostById(Long id) {
+    public ProductCost getProductCostById(Long id) throws IOException {
         return new ProductCost(productService.getProductById(id), costService.findCostById(id));
     }
 

@@ -6,9 +6,9 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 public class CategoryDto {
-    private Long id;
-    private String name;
-    private String image_url;
-    private Boolean isFinal;
-    private Long parent_id;
+    public Long id;
+    public String name;
+    public String image_url;
+    public Boolean isFinal;
+    public Long parent_id;
 }

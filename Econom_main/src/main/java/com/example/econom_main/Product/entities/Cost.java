@@ -13,11 +13,11 @@ import java.sql.Date;
 @Data
 public class Cost implements Serializable {
     @Id
-    private Long id;
-    double price_magnit;
-    double price_5ka;
-    double price_crossroad;
-    double price_lenta;
-    double price_metro;
-    private Date date;
+    public Long id;
+    public double price_magnit;
+    public double price_5ka;
+    public double price_crossroad;
+    public double price_lenta;
+    public double price_metro;
+    public Date date;
 }

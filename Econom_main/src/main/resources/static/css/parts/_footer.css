@@ -1,0 +1,20 @@
+.footer {
+    padding: 0.5em;
+    background-color: #fadead;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    width: 100%;
+    display: flex;
+    align-items: top;
+    justify-content: space-around;
+}
+
+.footer-helpus {
+    color: #000;
+    font-family: Inter;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 50%;
+    line-height: normal;
+    text-decoration: none;
+}
