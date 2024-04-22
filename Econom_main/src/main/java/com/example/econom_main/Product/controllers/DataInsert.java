@@ -29,6 +29,11 @@ public class DataInsert {
         return productService.getAllCategories();
     }
 
+    @GetMapping("/api/delete_cost/{id}")
+    private void deleteCost(@PathVariable("id") Long id){
+        costService.deleteCost(id);
+    }
+
     @GetMapping ("/api/products")
     private List<ProductDto> getProducts(){
         return productService.getAllProducts();

@@ -25,19 +25,19 @@ public class CartService {
         for (int i  = 0; i < 5; i++){
             cartList.add(new ArrayList<>());
         }
-        if (cart.cart != null) {
+        if (cart.getCart() != null) {
             for (Long id : cart.getCart().descendingKeySet()) {
                 ProductCost productCost = productCostService.getProductCostById(id);
                 for (ShopCost shopCost : cart.getCart().get(id).keySet()) {
-                    if (Objects.equals(shopCost.getName(), "magnit")) {
+                    if (Objects.equals(shopCost.getEn_name(), "magnit")) {
                         cartList.get(0).add(new CartItem(id, productCost.getName(), shopCost.getCost(), cart.getCart().get(id).get(shopCost)));
-                    } else if (Objects.equals(shopCost.getName(), "5ka")) {
+                    } else if (Objects.equals(shopCost.getEn_name(), "5ka")) {
                         cartList.get(1).add(new CartItem(id, productCost.getName(), shopCost.getCost(), cart.getCart().get(id).get(shopCost)));
-                    } else if (Objects.equals(shopCost.getName(), "crossroad")) {
+                    } else if (Objects.equals(shopCost.getEn_name(), "crossroad")) {
                         cartList.get(2).add(new CartItem(id, productCost.getName(), shopCost.getCost(), cart.getCart().get(id).get(shopCost)));
-                    } else if (Objects.equals(shopCost.getName(), "lenta")) {
+                    } else if (Objects.equals(shopCost.getEn_name(), "lenta")) {
                         cartList.get(3).add(new CartItem(id, productCost.getName(), shopCost.getCost(), cart.getCart().get(id).get(shopCost)));
-                    } else if (Objects.equals(shopCost.getName(), "metro")) {
+                    } else if (Objects.equals(shopCost.getEn_name(), "metro")) {
                         cartList.get(4).add(new CartItem(id, productCost.getName(), shopCost.getCost(), cart.getCart().get(id).get(shopCost)));
                     }
                 }
@@ -54,11 +54,15 @@ public class CartService {
         ProductCost productCost = productCostService.getProductCostById(product_id);
         List<ShopCost> shopCostList = productCost.getPriceList();
         for (ShopCost shopCost : shopCostList){
-            if (Objects.equals(shopCost.getName(), shopName)){
+            if (Objects.equals(shopCost.getEn_name(), shopName)){
                 cart.addProduct(product_id, shopCost);
                 break;
             }
         }
+        if (Objects.equals(productCost.getBest_cost().getEn_name(), shopName)){
+            cart.addProduct(product_id, productCost.getBest_cost());
+        }
+        session.setAttribute("cart", cart);
     }
 
     public void deleteFromCart(HttpSession session, Long product_id, String shopName) throws IOException {
@@ -69,11 +73,12 @@ public class CartService {
         ProductCost productCost = productCostService.getProductCostById(product_id);
         List<ShopCost> shopCostList = productCost.getPriceList();
         for (ShopCost shopCost : shopCostList){
-            if (Objects.equals(shopCost.getName(), shopName)){
+            if (Objects.equals(shopCost.getEn_name(), shopName)){
                 cart.deleteProduct(product_id, shopCost);
                 break;
             }
         }
+        session.setAttribute("cart", cart);
     }
 
 }

@@ -13,12 +13,12 @@ import lombok.NoArgsConstructor;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
-    String name;
-    public String image_url;
+    private Long id;
+    private String name;
+    private String image_url;
 
     @ManyToOne()
     @JoinColumn(name = "category_id")
-    public Category category;
-    public String link;
+    private Category category;
+    private String link;
 }

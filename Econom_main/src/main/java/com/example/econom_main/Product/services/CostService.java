@@ -18,7 +18,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class CostService {
-    public final static String HASH_KEY = "Cost";
+    private final static String HASH_KEY = "Cost";
     private final RedisTemplate redisTemplate;
     private final ProductRepository productRepository;
 
@@ -54,8 +54,7 @@ public class CostService {
 
     }
 
-    public String deleteCost(int id){
+    public void deleteCost(Long id){
         redisTemplate.opsForHash().delete(HASH_KEY, id);
-        return "Cost removed!";
     }
 }

@@ -1,16 +1,15 @@
 package com.example.econom_main.Product.entities;
 
+import com.example.econom_main.Product.entities.ShopCost;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.util.HashMap;
 import java.util.TreeMap;
-@RequiredArgsConstructor
 @Getter
 public class ShoppingCart {
-
-    public TreeMap<Long, HashMap<ShopCost, Long>> cart;
-    public Double total_price;
+    private TreeMap<Long, HashMap<ShopCost, Long>> cart;
+    private Double total_price;
 
     public void addProduct(Long id, ShopCost shopCost){
         if (cart.containsKey(id)){
@@ -40,5 +39,11 @@ public class ShoppingCart {
             }
         }
         total_price -= shopCost.getCost();
+    }
+
+    public ShoppingCart() {
+        cart = new TreeMap<Long, HashMap<ShopCost, Long>>();
+        total_price = (double) 0;
+
     }
 }

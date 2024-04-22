@@ -6,12 +6,13 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 public class ShopCost{
-    public String name;
+    public String rus_name;
+    public String en_name;
     public Double cost;
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return en_name.hashCode();
     }
 
     @Override

@@ -11,9 +11,11 @@ import java.sql.Date;
 
 @RedisHash("Cost")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Cost implements Serializable {
     @Id
-    public Long id;
+    private Long id;
     public double price_magnit;
     public double price_5ka;
     public double price_crossroad;
