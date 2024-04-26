@@ -29,16 +29,42 @@ public class CartService {
             for (Long id : cart.getCart().descendingKeySet()) {
                 ProductCost productCost = productCostService.getProductCostById(id);
                 for (ShopCost shopCost : cart.getCart().get(id).keySet()) {
-                    if (Objects.equals(shopCost.getEn_name(), "magnit")) {
-                        cartList.get(0).add(new CartItem(id, productCost.getName(), shopCost.getCost(), cart.getCart().get(id).get(shopCost)));
-                    } else if (Objects.equals(shopCost.getEn_name(), "5ka")) {
-                        cartList.get(1).add(new CartItem(id, productCost.getName(), shopCost.getCost(), cart.getCart().get(id).get(shopCost)));
-                    } else if (Objects.equals(shopCost.getEn_name(), "crossroad")) {
-                        cartList.get(2).add(new CartItem(id, productCost.getName(), shopCost.getCost(), cart.getCart().get(id).get(shopCost)));
-                    } else if (Objects.equals(shopCost.getEn_name(), "lenta")) {
-                        cartList.get(3).add(new CartItem(id, productCost.getName(), shopCost.getCost(), cart.getCart().get(id).get(shopCost)));
-                    } else if (Objects.equals(shopCost.getEn_name(), "metro")) {
-                        cartList.get(4).add(new CartItem(id, productCost.getName(), shopCost.getCost(), cart.getCart().get(id).get(shopCost)));
+                    switch (shopCost.getEn_name()) {
+                        case "magnit" ->
+                                cartList.get(0).add(
+                                        new CartItem(
+                                                id,
+                                                productCost.getName(),
+                                                shopCost.getCost(),
+                                                cart.getCart().get(id).get(shopCost)));
+                        case "5ka" ->
+                                cartList.get(1).add(
+                                        new CartItem(
+                                                id,
+                                                productCost.getName(),
+                                                shopCost.getCost(),
+                                                cart.getCart().get(id).get(shopCost)));
+                        case "crossroad" ->
+                                cartList.get(2).add(
+                                        new CartItem(
+                                                id,
+                                                productCost.getName(),
+                                                shopCost.getCost(),
+                                                cart.getCart().get(id).get(shopCost)));
+                        case "lenta" ->
+                                cartList.get(3).add(
+                                        new CartItem(
+                                                id,
+                                                productCost.getName(),
+                                                shopCost.getCost(),
+                                                cart.getCart().get(id).get(shopCost)));
+                        case "metro" ->
+                                cartList.get(4).add(
+                                        new CartItem(
+                                                id,
+                                                productCost.getName(),
+                                                shopCost.getCost(),
+                                                cart.getCart().get(id).get(shopCost)));
                     }
                 }
             }

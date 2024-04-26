@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class ProductMapper {
-    @Autowired
+
     private final CategoryRepository categoryRepository;
 
     public Product toProduct(ProductDto productDto){
@@ -21,9 +21,7 @@ public class ProductMapper {
         product.setName(productDto.getName());
         product.setImage_url(productDto.getImage_url());
         Optional<Category> optionalCategory = categoryRepository.findById(productDto.getCategory_id());
-        if (optionalCategory.isPresent()) {
-            product.setCategory(optionalCategory.get());
-        }
+        optionalCategory.ifPresent(product::setCategory);
         product.setLink(productDto.getLink());
         return product;
     }

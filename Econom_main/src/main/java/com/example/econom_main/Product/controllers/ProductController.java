@@ -23,7 +23,7 @@ public class ProductController {
     @GetMapping("/")
     private String getMainPage(Model model, HttpSession session) throws IOException {
         CategoryListDto allCategories = productCostService.getCategoriesTree();
-        model.addAttribute("sweets", allCategories.children.get(2).children.get(1));
+        model.addAttribute("categories", allCategories.children);
         model.addAttribute("products", productService.getAllProducts());
         model.addAttribute("cart", cartService.getCart(session));
         System.out.println(cartService.getCart(session));
@@ -33,7 +33,7 @@ public class ProductController {
     @GetMapping("/category/{category_id}")
     private String getCategoryPage(@PathVariable("category_id") Long category_id, Model model, HttpSession session) throws IOException {
         CategoryListDto allCategories = productCostService.getCategoriesTree();
-        model.addAttribute("sweets", allCategories.children.get(2).children.get(1));
+        model.addAttribute("categories", allCategories.children);
         model.addAttribute("category_name", productService.getCategoryById(category_id).getName());
         model.addAttribute("products", productService.getAllProductsFromCategory(category_id));
         model.addAttribute("cart", cartService.getCart(session));
@@ -42,7 +42,7 @@ public class ProductController {
     @GetMapping ("/products/{product_id}")
     private String getProduct(@PathVariable("product_id") Long product_id, Model model, HttpSession session) throws IOException {
         CategoryListDto allCategories = productCostService.getCategoriesTree();
-        model.addAttribute("sweets", allCategories.children.get(2).children.get(1));
+        model.addAttribute("categories", allCategories.children);
         model.addAttribute("cart", cartService.getCart(session));
         model.addAttribute("product", productCostService.getProductCostById(product_id));
         return "productPage";

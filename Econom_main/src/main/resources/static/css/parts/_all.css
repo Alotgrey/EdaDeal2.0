@@ -275,7 +275,7 @@
     margin-left: 20px;
 }
 
-.milk-category, .meat-category, .sweets-category {
+.subcategory-elem {
     visibility: hidden;
     opacity: 0;
     text-decoration: none;
@@ -286,7 +286,7 @@
     transition: color 0.3s ease-in-out; 
 }
 
-.milk-category.open, .meat-category.open, .sweets-category.open  {
+.subcategory-elem.open {
     opacity: 1;
     visibility: visible;
     width: auto;
@@ -294,15 +294,6 @@
 }
 
 .subcategory-list a {
-    text-decoration: none;
-    width: auto; 
-    font-size: 30px;
-    color: black; 
-    transition: color 0.3s ease-in-out; 
-}
-
-
-.subcategory-elem{
     text-decoration: none;
     width: auto; 
     font-size: 30px;
@@ -354,6 +345,24 @@
     line-height: normal;
     color: #000;
     user-select: none; 
+}
+
+.basket-popup-hidden-box{
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .4s, visibility .4s;
+}
+
+.basket-popup-hidden-box.open{
+    visibility: visible;
+    opacity: 1;
 }
 
 .basket-popup.open{

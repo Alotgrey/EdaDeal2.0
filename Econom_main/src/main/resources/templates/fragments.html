@@ -43,65 +43,63 @@
 
     <div class="category-popup" id="category-popup-id">
         <div class="category-box">
-            <ul class="category-list">
-                <li><div class="category-elem" id="milk-category">Молоко, сыры</div></li>
-                <li><div class="category-elem" id="meat-category">Мясо, птица</div></li>
-                <li><div class="category-elem" id="sweets-category">Сладости</div></li>
-            </ul>
-            <ul class="subcategory-list" id="subcategory-list">
-                <li><div class="milk-category">Молоко, сыры</div></li>
-                <li><div class="milk-category">Молоко, сыры</div></li>
-                <li><div class="milk-category">Молоко, сыры</div></li>
-                <li><div class="meat-category">Мясо</div></li>
-                <li><div class="meat-category">Мясо</div></li>
-                <li><div class="meat-category">Мясо</div></li>
-                <div class="subcatlist" th:each="subCategory : ${sweets}">
-                    <li><div class="sweets-category"><a th:href="${'/category/' + subCategory.id}" th:text="${subCategory.name}"></a></div></li>
+            <div class="category-list">
+                <div th:each = "category : ${categories}">
+                    <div class="category-elem">
+                        <a class="category-li" th:id="${'Category' + category.id}" th:href="${'/category/' + category.id}" th:text="${category.name}"></a>
+                    </div>
                 </div>
-            </ul>
+            </div>
+            <div class="subcategory-list" id="subcategory-list">
+                <div th:each="category : ${categories}" th:class="${'Category' + category.id + ' subcategory-elem'}">
+                    <div th:each = "subCategory : ${category.children}">
+                        <a th:href="${'/category/' + subCategory.id}" th:text="${subCategory.name}"></a>
+                    </div>
+                </div>
+            </div>
             <button class="category-popup-close-btn" id="close-category-popup-id"></button>
         </div>
     </div>
-    <div class="basket-popup" id="basket-popup-id">
-        <div class="basket-box">
-            <div class="basket-box-title">
-                Корзина
-            </div>
-            <th:block th:unless="${#lists.isEmpty(cart.get(0))}">
-                <ul class="basket-wrapper" th:each="mag : ${cart.get(0)}">
-                    <li class="basket-product">
-                        <div class="basket-product-photo">
-                            <img th:src="@{/images/search.svg}" alt="">
-                        </div>
-                        <div class="basket-info-wrapper">
-                            <div class="basket-info" th:text="${mag.product_name}">
+    <div class="basket-popup-hidden-box" id="basket-popup-hidden-box-id">
+        <div class="basket-popup" id="basket-popup-id">
+            <div class="basket-box">
+                <div class="basket-box-title">
+                    Корзина
+                </div>
+                    <ul class="basket-wrapper">
+                        <th:block th:unless="${#lists.isEmpty(cart.get(0))}">
+                            <li class="basket-product" th:each="mag : ${cart.get(0)}">
+                                <div class="basket-product-photo">
+                                    <img th:src="@{/images/search.svg}" alt="">
+                                </div>
+                                <div class="basket-info-wrapper">
+                                    <div class="basket-info" th:text="${mag.product_name}"></div>
+                                    <div class="basket-button-wrapper">
+                                        <div class="basket-wrapper-btn">
+                                            <button class="basket-buttons">
+                                                +
+                                            </button>
+                                            <div class="product-counter" th:text="${mag.count}">
 
-                            </div>
-                            <div class="basket-button-wrapper">
-                                <div class="basket-wrapper-btn">
-                                    <button class="basket-buttons">
-                                        +
-                                    </button>
-                                    <div class="product-counter" th:text="${mag.count}">
+                                            </div>
+                                            <button class="basket-buttons">
+                                                -
+                                            </button>
+                                        </div>
+                                        <div class="basket-price" th:text="${'Цена ' + mag.cost}">
 
+                                        </div>
                                     </div>
-                                    <button class="basket-buttons">
-                                        -
-                                    </button>
                                 </div>
-                                <div class="basket-price" th:text="${'Цена ' + mag.cost}">
-
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </th:block>
-            <div class="price">
-                Итого:
+                            </li>
+                        </th:block>
+                    </ul>
+                <div class="price">
+                    Итого:
+                </div>
             </div>
+            <button class="basket-popup-close-btn" id="close-basket-popup-id"></button>
         </div>
-        <button class="basket-popup-close-btn" id="close-basket-popup-id"></button>
     </div>
     <div class="container-search">
         <div class="search-form">
@@ -115,8 +113,8 @@
 
 <th:block th:fragment="productsFragment">
     <div class="container-main">
-        <ul class="container-product-list" th:each="product : ${products}">
-            <li class="product-wrapper">
+        <ul class="container-product-list">
+            <li class="product-wrapper" th:each="product : ${products}">
                 <a th:href="${'/products/' + product.id}" class="product">
                     <div class="product-photo">
                         <img th:src="${product.image_url}" alt="">

@@ -1,3 +1,9 @@
+document.querySelectorAll('.category-li').forEach(elem => {
+    elem.addEventListener('mouseover', function (event) {
+        toggleCategoryVisibility(event.target.id);
+    })
+})
+
 document.getElementById("open-category-popup-btn").addEventListener("click",function(){
     document.getElementById("category-popup-id").classList.toggle("open")
 }) 
@@ -20,32 +26,29 @@ document.getElementById("category-popup-id").addEventListener('click', event => 
 
 
 function toggleCategoryVisibility(categoryId) {
-    const categories = {
-        meat: document.querySelectorAll('.meat-category'),
-        milk: document.querySelectorAll('.milk-category'),
-        sweets: document.querySelectorAll('.sweets-category')
-    };
-
-    for (const categoryType in categories) {
-        if (categoryType !== categoryId) {
-            categories[categoryType].forEach(function(category) {
-                category.classList.remove('open');
-            });
+    let blocks = Array.from(document.getElementsByClassName("subcategory-elem"));
+    blocks.forEach(function (category) {
+        if (!category.classList.contains(categoryId)){
+            console.log(category);
+            category.classList.remove('open');
         }
-    }
-
-    categories[categoryId].forEach(function(category) {
+    });
+    Array.from(document.getElementsByClassName(categoryId)).forEach(function(category) {
         category.classList.add('open');
+        console.log(category);
     });
 }
-document.getElementById('milk-category').addEventListener('mouseover', function() {
-    toggleCategoryVisibility('milk');
-});
 
-document.getElementById('meat-category').addEventListener('mouseover', function() {
-    toggleCategoryVisibility('meat');
-});
 
-document.getElementById('sweets-category').addEventListener('mouseover', function() {
-    toggleCategoryVisibility('sweets');
-});
+
+// document.getElementById('milk-category').addEventListener('mouseover', function() {
+//     toggleCategoryVisibility('milk');
+// });
+//
+// document.getElementById('meat-category').addEventListener('mouseover', function() {
+//     toggleCategoryVisibility('meat');
+// });
+//
+// document.getElementById('sweets-category').addEventListener('mouseover', function() {
+//     toggleCategoryVisibility('sweets');
+// });

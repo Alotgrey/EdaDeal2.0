@@ -4,6 +4,7 @@ import com.example.econom_main.Product.dtos.CategoryDto;
 import com.example.econom_main.Product.dtos.CategoryListDto;
 import com.example.econom_main.Product.entities.Category;
 import com.example.econom_main.Product.repositories.CategoryRepository;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 @Component
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class CategoryMapper {
     private final CategoryRepository categoryRepository;
     public Category toCategory(CategoryDto categoryDto){
