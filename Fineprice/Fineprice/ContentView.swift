@@ -12,15 +12,13 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            NavigationStack {
-                Text("1")
-            }.tabItem {
+            MainPageView(model: model).tabItem {
                 Image(systemName: "house")
                 Text("Домашняя") }
             SearchView(model: model).tabItem {
                 Image(systemName: "magnifyingglass")
                 Text("Поиск") }
-            CategoryView().tabItem {
+            CategoryView(model: model).tabItem {
                 Image(systemName: "square.grid.3x3.fill")
                 Text("Категории") }
             CartView(shoppingCart: $model.shoppingCart).tabItem {

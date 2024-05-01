@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CategoryView: View {
+    
+    @ObservedObject var model : Model
     @State private var categories = ["Овощи", "Мясо", "Фрукты", "Алкоголь"]
     var body: some View {
         NavigationStack {
@@ -16,7 +18,7 @@ struct CategoryView: View {
                             [GridItem(.adaptive(minimum: 150), spacing: 15)],
                           spacing: 15) {
                     ForEach(categories, id: \.self) { category in
-                        NavigationLink(destination: SearchView())
+                        NavigationLink(destination: SearchView(model: Model()))
                         {
                             VStack {
                                 Text("\(category)")
@@ -53,5 +55,5 @@ struct CategoryView: View {
 }
 
 #Preview {
-    CategoryView()
+    CategoryView(model: Model())
 }

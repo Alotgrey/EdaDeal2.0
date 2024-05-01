@@ -18,6 +18,7 @@ struct CartView: View {
                         ForEach(products, id: \.id) { product in
                             HStack {
                                 Text(product.name)
+                                    .lineLimit(1)
                                 Spacer()
                                 Text(product.selectedShop.price)
                                 Button(action: {

@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct DetailView: View {
-    
     var product : Product
-    @Binding var cart : [String:[Product]]
     
+    @ObservedObject var model : Model
     @State var showAlert = false
     @State var tighten = true
     
@@ -85,22 +84,22 @@ struct DetailView: View {
                                 shopFor.name == shop.name
                             })
                             changedProduct.selectedShop = product.shops[indexOfShop!]
-                            let oldAllInAll = cart[shop.name]!.last!
-                            cart[shop.name]! = cart[shop.name]!.dropLast() + [changedProduct]
-                            cart[shop.name]! = cart[shop.name]! + [oldAllInAll]
+                            let oldAllInAll = model.shoppingCart[shop.name]!.last!
+                            model.shoppingCart[shop.name]! = model.shoppingCart[shop.name]!.dropLast() + [changedProduct]
+                            model.shoppingCart[shop.name]! = model.shoppingCart[shop.name]! + [oldAllInAll]
                             
-                            cart.forEach { shopName, products in
+                            model.shoppingCart.forEach { shopName, products in
                                 var sum = 0
                                 products.dropLast().forEach { product in
                                     let value = product.selectedShop.price.components(separatedBy: ",")
                                     print(value[0])
                                     sum += Int(value[0]) ?? 0
                                 }
-                                cart[shopName]! = products.dropLast() + [Product(id: 99, name: "Итог: ", description: "", shops: [], selectedShop: Shop(price: "\(sum)", name: "", logoUrl: "", url: "", urlImage: ""))]
-                                //print("\(shoppingCart)")
-                                //shoppingCart[shop]!.append() //TODO: DANGER!
+                                model.shoppingCart[shopName]! = products.dropLast() + [Product(id: 99, name: "Итог: ", description: "", shops: [], selectedShop: Shop(price: "\(sum)", name: "", logoUrl: "", url: "", urlImage: ""))]
+                                //print("\(shoppingmodel.shoppingCart)")
+                                //shoppingmodel.shoppingCart[shop]!.append() //TODO: DANGER!
                             }
-                            //cart.updateValue(newProducts, forKey: shop.name)
+                            //model.shoppingCart.updateValue(newProducts, forKey: shop.name)
                             //UIApplication.shared.open(URL(string: shop.url)!)
                         }) {
                             Text("В корзину")
@@ -138,13 +137,5 @@ struct DetailView: View {
                                                         Shop(price: "85", name: "Пятерочка", logoUrl: "pyatLogo", url: "https://vk.com/keril1", urlImage: "product"),
                                                         Shop(price: "65", name: "Светофор", logoUrl: "svetLogo", url: "https://vk.com/keril1", urlImage: "product")],
                                                 selectedShop: Shop(price: "65", name: "Светофор", logoUrl: "svetLogo", url: "https://vk.com/keril1", urlImage: "product")
-                               ), cart: .constant(["5ka": [Product(id: 1,
-                                                         name: "Майонез",
-                                                         description: "Нежный майонез высшего качества, приготовленный из свежих яиц, отборного растительного масла и натурального уксуса. Идеально подходит для добавления в салаты, приготовления соусов или использования в качестве дипа. Обеспечивает богатый вкус и кремовую текстуру, чтобы удовлетворить ваши гастрономические предпочтения.",
-                                                         shops: [Shop(price: "75000", name: "Магнит", logoUrl: "magnitLogo", url: "https://vk.com/keril1", urlImage: "product"),
-                                                                 Shop(price: "95", name: "Лента", logoUrl: "lentaLogo",url: "https://vk.com/keril1", urlImage: "product"),
-                                                                 Shop(price: "85", name: "Пятерочка", logoUrl: "pyatLogo", url: "https://vk.com/keril1", urlImage: "product"),
-                                                                 Shop(price: "65", name: "Светофор", logoUrl: "svetLogo", url: "https://vk.com/keril1", urlImage: "product")],
-                                                         selectedShop: Shop(price: "65", name: "Светофор", logoUrl: "svetLogo", url: "https://vk.com/keril1", urlImage: "product")
-                                         )]]))
+                               ), model: Model())
 }

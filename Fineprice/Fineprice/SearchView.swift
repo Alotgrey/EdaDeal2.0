@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SearchView: View {
-    @ObservedObject var model : Model = Model()
+    @ObservedObject var model : Model
     
     @State var searchText = ""
     //Реализация поиска
@@ -24,7 +24,7 @@ struct SearchView: View {
                             [GridItem(.adaptive(minimum: 150), spacing: 15)],
                           spacing: 15) {
                     ForEach(filteredProducts, id: \.id) { product in
-                        NavigationLink(destination: DetailView(product: product, cart: $model.shoppingCart))
+                        NavigationLink(destination: DetailView(product: product, model: model))
                                 {
                                     VStack {
                                         Text("\(product.name)")
@@ -75,5 +75,5 @@ struct SearchView: View {
 }
 
 #Preview {
-    SearchView()
+    SearchView(model: Model())
 }
