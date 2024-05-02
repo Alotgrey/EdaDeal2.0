@@ -1,5 +1,3 @@
-import asyncio
-import base64
 import json
 import logging
 import re
@@ -7,6 +5,9 @@ from enum import Enum
 
 import aiohttp
 
+from APIHandler.app.pkg.sbermarket2_module.app.exceptions import (
+    parser as parser_exception,
+)
 from APIHandler.app.pkg.sbermarket2_module.app.utils.data_fetcher import DataFetcher
 
 
@@ -18,8 +19,7 @@ class SberParser2Methods(Enum):
     POST = 'POST'
 
 
-
-class SberParser2:
+class SberParser2():
     def __init__(self, fetcher: DataFetcher = None):
         self.session = None
         self.fetcher = fetcher
@@ -27,10 +27,9 @@ class SberParser2:
 
     async def get_item_data(self, lon: float, lat: float, item_name: str, prev_ver: bool = False) -> dict:
         if prev_ver:
-            raise NotImplementedError
+            raise NotImplementedError()
         else:
             near_markets = await self.get_stores(lon=lon, lat=lat)
-            #TODO: перекресток
             markets_mapping = {
                 'ЛЕНТА': 'lenta',
                 'ПЯТЕРОЧКА': '5ka',
@@ -75,8 +74,7 @@ class SberParser2:
     async def get_item_data_by_url_and_market_id(self, url, number_market, prev_ver: bool = False):
         if prev_ver:
             if self.fetcher is None:
-                # Todo доделать норм вывод ошибки
-                raise ValueError
+                raise parser_exception.FetcherNotFound()
             return self.get_get_item_data_by_url_and_market_id_selenium(url=url, number_market=number_market, fetcher=self.fetcher)
         else:
             item_id_api = url.split("/")[-1]
@@ -87,13 +85,11 @@ class SberParser2:
                 {}
                 )
 
-
     #TODO: Найти аналог v3
     async def get_store(self, market_id: int, prev_ver: bool = False) -> dict:
         if prev_ver:
             if self.fetcher is None:
-                # Todo доделать норм вывод ошибки
-                raise ValueError
+                raise parser_exception.FetcherNotFound()
             return self.get_store_selenium(market_id=market_id, fetcher=self.fetcher)
         else:
             return await self.__req(
@@ -105,8 +101,7 @@ class SberParser2:
     async def get_stores(self, lon: float, lat: float, prev_ver: bool = False) -> dict:
         if prev_ver:
             if self.fetcher is None:
-                # Todo доделать норм вывод ошибки
-                raise ValueError
+                raise parser_exception.FetcherNotFound()
             return self.get_stores_selenium(lon=lon, lat=lat, fetcher=self.fetcher)
         else:
             return await self.__req(
