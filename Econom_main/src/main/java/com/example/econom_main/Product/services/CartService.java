@@ -1,9 +1,10 @@
 package com.example.econom_main.Product.services;
 
 import com.example.econom_main.Product.dtos.CartItem;
-import com.example.econom_main.Product.entities.ProductCost;
-import com.example.econom_main.Product.entities.ShopCost;
-import com.example.econom_main.Product.entities.ShoppingCart;
+import com.example.econom_main.Product.entities.cart.SessionCart;
+import com.example.econom_main.Product.entities.cart.ShopCart;
+import com.example.econom_main.Product.entities.product_cost.ProductCost;
+import com.example.econom_main.Product.entities.product_cost.ShopCost;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,96 +16,39 @@ import java.util.*;
 @RequiredArgsConstructor
 public class CartService {
     private final ProductCostService productCostService;
-    public List<List<CartItem>> getCart(HttpSession session) throws IOException {
-        ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+    public ShopCart getCart(HttpSession session) throws IOException {
+        SessionCart cart = (SessionCart) session.getAttribute("cart");
         if (cart == null){
-            cart = new ShoppingCart();
+            cart = new SessionCart();
             session.setAttribute("cart", cart);
         }
-        List<List<CartItem>> cartList = new ArrayList<>();
-        for (int i  = 0; i < 5; i++){
-            cartList.add(new ArrayList<>());
-        }
-        if (cart.getCart() != null) {
-            for (Long id : cart.getCart().descendingKeySet()) {
-                ProductCost productCost = productCostService.getProductCostById(id);
-                for (ShopCost shopCost : cart.getCart().get(id).keySet()) {
-                    switch (shopCost.getEn_name()) {
-                        case "magnit" ->
-                                cartList.get(0).add(
-                                        new CartItem(
-                                                id,
-                                                productCost.getName(),
-                                                shopCost.getCost(),
-                                                cart.getCart().get(id).get(shopCost)));
-                        case "5ka" ->
-                                cartList.get(1).add(
-                                        new CartItem(
-                                                id,
-                                                productCost.getName(),
-                                                shopCost.getCost(),
-                                                cart.getCart().get(id).get(shopCost)));
-                        case "crossroad" ->
-                                cartList.get(2).add(
-                                        new CartItem(
-                                                id,
-                                                productCost.getName(),
-                                                shopCost.getCost(),
-                                                cart.getCart().get(id).get(shopCost)));
-                        case "lenta" ->
-                                cartList.get(3).add(
-                                        new CartItem(
-                                                id,
-                                                productCost.getName(),
-                                                shopCost.getCost(),
-                                                cart.getCart().get(id).get(shopCost)));
-                        case "metro" ->
-                                cartList.get(4).add(
-                                        new CartItem(
-                                                id,
-                                                productCost.getName(),
-                                                shopCost.getCost(),
-                                                cart.getCart().get(id).get(shopCost)));
-                    }
-                }
-            }
-        }
-        return cartList;
+        return cart.getMostProfitableCart();
     }
 
-    public void addToCart(HttpSession session, Long product_id, String shopName) throws IOException {
-        ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+    public void addToCart(HttpSession session, Long product_id) throws IOException {
+        SessionCart cart = (SessionCart) session.getAttribute("cart");
         if (cart == null){
-            cart = new ShoppingCart();
+            cart = new SessionCart();
         }
         ProductCost productCost = productCostService.getProductCostById(product_id);
-        List<ShopCost> shopCostList = productCost.getPriceList();
+        List<ShopCost> shopCostList = productCost.priceList;
         for (ShopCost shopCost : shopCostList){
-            if (Objects.equals(shopCost.getEn_name(), shopName)){
-                cart.addProduct(product_id, shopCost);
-                break;
-            }
+            cart.addCartItem(new CartItem(product_id, productCost.name, productCost.image_url, shopCost, 1L));
         }
-        if (Objects.equals(productCost.getBest_cost().getEn_name(), shopName)){
-            cart.addProduct(product_id, productCost.getBest_cost());
-        }
+        cart.addCartItem(new CartItem(product_id, productCost.name, productCost.image_url, productCost.best_cost,1L));
         session.setAttribute("cart", cart);
     }
 
-    public void deleteFromCart(HttpSession session, Long product_id, String shopName) throws IOException {
-        ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+    public void deleteFromCart(HttpSession session, Long product_id) throws IOException {
+        SessionCart cart = (SessionCart) session.getAttribute("cart");
         if (cart == null){
-            cart = new ShoppingCart();
+            cart = new SessionCart();
+            session.setAttribute("cart", cart);
+            return;
         }
-        ProductCost productCost = productCostService.getProductCostById(product_id);
-        List<ShopCost> shopCostList = productCost.getPriceList();
-        for (ShopCost shopCost : shopCostList){
-            if (Objects.equals(shopCost.getEn_name(), shopName)){
-                cart.deleteProduct(product_id, shopCost);
-                break;
-            }
-        }
-        session.setAttribute("cart", cart);
+        cart.deleteCartItem(product_id);
+
+
     }
 
 }

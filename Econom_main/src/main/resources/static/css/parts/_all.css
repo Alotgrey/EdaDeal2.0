@@ -526,6 +526,7 @@
 	width: 100%;
 	float: left;
 	transition: width .2s;
+    padding-bottom: 2%;
 }
 
 @media only screen and (min-width: 450px) {
@@ -611,6 +612,7 @@ box-shadow: 0 0 12px #eccf2a;
     height: 15%;
     width: 100%;
 	display: flex;
+    margin-bottom: 10px;
 }
 
 .buttons {

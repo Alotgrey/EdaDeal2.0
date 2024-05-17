@@ -26,7 +26,9 @@ public class ProductController {
         model.addAttribute("categories", allCategories.children);
         model.addAttribute("products", productService.getAllProducts());
         model.addAttribute("cart", cartService.getCart(session));
-        System.out.println(cartService.getCart(session));
+        if (cartService.getCart(session).products.size() > 0){
+            System.out.println(cartService.getCart(session).products.get(0).count);
+        }
         return "mainPage";
     }
 
@@ -48,15 +50,15 @@ public class ProductController {
         return "productPage";
     }
 
-    @GetMapping("/add-to-cart/{product_id}/{shop_name}")
-    private ModelAndView addToCart(@PathVariable("product_id") Long product_id, @PathVariable("shop_name") String shop_name, HttpSession session) throws IOException {
-        cartService.addToCart(session, product_id, shop_name);
+    @GetMapping("/add-to-cart/{product_id}")
+    private ModelAndView addToCart(@PathVariable("product_id") Long product_id, HttpSession session) throws IOException {
+        cartService.addToCart(session, product_id);
         return new ModelAndView("redirect:/");
     }
 
-    @GetMapping("/delete-from-cart/{product_id}/{shop_name}")
-    private ModelAndView  deleteFromCart(@PathVariable("product_id") Long product_id, @PathVariable("shop_name") String shop_name, HttpSession session) throws IOException {
-        cartService.deleteFromCart(session, product_id, shop_name);
+    @GetMapping("/delete-from-cart/{product_id}")
+    private ModelAndView  deleteFromCart(@PathVariable("product_id") Long product_id, HttpSession session) throws IOException {
+        cartService.deleteFromCart(session, product_id);
         return new ModelAndView("redirect:/");
     }
 }

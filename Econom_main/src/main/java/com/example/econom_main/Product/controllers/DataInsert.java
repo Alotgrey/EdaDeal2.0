@@ -3,16 +3,11 @@ package com.example.econom_main.Product.controllers;
 import com.example.econom_main.Product.dtos.CategoryDto;
 import com.example.econom_main.Product.dtos.CategoryListDto;
 import com.example.econom_main.Product.dtos.ProductDto;
-import com.example.econom_main.Product.entities.Category;
-import com.example.econom_main.Product.entities.Cost;
-import com.example.econom_main.Product.entities.Product;
-import com.example.econom_main.Product.mappers.CategoryMapper;
-import com.example.econom_main.Product.mappers.ProductMapper;
+import com.example.econom_main.Product.entities.product_cost.Cost;
 import com.example.econom_main.Product.services.CostService;
 import com.example.econom_main.Product.services.ProductCostService;
 import com.example.econom_main.Product.services.ProductService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,19 +24,9 @@ public class DataInsert {
         return productService.getAllCategories();
     }
 
-    @GetMapping("/api/delete_cost/{id}")
-    private void deleteCost(@PathVariable("id") Long id){
-        costService.deleteCost(id);
-    }
-
     @GetMapping ("/api/products")
     private List<ProductDto> getProducts(){
         return productService.getAllProducts();
-    }
-
-    @PostMapping("/api/costs/add")
-    private void saveCost(@RequestBody Cost cost){
-        costService.save(cost);
     }
 
     @PostMapping("/api/categories/add")

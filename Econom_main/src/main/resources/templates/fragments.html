@@ -63,39 +63,34 @@
     <div class="basket-popup-hidden-box" id="basket-popup-hidden-box-id">
         <div class="basket-popup" id="basket-popup-id">
             <div class="basket-box">
-                <div class="basket-box-title">
-                    Корзина
-                </div>
+                <div class="basket-box-title" th:text="${cart.name}"></div>
                     <ul class="basket-wrapper">
-                        <th:block th:unless="${#lists.isEmpty(cart.get(0))}">
-                            <li class="basket-product" th:each="mag : ${cart.get(0)}">
+                        <th:block th:unless="${#lists.isEmpty(cart.products)}">
+                            <li class="basket-product" th:each="item : ${cart.products}">
                                 <div class="basket-product-photo">
-                                    <img th:src="@{/images/search.svg}" alt="">
+                                    <img th:src="${item.image_url}" alt="">
                                 </div>
                                 <div class="basket-info-wrapper">
-                                    <div class="basket-info" th:text="${mag.product_name}"></div>
+                                    <div class="basket-info" th:text="${item.product_name}"></div>
                                     <div class="basket-button-wrapper">
                                         <div class="basket-wrapper-btn">
                                             <button class="basket-buttons">
                                                 +
                                             </button>
-                                            <div class="product-counter" th:text="${mag.count}">
+                                            <div class="product-counter" th:text="${item.count}">
 
                                             </div>
                                             <button class="basket-buttons">
                                                 -
                                             </button>
                                         </div>
-                                        <div class="basket-price" th:text="${'Цена ' + mag.cost}">
-
-                                        </div>
+                                        <div class="basket-price" th:text="${'Цена ' + item.cost.cost}"></div>
                                     </div>
                                 </div>
                             </li>
                         </th:block>
                     </ul>
-                <div class="price">
-                    Итого:
+                <div class="price" th:text="${'Итого: ' + cart.total}">
                 </div>
             </div>
             <button class="basket-popup-close-btn" id="close-basket-popup-id"></button>
@@ -120,7 +115,7 @@
                         <img th:src="${product.image_url}" alt="">
                     </div>
                     <div class="product-buttons-wrap">
-                        <button class="buttons">В корзину</button>
+                        <button class="buttons">Перейти</button>
                     </div>
                 </a>
             </li>
@@ -145,14 +140,14 @@
                     <div class="grid-grid">
                         <div class="list-service">
                             <span class="service-service" th:text="${ShopCost.rus_name}"></span>
-                            <a th:href="${'/add-to-cart/' + product.id + '/' + ShopCost.en_name}"><button class="btn_grid" th:text="${ShopCost.cost}"></button></a>
+                            <a th:href="${'/add-to-cart/' + product.id}"><button class="btn_grid" th:text="${ShopCost.cost}"></button></a>
                         </div>
                     </div>
                 </th:block>
                 <div class="main-shop">
                     <span class="service-main-service" th:text="${product.best_cost.rus_name}"></span>
                 </div>
-                <a th:href="${'/add-to-cart/' + product.id + '/' + product.best_cost.en_name}"><button class="btn_main" th:text="${product.best_cost.cost}"></button></a>
+                <a th:href="${'/add-to-cart/' + product.id}"><button class="btn_main" th:text="${product.best_cost.cost}"></button></a>
             </div>
         </main>
     </div>

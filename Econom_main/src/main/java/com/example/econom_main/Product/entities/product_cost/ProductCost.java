@@ -1,7 +1,6 @@
-package com.example.econom_main.Product.entities;
+package com.example.econom_main.Product.entities.product_cost;
 
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.ArrayList;
 import java.util.Comparator;

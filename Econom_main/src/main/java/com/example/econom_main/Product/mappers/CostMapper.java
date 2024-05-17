@@ -1,7 +1,7 @@
 package com.example.econom_main.Product.mappers;
 
 import com.example.econom_main.Product.dtos.CostDto;
-import com.example.econom_main.Product.entities.Cost;
+import com.example.econom_main.Product.entities.product_cost.Cost;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;

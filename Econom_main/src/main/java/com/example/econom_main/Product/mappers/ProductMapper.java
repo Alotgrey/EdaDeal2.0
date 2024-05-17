@@ -1,11 +1,9 @@
 package com.example.econom_main.Product.mappers;
 import com.example.econom_main.Product.dtos.ProductDto;
 import com.example.econom_main.Product.entities.Category;
-import com.example.econom_main.Product.entities.Product;
+import com.example.econom_main.Product.entities.product_cost.Product;
 import com.example.econom_main.Product.repositories.CategoryRepository;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

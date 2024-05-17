@@ -1,4 +1,4 @@
-package com.example.econom_main.Product.entities;
+package com.example.econom_main.Product.entities.product_cost;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -4,7 +4,7 @@ import com.example.econom_main.Product.dtos.CategoryDto;
 import com.example.econom_main.Product.dtos.CategoryListDto;
 import com.example.econom_main.Product.dtos.ProductDto;
 import com.example.econom_main.Product.entities.Category;
-import com.example.econom_main.Product.entities.Product;
+import com.example.econom_main.Product.entities.product_cost.Product;
 import com.example.econom_main.Product.mappers.CategoryMapper;
 import com.example.econom_main.Product.mappers.ProductMapper;
 import com.example.econom_main.Product.repositories.CategoryRepository;

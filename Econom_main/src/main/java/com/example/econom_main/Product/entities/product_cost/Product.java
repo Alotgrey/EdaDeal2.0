@@ -1,5 +1,6 @@
-package com.example.econom_main.Product.entities;
+package com.example.econom_main.Product.entities.product_cost;
 
+import com.example.econom_main.Product.entities.Category;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

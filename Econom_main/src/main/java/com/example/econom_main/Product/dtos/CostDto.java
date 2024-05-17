@@ -20,11 +20,7 @@ public class CostDto {
             private String preview_url;
             private String product_url;
             private String small_url;
-
-            // getters and setters
         }
-
-        // getters and setters
     }
 
     @Data
@@ -35,7 +31,5 @@ public class CostDto {
         private double magnit;
         private double metro;
         private double crossroad;
-
-        // getters and setters
     }
 }
