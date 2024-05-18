@@ -1,23 +1,19 @@
-import asyncio
 import json
 import logging
 import re
-from enum import Enum
 from typing import Dict, List, Union
 
 import nodriver as uc
 
+from APIHandler.app.pkg.sbermarket_store_parser.parser.enums import Stores
+
+
+# from db.session import Session
+# from models import Product
+
+
 
 logging.basicConfig(level=logging.INFO)
-
-#?
-class Stores(Enum):
-    MAGNIT = {'slug': 'magnit', 'id': 7217}
-    PYATOROCHKA = {'slug': '5ka', 'id': None}
-    PEREKRESTOK = {'slug': None, 'id': None}
-    LENTA = {'slug': 'lenta', 'id': None}
-    METRO = {'slug': 'metro', 'id': None}
-
 
 
 class SbermarketStoreParser:
@@ -90,16 +86,3 @@ class SbermarketStoreParser:
                 }
                 category_items.append(item_data)
         return category_items
-
-async def main():
-    store_parser = await SbermarketStoreParser().create(store=Stores.MAGNIT)
-    result = await store_parser.run()
-    print(result[:5])
-    print(len(result))
-
-
-if __name__ == '__main__':
-    import time
-    start_time = time.time()
-    asyncio.run(main())
-    logging.info(f"Время работы парсинга составило {(time.time() - start_time):.2f} сек.")
