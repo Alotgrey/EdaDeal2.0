@@ -38,6 +38,7 @@ class SberParser2():
                 #'МАГНИТ СЕМЕЙНЫЙ': 'magnit_family',
                 'METRO': 'metro',
                 'ПЕРЕКРЕСТОК': 'crossroad',
+                'АШАН': 'auchan',
             }
             # Инициализация словаря ответа
             item_data = {}
