@@ -2,6 +2,7 @@ import asyncio
 import logging
 import time
 
+from APIHandler.app.pkg.sbermarket_store_parser.db.queries.orm import AsyncORM
 from APIHandler.app.pkg.sbermarket_store_parser.parser.enums import Stores
 from APIHandler.app.pkg.sbermarket_store_parser.parser.sbermarket_store_parser import (
     SbermarketStoreParser,
@@ -11,10 +12,11 @@ from APIHandler.app.pkg.sbermarket_store_parser.parser.sbermarket_store_parser i
 logging.basicConfig(level=logging.INFO)
 
 async def main():
-    store_parser = await SbermarketStoreParser().create(store=Stores.MAGNIT)
-    result = await store_parser.run()
-    print(result[:5])
-    print(len(result))
+    await AsyncORM.create_tables()
+
+    for store in Stores:
+        store_parser = await SbermarketStoreParser().create(store=store)
+        result = await store_parser.run()
 
 if __name__ == '__main__':
     start_time = time.time()

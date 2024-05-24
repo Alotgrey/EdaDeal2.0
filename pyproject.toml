@@ -16,8 +16,12 @@ lxml = "^5.2.1"
 types-beautifulsoup4 = "^4.12.0.20240229"
 aiohttp = "^3.9.4"
 nodriver = "^0.29rc2"
+psycopg = "^3.1.19"
 sqlalchemy = "^2.0.30"
-psycopg2 = "^2.9.9"
+asyncpg = "^0.29.0"
+pydantic-settings = "^2.2.1"
+psycopg-binary = "^3.1.19"
+tqdm = "^4.66.4"
 
 [tool.poetry.group.dev.dependencies]
 isort = "^5.13.2"
