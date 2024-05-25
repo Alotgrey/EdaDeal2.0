@@ -52,7 +52,7 @@
             </div>
             <div class="subcategory-list" id="subcategory-list">
                 <div th:each="category : ${categories}" th:class="${'Category' + category.id + ' subcategory-elem'}">
-                    <div th:each = "subCategory : ${category.children}">
+                    <div class="subcategory-elem-1" th:each = "subCategory : ${category.children}">
                         <a th:href="${'/category/' + subCategory.id}" th:text="${subCategory.name}"></a>
                     </div>
                 </div>
@@ -63,10 +63,11 @@
     <div class="basket-popup-hidden-box" id="basket-popup-hidden-box-id">
         <div class="basket-popup" id="basket-popup-id">
             <div class="basket-box">
-                <div class="basket-box-title" th:text="${cart.name}"></div>
-                    <ul class="basket-wrapper">
-                        <th:block th:unless="${#lists.isEmpty(cart.products)}">
-                            <li class="basket-product" th:each="item : ${cart.products}">
+                <th:block th:each="one_cart : ${cart}">
+                    <th:block th:unless="${#lists.isEmpty(one_cart.products)}">
+                        <div class="basket-box-title" th:text="${one_cart.name}"></div>
+                        <ul class="basket-wrapper">
+                            <li class="basket-product" th:each="item : ${one_cart.products}">
                                 <div class="basket-product-photo">
                                     <img th:src="${item.image_url}" alt="">
                                 </div>
@@ -84,15 +85,16 @@
                                                 -
                                             </button>
                                         </div>
-                                        <div class="basket-price" th:text="${'Цена ' + item.cost.cost}"></div>
+                                        <div class="basket-price" th:text="${'Цена ' + item.cost.price}"></div>
                                     </div>
                                 </div>
                             </li>
-                        </th:block>
-                    </ul>
-                <div class="price" th:text="${'Итого: ' + cart.total}">
-                </div>
+                        </ul>
+                        <div class="price" th:text="${'Итого: ' + one_cart.total}"></div>
+                    </th:block>
+                </th:block>
             </div>
+
             <button class="basket-popup-close-btn" id="close-basket-popup-id"></button>
         </div>
     </div>
@@ -135,19 +137,19 @@
             </div>
 
             <div class="second-colum">
-                <h3 class="service" th:text="${product.name}"></h3>
+                <h6 class="service" th:text="${product.name}"></h6>
                 <th:block th:each="ShopCost : ${product.priceList}">
                     <div class="grid-grid">
                         <div class="list-service">
                             <span class="service-service" th:text="${ShopCost.rus_name}"></span>
-                            <a th:href="${'/add-to-cart/' + product.id}"><button class="btn_grid" th:text="${ShopCost.cost}"></button></a>
+                            <a th:href="${'/add-to-cart/' + product.id + '/' + ShopCost.en_name}"><button class="btn_grid" th:text="${ShopCost.price}"></button></a>
                         </div>
                     </div>
                 </th:block>
                 <div class="main-shop">
                     <span class="service-main-service" th:text="${product.best_cost.rus_name}"></span>
                 </div>
-                <a th:href="${'/add-to-cart/' + product.id}"><button class="btn_main" th:text="${product.best_cost.cost}"></button></a>
+                <a th:href="${'/add-to-cart/' + product.id + '/' + product.best_cost.en_name}"><button class="btn_main" th:text="${product.best_cost.price}"></button></a>
             </div>
         </main>
     </div>

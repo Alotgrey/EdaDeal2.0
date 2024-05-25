@@ -29,13 +29,21 @@ public class ShopCart {
         if (f){
             products.add(cartItem);
         }
-        total += cartItem.cost.cost;
+        total += cartItem.cost.price;
+        total = Math.round(total * 100) / 100.0;
     }
 
     public void deleteCartItem(Long product_id){
         for (int i =0; i < products.size(); i++){
             if (Objects.equals(products.get(i).product_id, product_id)){
-                products.remove(i);
+                total -= products.get(i).cost.price;
+                total = Math.round(total * 100) / 100.0;
+                if (products.get(i).count == 1){
+                    products.remove(i);
+                }
+                else {
+                    products.get(i).count--;
+                }
                 break;
             }
         }

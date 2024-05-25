@@ -16,16 +16,16 @@ import java.util.*;
 @RequiredArgsConstructor
 public class CartService {
     private final ProductCostService productCostService;
-    public ShopCart getCart(HttpSession session) throws IOException {
+    public List<ShopCart> getCart(HttpSession session) throws IOException {
         SessionCart cart = (SessionCart) session.getAttribute("cart");
         if (cart == null){
             cart = new SessionCart();
             session.setAttribute("cart", cart);
         }
-        return cart.getMostProfitableCart();
+        return cart.getCarts();
     }
 
-    public void addToCart(HttpSession session, Long product_id) throws IOException {
+    public void addToCart(HttpSession session, Long product_id, String shop_name) throws IOException {
         SessionCart cart = (SessionCart) session.getAttribute("cart");
         if (cart == null){
             cart = new SessionCart();
@@ -33,22 +33,33 @@ public class CartService {
         ProductCost productCost = productCostService.getProductCostById(product_id);
         List<ShopCost> shopCostList = productCost.priceList;
         for (ShopCost shopCost : shopCostList){
-            cart.addCartItem(new CartItem(product_id, productCost.name, productCost.image_url, shopCost, 1L));
+            if (Objects.equals(shopCost.en_name, shop_name)){
+                cart.addCartItem(new CartItem(product_id, productCost.name, productCost.image_url, shopCost, 1L));
+            }
         }
-        cart.addCartItem(new CartItem(product_id, productCost.name, productCost.image_url, productCost.best_cost,1L));
+        if (Objects.equals(productCost.best_cost.en_name, shop_name)){
+            cart.addCartItem(new CartItem(product_id, productCost.name, productCost.image_url, productCost.best_cost,1L));
+        }
         session.setAttribute("cart", cart);
     }
 
-    public void deleteFromCart(HttpSession session, Long product_id) throws IOException {
+    public void deleteFromCart(HttpSession session, Long product_id, String shop_name) throws IOException {
         SessionCart cart = (SessionCart) session.getAttribute("cart");
         if (cart == null){
             cart = new SessionCart();
             session.setAttribute("cart", cart);
             return;
         }
-        cart.deleteCartItem(product_id);
-
-
+        ProductCost productCost = productCostService.getProductCostById(product_id);
+        List<ShopCost> shopCostList = productCost.priceList;
+        for (ShopCost shopCost : shopCostList){
+            if (Objects.equals(shopCost.en_name, shop_name)){
+                cart.deleteCartItem(product_id, shopCost.rus_name);
+            }
+        }
+        if (Objects.equals(productCost.best_cost.en_name, shop_name)){
+            cart.deleteCartItem(product_id, productCost.best_cost.rus_name);
+        }
+        session.setAttribute("cart", cart);
     }
-
 }

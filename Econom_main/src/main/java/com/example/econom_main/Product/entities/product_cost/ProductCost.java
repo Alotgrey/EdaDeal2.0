@@ -28,12 +28,15 @@ public class ProductCost {
             priceList.add(new ShopCost("Лента","lenta" , cost.getPrice_lenta()));
         }
         if (cost.getPrice_metro() > 0){
-            priceList.add(new ShopCost("Метро ","metro" , cost.getPrice_metro()));
+            priceList.add(new ShopCost("Метро","metro" , cost.getPrice_metro()));
         }
         if (cost.getPrice_crossroad() > 0){
             priceList.add(new ShopCost("Перекрёсток","crossroad" , cost.getPrice_crossroad()));
         }
-        priceList.sort(Comparator.comparing(ShopCost::getCost));
+        if (cost.getPrice_auchan() > 0){
+            priceList.add(new ShopCost("Ашан","auchan" , cost.getPrice_auchan()));
+        }
+        priceList.sort(Comparator.comparing(ShopCost::getPrice));
         best_cost = priceList.get(0);
         priceList.remove(0);
     }

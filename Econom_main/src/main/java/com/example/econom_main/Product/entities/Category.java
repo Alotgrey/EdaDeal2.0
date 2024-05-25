@@ -23,5 +23,4 @@ public class Category {
     @ManyToOne
     @JoinColumn(name = "parent_id")
     public Category parent;
-
 }

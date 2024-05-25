@@ -231,8 +231,8 @@
 .category-list {
     display: grid;
     grid-template-columns: 1fr; 
-    grid-auto-rows: 40px; 
-    width: 25%;
+    grid-auto-rows: 30px;
+    width: 50%;
     gap: 10px; 
     list-style-type: none; 
     padding: 0; 
@@ -243,7 +243,7 @@
 .category-list a {
     text-decoration: none;
     width: auto; 
-    font-size: 30px;
+    font-size: 20px;
     color: black; 
     transition: color 0.3s ease-in-out; 
 }
@@ -256,7 +256,7 @@
     user-select: none;
     text-decoration: none;
     width: auto; 
-    font-size: 30px;
+    font-size: 20px;
     color: black; 
     transition: color 0.3s ease-in-out; 
 }
@@ -296,7 +296,7 @@
 .subcategory-list a {
     text-decoration: none;
     width: auto; 
-    font-size: 30px;
+    font-size: 20px;
     color: black; 
     transition: color 0.3s ease-in-out; 
 }
@@ -344,7 +344,8 @@
     font-size: 25px;
     line-height: normal;
     color: #000;
-    user-select: none; 
+    user-select: none;
+    margin-top: 5%;
 }
 
 .basket-popup-hidden-box{
@@ -395,6 +396,12 @@
     overflow-y: auto;
 }
 
+.subcategory-elem-1{
+    margin: 0;
+    padding: 0;
+    height: 40px;
+}
+
 .basket-product{
     display: flex;
 	border: 1px solid #000000;
@@ -405,8 +412,8 @@
 	color: #474747;
 	z-index: 0;
     list-style-type: none;
-    height: 30%;
     background-color: white;
+    height: 30%;
 }
 
 .basket-products {
@@ -766,10 +773,10 @@ img {
 
 .service {
     color: #000;
-    width: 800px;
+    width: 400px;
     text-align: center;
     font-family: "Saira Stencil One";
-    font-size: 41px;
+    font-size: 31px;
     font-style: normal;
     white-space: nowrap;
     font-weight: 400;

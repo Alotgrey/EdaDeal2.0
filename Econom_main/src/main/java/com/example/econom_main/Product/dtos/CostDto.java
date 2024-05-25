@@ -30,6 +30,7 @@ public class CostDto {
         private double _5ka;
         private double magnit;
         private double metro;
-        private double crossroad;
+        private double perekrestok;
+        private double auchan;
     }
 }

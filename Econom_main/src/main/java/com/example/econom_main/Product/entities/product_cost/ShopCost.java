@@ -8,7 +8,7 @@ import lombok.Data;
 public class ShopCost{
     public String rus_name;
     public String en_name;
-    public Double cost;
+    public Double price;
 
     @Override
     public int hashCode() {

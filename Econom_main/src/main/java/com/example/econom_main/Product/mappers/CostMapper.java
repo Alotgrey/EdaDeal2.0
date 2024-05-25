@@ -16,8 +16,9 @@ public class CostMapper {
         cost.setPrice_5ka(costDto.getOffers().get_5ka());
         cost.setPrice_magnit(costDto.getOffers().getMagnit());
         cost.setPrice_lenta(costDto.getOffers().getLenta());
-        cost.setPrice_crossroad(costDto.getOffers().getCrossroad());
+        cost.setPrice_crossroad(costDto.getOffers().getPerekrestok());
         cost.setPrice_metro(costDto.getOffers().getMetro());
+        cost.setPrice_auchan(costDto.getOffers().getAuchan());
         return cost;
     }
 }

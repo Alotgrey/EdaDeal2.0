@@ -23,7 +23,7 @@ public class CostService {
     private final CostMapper costMapper;
 
     public Cost findCostById(Long id, String lon, String lat) throws IOException {
-        String url_str = "http://127.0.0.1:8000/api/v2/parser/item/?lon="+ lon +"&lat=" + lat + "&item_name=";
+        String url_str = "http://127.0.0.1:8000/api/v1/sbermarket/items/nearby-prices/?lon="+ lon +"&lat=" + lat + "&item_name=";
         url_str += productRepository.findById(id).get().getLink();
         URL url = new URL(url_str);
         ObjectMapper objectMapper = new ObjectMapper();
