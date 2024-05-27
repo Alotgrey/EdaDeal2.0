@@ -327,9 +327,9 @@
     padding: 20px;
     background-color: #fadead;
     overflow-y: auto;
-    display: column; 
-    flex-direction: row; 
-    justify-content: left; 
+    display: column;
+    flex-direction: row;
+    justify-content: left;
     align-items: top;
     border: 2px solid;
     box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.3);
@@ -394,6 +394,7 @@
     width: 100%;
     padding: 10px 0 0 0;
     overflow-y: auto;
+    background: white;
 }
 
 .subcategory-elem-1{
@@ -407,7 +408,7 @@
 	border: 1px solid #000000;
 	border-radius: 3px;
 	position: relative;
-    margin: 0 20px 20px 0;
+    margin: 0 20px 20px 10px;
 	text-decoration: none;
 	color: #474747;
 	z-index: 0;
@@ -430,7 +431,7 @@
     bottom: 10px;
     width: 28%;
     border: 2px solid;
-    border-radius: 30px;
+    overflow: hidden;
 }
 
 .basket-product-photo img {
@@ -461,7 +462,7 @@
     width: 20%;
     display: flex;
     align-items: center;
-    justify-content: space-between; 
+    justify-content: space-between;
 }
 
 .basket-button-wrapper {
@@ -476,8 +477,8 @@
     width: 100%;
     text-align: center;
     display: flex;
-    align-items: center; 
-    justify-content: center;    
+    align-items: center;
+    justify-content: center;
 }
 
 .basket-buttons {
@@ -751,16 +752,15 @@ img {
 
 
 .main {
-    width: 80%;
+    width: 65%;
     display: grid;
     justify-content: space-around;
     grid-template-columns: 706px 471px;
-    grid-gap: 35px;
 }
 
 .slider {
-    width: 500px;
-    height: 500px;
+    width: 350px;
+    height: 350px;
     margin-left: 110px;
     overflow: hidden;
     border: 10px solid #FFAB00;
