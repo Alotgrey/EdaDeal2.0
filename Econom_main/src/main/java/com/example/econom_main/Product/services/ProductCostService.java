@@ -18,7 +18,7 @@ public class ProductCostService {
     }
 
     public CategoryListDto getCategoriesTree(){
-        return productService.getCategoryListDtoById(1L);
+        return productService.getCategoryListDtoById(0L);
     }
 
 

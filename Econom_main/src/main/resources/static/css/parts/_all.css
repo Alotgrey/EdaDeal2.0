@@ -232,7 +232,7 @@
     display: grid;
     grid-template-columns: 1fr; 
     grid-auto-rows: 30px;
-    width: 50%;
+    width: 75%;
     gap: 10px; 
     list-style-type: none; 
     padding: 0; 

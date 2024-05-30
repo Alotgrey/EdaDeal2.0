@@ -50,12 +50,12 @@ public class ProductController {
     @GetMapping("/add-to-cart/{product_id}/{shop_name}")
     private ModelAndView addToCart(@PathVariable("product_id") Long product_id, @PathVariable("shop_name") String shop_name, HttpSession session) throws IOException {
         cartService.addToCart(session, product_id, shop_name);
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:/products/{product_id}");
     }
 
     @GetMapping("/delete-from-cart/{product_id}/{shop_name}")
     private ModelAndView  deleteFromCart(@PathVariable("product_id") Long product_id, @PathVariable("shop_name") String shop_name, HttpSession session) throws IOException {
         cartService.deleteFromCart(session, product_id, shop_name);
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:/products/{product_id}");
     }
 }

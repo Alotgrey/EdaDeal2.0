@@ -29,7 +29,7 @@ public class ProductService {
     }
 
     public List<ProductDto> getAllProducts(){
-        return productRepository.findAll().stream().map(productMapper::toDto).toList();
+        return productRepository.findAll().stream().map(productMapper::toDto).toList().subList(0, 10);
     }
 
     public List<Category> getAllCategoriesByParentId(Long id){
@@ -48,7 +48,7 @@ public class ProductService {
                 products.addAll(productRepository.findProductsByCategory_Id(child.getId()));
             }
         }
-        return products;
+        return products.subList(0, 10);
     }
 
     public Category getCategoryById(Long id){
