@@ -24,7 +24,6 @@ public class CostService {
 
     public Cost findCostById(Long id, String lon, String lat) throws IOException {
         String url_str = "http://127.0.0.1:8000/api/v1/sbermarket/items/nearby-prices/?lon="+ lon +"&lat=" + lat + "&item_name=";
-
         String productId = productRepository.findById(id).get().getLink();
         int lastIndexSlash = productId.lastIndexOf('/');
         String getStr = productId.substring(lastIndexSlash + 1);

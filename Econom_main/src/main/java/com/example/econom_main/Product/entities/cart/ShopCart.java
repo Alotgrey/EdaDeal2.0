@@ -2,12 +2,13 @@ package com.example.econom_main.Product.entities.cart;
 
 import com.example.econom_main.Product.dtos.CartItem;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 
-public class ShopCart {
+public class ShopCart implements Serializable {
     public final String name;
     public List<CartItem> products;
     public Double total;
@@ -21,7 +22,7 @@ public class ShopCart {
     public void addCartItem(CartItem cartItem){
         boolean f = true;
         for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).product_id == cartItem.product_id){
+            if (Objects.equals(products.get(i).product_id, cartItem.product_id)){
                 products.get(i).count++;
                 f = false;
             }

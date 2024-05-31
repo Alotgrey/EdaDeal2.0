@@ -3,9 +3,11 @@ package com.example.econom_main.Product.entities.product_cost;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.io.Serializable;
+
 @AllArgsConstructor
 @Data
-public class ShopCost{
+public class ShopCost implements Serializable {
     public String rus_name;
     public String en_name;
     public Double price;

@@ -32,7 +32,7 @@ public class ProductService {
 
     public List<ProductDto> getAllProductsPage(int pageNo){
         PageRequest pageable = PageRequest.of(pageNo - 1, 10);
-        return productRepository.findAll(pageable).stream().map(productMapper::toDto).toList().subList(0, 10);
+        return productRepository.findAll(pageable).stream().map(productMapper::toDto).toList();
     }
 
     public List<Category> getAllCategoriesByParentId(Long id){
@@ -51,7 +51,12 @@ public class ProductService {
                 products.addAll(productRepository.findProductsByCategory_Id(child.getId()));
             }
         }
-        return products.stream().map(productMapper::toDto).toList().subList((pageNo - 1) * 10, (pageNo - 1) * 10 + 10);
+
+        return products
+                .stream()
+                .map(productMapper::toDto)
+                .toList()
+                .subList((pageNo - 1) * 10, Integer.min((pageNo - 1) * 10 + 10, products.size()));
     }
 
     public Category getCategoryById(Long id){

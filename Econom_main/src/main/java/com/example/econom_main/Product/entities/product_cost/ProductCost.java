@@ -39,5 +39,6 @@ public class ProductCost {
         priceList.sort(Comparator.comparing(ShopCost::getPrice));
         best_cost = priceList.get(0);
         priceList.remove(0);
+        priceList = priceList.reversed();
     }
 }

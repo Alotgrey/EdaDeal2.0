@@ -1,16 +1,24 @@
 package com.example.econom_main.Product.entities.cart;
 
 import com.example.econom_main.Product.dtos.CartItem;
+import lombok.Getter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+@RedisHash("Cart")
+public class RedisCart implements Serializable {
+    @Getter
+    @Id
+    String id;
+    private final List<ShopCart> carts;
 
-public class SessionCart {
-    private List<ShopCart> carts;
-
-    public SessionCart() {
+    public RedisCart(String id) {
+        this.id = id;
         this.carts = new ArrayList<>();
         this.carts.add(new ShopCart("Магнит"));
         this.carts.add(new ShopCart("Пятёрочка"));
