@@ -10,8 +10,10 @@ import com.example.econom_main.Product.mappers.ProductMapper;
 import com.example.econom_main.Product.repositories.CategoryRepository;
 import com.example.econom_main.Product.repositories.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -28,17 +30,18 @@ public class ProductService {
         return categoryRepository.findAll().stream().map(categoryMapper::toDto).toList();
     }
 
-    public List<ProductDto> getAllProducts(){
-        return productRepository.findAll().stream().map(productMapper::toDto).toList().subList(0, 10);
+    public List<ProductDto> getAllProductsPage(int pageNo){
+        PageRequest pageable = PageRequest.of(pageNo - 1, 10);
+        return productRepository.findAll(pageable).stream().map(productMapper::toDto).toList().subList(0, 10);
     }
 
     public List<Category> getAllCategoriesByParentId(Long id){
         return categoryRepository.findCategoriesByParent_Id(id);
     }
 
-    public List<Product> getAllProductsFromCategory(Long category_id){
+    public List<ProductDto> getAllProductsFromCategory(Long category_id, int pageNo){
         List<Product> products = new ArrayList<>();
-        Category category = categoryRepository.findById(category_id).get();
+        Category category = getCategoryById(category_id);
         if (category.getIsFinal()){
             products = productRepository.findProductsByCategory_Id(category_id);
         }
@@ -48,7 +51,7 @@ public class ProductService {
                 products.addAll(productRepository.findProductsByCategory_Id(child.getId()));
             }
         }
-        return products.subList(0, 10);
+        return products.stream().map(productMapper::toDto).toList().subList((pageNo - 1) * 10, (pageNo - 1) * 10 + 10);
     }
 
     public Category getCategoryById(Long id){

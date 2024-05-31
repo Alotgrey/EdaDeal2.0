@@ -24,7 +24,7 @@ public class ProductController {
     private String getMainPage(Model model, HttpSession session) throws IOException {
         CategoryListDto allCategories = productCostService.getCategoriesTree();
         model.addAttribute("categories", allCategories.children);
-        model.addAttribute("products", productService.getAllProducts());
+        model.addAttribute("products", productService.getAllProductsPage(1));
         model.addAttribute("cart", cartService.getCart(session));
         return "mainPage";
     }
@@ -34,16 +34,16 @@ public class ProductController {
         CategoryListDto allCategories = productCostService.getCategoriesTree();
         model.addAttribute("categories", allCategories.children);
         model.addAttribute("category_name", productService.getCategoryById(category_id).getName());
-        model.addAttribute("products", productService.getAllProductsFromCategory(category_id));
+        model.addAttribute("products", productService.getAllProductsFromCategory(category_id, 1));
         model.addAttribute("cart", cartService.getCart(session));
         return "categoryPage";
     }
     @GetMapping ("/products/{product_id}")
-    private String getProduct(@PathVariable("product_id") Long product_id, Model model, HttpSession session) throws IOException {
+    private String getProductPage(@PathVariable("product_id") Long product_id, Model model, HttpSession session) throws IOException {
         CategoryListDto allCategories = productCostService.getCategoriesTree();
         model.addAttribute("categories", allCategories.children);
         model.addAttribute("cart", cartService.getCart(session));
-        model.addAttribute("product", productCostService.getProductCostById(product_id));
+        model.addAttribute("product", productCostService.getProductCostById(product_id, "lon", "lat"));
         return "productPage";
     }
 

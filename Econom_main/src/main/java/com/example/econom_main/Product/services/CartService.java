@@ -30,7 +30,7 @@ public class CartService {
         if (cart == null){
             cart = new SessionCart();
         }
-        ProductCost productCost = productCostService.getProductCostById(product_id);
+        ProductCost productCost = productCostService.getProductCostById(product_id, "45.955370", "51.502440");
         List<ShopCost> shopCostList = productCost.priceList;
         for (ShopCost shopCost : shopCostList){
             if (Objects.equals(shopCost.en_name, shop_name)){
@@ -50,7 +50,7 @@ public class CartService {
             session.setAttribute("cart", cart);
             return;
         }
-        ProductCost productCost = productCostService.getProductCostById(product_id);
+        ProductCost productCost = productCostService.getProductCostById(product_id, "45.955370", "51.502440");
         List<ShopCost> shopCostList = productCost.priceList;
         for (ShopCost shopCost : shopCostList){
             if (Objects.equals(shopCost.en_name, shop_name)){

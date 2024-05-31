@@ -13,8 +13,8 @@ public class ProductCostService {
     private final CostService costService;
     private final ProductService productService;
 
-    public ProductCost getProductCostById(Long id) throws IOException {
-        return new ProductCost(productService.getProductById(id), costService.findCostById(id, "45.955370", "51.502440"));
+    public ProductCost getProductCostById(Long id, String lon, String lat) throws IOException {
+        return new ProductCost(productService.getProductById(id), costService.findCostById(id, lon, lat));
     }
 
     public CategoryListDto getCategoriesTree(){
