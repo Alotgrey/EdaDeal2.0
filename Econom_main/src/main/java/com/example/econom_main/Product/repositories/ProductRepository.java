@@ -2,6 +2,7 @@ package com.example.econom_main.Product.repositories;
 
 import com.example.econom_main.Product.entities.product_cost.Product;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

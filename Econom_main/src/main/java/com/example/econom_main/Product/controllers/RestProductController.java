@@ -39,6 +39,12 @@ public class RestProductController {
         return productService.getAllProductsPage(pageNo);
     }
 
+    @GetMapping ("/products/find")
+    private List<ProductDto> getProducts(@RequestParam("search") String search,
+                                         @RequestParam(value="page", defaultValue = "1") int pageNo){
+        return productService.searchProductsByKeywords(search, pageNo);
+    }
+
     @GetMapping ("/products/{product_id}")
     private ProductCost getProduct(@PathVariable("product_id") Long product_id,
                                    @RequestParam("lon") String lon,

@@ -9,11 +9,15 @@ import com.example.econom_main.Product.mappers.CategoryMapper;
 import com.example.econom_main.Product.mappers.ProductMapper;
 import com.example.econom_main.Product.repositories.CategoryRepository;
 import com.example.econom_main.Product.repositories.ProductRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -25,18 +29,35 @@ public class ProductService {
     private final CategoryRepository categoryRepository;
     private final CategoryMapper categoryMapper;
     private final ProductMapper productMapper;
-
-    public List<CategoryDto> getAllCategories() {
-        return categoryRepository.findAll().stream().map(categoryMapper::toDto).toList();
-    }
+    private final EntityManager entityManager;
 
     public List<ProductDto> getAllProductsPage(int pageNo){
         PageRequest pageable = PageRequest.of(pageNo - 1, 10);
         return productRepository.findAll(pageable).stream().map(productMapper::toDto).toList();
     }
 
-    public List<Category> getAllCategoriesByParentId(Long id){
-        return categoryRepository.findCategoriesByParent_Id(id);
+    public List<ProductDto> searchProductsByKeywords(String keywords, int pageNo){
+        String[] keywordArray = keywords.toLowerCase().split("\\s+");
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Product> query = cb.createQuery(Product.class);
+        Root<Product> root = query.from(Product.class);
+        List<Predicate> predicates = new ArrayList<>();
+        for (String keyword : keywordArray) {
+            Predicate predicate = cb.or(
+                    cb.like(cb.lower(root.get("name")), "%" + keyword + "%")
+            );
+            predicates.add(predicate);
+        }
+        Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[0]));
+        query.where(finalPredicate);
+        List<Product> allProducts = entityManager.createQuery(query).getResultList();
+        return allProducts
+                .stream()
+                .map(productMapper::toDto)
+                .toList()
+                .subList( (pageNo - 1) * 10
+                        , Integer.min( (pageNo - 1) * 10 + 10
+                                     , allProducts.size()));
     }
 
     public List<ProductDto> getAllProductsFromCategory(Long category_id, int pageNo){
@@ -82,13 +103,5 @@ public class ProductService {
 
     public CategoryListDto getCategoryListDtoById(Long id){
         return categoryMapper.listGenerator(this.getCategoryById(id));
-    }
-
-    public void addNewCategory(CategoryDto categoryDto){
-        categoryRepository.save(categoryMapper.toCategory(categoryDto));
-    }
-
-    public void addNewProduct(ProductDto productDto){
-        productRepository.save(productMapper.toProduct(productDto));
     }
 }
